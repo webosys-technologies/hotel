@@ -1,0 +1,73 @@
+/* CSS Document */
+
+@media screen and (max-width: 1199px) {
+	.girls .girl {
+		width: 25% !important;
+	}
+}
+
+@media screen and (max-width: 1023px) {
+	.main-sidebar, .left-side,
+	.main-header .logo {
+		width: 180px;
+	}
+
+	.content-wrapper, .right-side, .main-footer,
+	.main-header > .navbar {
+		margin-left: 180px;
+	}
+
+	.girls {
+		padding-top: 10px;
+	}
+
+	.girls .girl {
+		width: 33.33% !important;
+		padding: 0 10px 20px;
+	}
+}
+
+@media screen and (max-width: 767px) {
+	.main-header .logo {
+		width: 100%;
+	}
+
+	.content-wrapper, .right-side, .main-footer,
+	.main-header > .navbar {
+		margin-left: 0;
+	}
+
+	.girls .girl {
+	}
+
+	.girls .girl .actions {
+		bottom: 0 !important;
+		opacity: 1 !important;
+	}
+
+	.fancybox-nav span {
+		visibility: visible !important;
+	}
+}
+
+@media screen and (max-width: 619px) {
+	.girls .girl {
+		width: 50% !important;
+	}
+}
+
+@media screen and (max-width: 479px) {
+	.girls {
+		padding-top: 5px;
+	}
+	.girls .girl {
+		padding: 0 5px 10px;
+	}
+}
+
+@media screen and (max-width: 419px) {
+	.girls .girl {
+		width: 100% !important;
+	}
+}
+
