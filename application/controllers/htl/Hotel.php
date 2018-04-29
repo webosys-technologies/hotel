@@ -8,8 +8,8 @@ class Hotel extends MY_Controller
   public function __construct()
   {
     parent::__construct();
-    if (!admin_logged_in()) {
-      redirect('admin');
+    if (!htl_logged_in()) {
+      redirect('htl');
     }
     $this->load->model('admin/client_model');
   }
@@ -23,7 +23,7 @@ class Hotel extends MY_Controller
     if($result){
       $this->data['hoteldata']=$result;
     }
-    load_backend_page('backend/client/hotel', $this->data);
+    load_htlbackend_page('htl/client/hotel', $this->data);
   }
 
 
@@ -48,7 +48,7 @@ class Hotel extends MY_Controller
 
     $removed = array_shift($hotel_room);
     $this->data['room_info']=$hotel_room;
-   load_backend_page('backend/client/add_hotel', $this->data);
+   load_htlbackend_page('htl/client/add_hotel', $this->data);
  }
  
    function updatehotelroom($hotel_id){
@@ -65,7 +65,7 @@ class Hotel extends MY_Controller
    $hotel_room=$res;
     $removed = array_shift($hotel_room);
     $this->data['room_info']=$hotel_room;
-   load_backend_page('backend/client/add_hotel_room', $this->data);
+   load_htlbackend_page('htl/client/add_hotel_room', $this->data);
 
  }
   function addhotelroom(){
@@ -76,7 +76,7 @@ class Hotel extends MY_Controller
    if(isset($_GET['hotelid'])){
    $this->data['hotelid'] = custom_decode($_GET['hotelid']);
    }
-   load_backend_page('backend/client/add_hotel_room', $this->data);
+   load_htlbackend_page('htl/client/add_hotel_room', $this->data);
 
  }
 
@@ -94,7 +94,7 @@ class Hotel extends MY_Controller
     redirect('admin/hotel');
   }else {
    set_flashdata('message', "Opps: Some thing went wrong, please try again!", 'danger');
-   redirect('admin/hotel');
+   redirect('htl/hotel');
  }
 }
 
@@ -105,7 +105,7 @@ function delete_hotel()
 //    die();
   if ($result) {
    set_flashdata('message', "Hotel is deleted successfully!", 'success');
-   redirect('admin/hotel');
+   redirect('htl/hotel');
  }else {
    set_flashdata('message', "Opps: Some thing went wrong, please try again!", 'danger');
    redirect('admin/hotel');

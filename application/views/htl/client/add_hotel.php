@@ -13,7 +13,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="box box-primary">
-                    <form class="form-horizontal" method="POST" action="<?php echo base_url('user/add_hotel');?>"  id="addhotel" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action="<?php echo base_url('htl/user/add_hotel');?>"  id="addhotel" enctype="multipart/form-data">
                         <div class="box-body">
                             <div class="form-group">
                                 <div class="col-sm-6">

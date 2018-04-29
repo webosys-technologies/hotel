@@ -5,14 +5,14 @@ class Orders extends MY_Controller
 
 	public function __construct() {
 		parent::__construct();
-		$this->load->model('admin/login_model');
-                $this->load->model('admin/client_model');
+		$this->load->model('htl/login_model');
+                $this->load->model('htl/client_model');
 				$this->load->model('Placeorder');
 	}
 
 	function index() {
 		admin_access();
-		if (admin_logged_in()) { 
+		if (htl_logged_in()) { 
 
 			// echo "dffd";
 			$res=$this->Placeorder->getorders("");
@@ -27,7 +27,7 @@ class Orders extends MY_Controller
 				$this->data['orderlist']=array();
 			}
 //			 debug($this->data);
-			load_backend_page('backend/orders', $this->data);
+			load_htlbackend_page('htl/orders', $this->data);
 		}else{
 			redirect('admin');
 		}
@@ -73,10 +73,10 @@ function status()
    
         
         set_flashdata('message', "Status is updated successfully!", 'success');
-        redirect('admin/orders');
+        redirect('htl/orders');
     }else {
        set_flashdata('message', "Opps: Some thing went wrong, please try again!", 'danger');
-       redirect('admin/orders');
+       redirect('htl/orders');
    }
 }
 }
