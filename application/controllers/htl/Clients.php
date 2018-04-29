@@ -19,14 +19,15 @@ class Clients extends MY_Controller
         $includes = array('datatable', 'iCheck');
         $this->data['inclusions'] = inclusions($includes);
         $this->data['page_title'] = "List of Users";
-        $cid=$this->session->userdata('htl_user_id');
+        $cid=$this->session->userdata('owner_id');
         
         $result = $this->client_model->getuserList($cid);
+      
         // debug($result);
         if($result){
             $this->data['userdata']=$result;
         }
-//        $this->load->view('htl/client/index', $this->data);
+
         load_htlbackend_page('htl/client/index', $this->data);
     }
 
@@ -34,7 +35,7 @@ class Clients extends MY_Controller
        $cid=$this->session->userdata('htl_user_id');
        $includes = array('datatable','validate','iCheck','datepicker');
        $this->data['inclusions'] = inclusions($includes);
-       $this->data['page_title'] = "User Detail";
+       $this->data['page_title'] = "Customer Detail";
 //       $result = $this->client_model->getuserList($cid);
 //       $this->data['client_info']=$result;
        load_htlbackend_page('htl/client/profile', $this->data);

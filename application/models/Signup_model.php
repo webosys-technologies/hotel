@@ -7,23 +7,9 @@ class Signup_model extends CI_Model {
 	}
 
 	function signup($data) {
-
-		// debug($data);
-		if(empty($data['id'])) {
-			array_pop($data);
-			$query = $this->db->insert('user', $data);
-		}else{
-			// echo custom_decode($data['id']);
-			// debug($data);
-			$this->db->where('id',custom_decode($data['id']));
-			$data['id']=custom_decode($data['id']);
-			$query = $this->db->update('user', $data);
-		}
-		if($query){
-			return true;	
-		}else{			
-			return false;
-		}
+      
+		$this->db->insert('user', $data);
+		return $this->db->insert_id();
 	}
 
 	function resetPass() {

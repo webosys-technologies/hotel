@@ -56,7 +56,7 @@
 											?>
 											<a href="<?php echo base_url('htl/clients/status')."?status=".urlencode($message)."&id=".custom_encode($value->id); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td>
 											<td>
-												<a href="<?php echo base_url('htl/clients/profile')."/".custom_encode($value->id); ?>" class="btn btn-info btn-xs" title="Edit" class="disabled"><i class="fa fa-edit"></i></a>
+												<a href="<?php echo base_url('htl/clients/profile')."/".custom_encode($value->id); ?>" class="btn btn-info btn-xs" title="Edit" disabled><i class="fa fa-edit"></i></a>
 												<a href="<?php echo base_url('htl/clients/delete_user')."?id=".custom_encode($value->id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete" disabled><i class="fa fa-trash"></i></a>
 											</td>
 										</tr>
