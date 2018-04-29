@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1><?php echo $page_title; ?></h1>
-		<a href="<?php echo base_url('admin/clients/profile')."/na"; ?>" class="btn btn-primary btn-xs pull-right" style="margin-top:-25px "><i class="fa fa-plus"></i> Add User</a>
+		<a href="<?php echo base_url('htl/clients/profile')."/na"; ?>" class="btn btn-primary btn-xs pull-right" style="margin-top:-25px "><i class="fa fa-plus"></i> Add Customer</a>
 	</section>
 	<section class="content">
 		<?php echo get_flashdata('message'); ?>
@@ -54,10 +54,10 @@
 												$status="bg-green";
 											}
 											?>
-											<a href="<?php echo base_url('admin/clients/status')."?status=".urlencode($message)."&id=".custom_encode($value->id); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td>
+											<a href="<?php echo base_url('htl/clients/status')."?status=".urlencode($message)."&id=".custom_encode($value->id); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td>
 											<td>
-												<a href="<?php echo base_url('admin/clients/profile')."/".custom_encode($value->id); ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
-												<a href="<?php echo base_url('admin/clients/delete_user')."?id=".custom_encode($value->id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
+												<a href="<?php echo base_url('htl/clients/profile')."/".custom_encode($value->id); ?>" class="btn btn-info btn-xs" title="Edit" class="disabled"><i class="fa fa-edit"></i></a>
+												<a href="<?php echo base_url('htl/clients/delete_user')."?id=".custom_encode($value->id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete" disabled><i class="fa fa-trash"></i></a>
 											</td>
 										</tr>
 									<?php endforeach; endif; ?>
@@ -107,7 +107,7 @@
 			if (!onoffswitch_ajax) {
 				onoffswitch_ajax = true;
 				$.ajax({
-					url: "<?php echo base_url('admin/clients/change_status'); ?>",
+					url: "<?php echo base_url('htl/clients/change_status'); ?>",
 					type: "GET",
 					data: {id: id, value: value},
 					dataType : "JSON",
@@ -136,7 +136,7 @@
 			button.attr('disabled', 'disabled').addClass('disabled');
 			onoffswitch_ajax = true;
 			$.ajax({
-				url: "<?php echo base_url('admin/clients/delete_user'); ?>",
+				url: "<?php echo base_url('htl/clients/delete_user'); ?>",
 				type: "GET",
 				data: {id: id},
 				dataType: "JSON",

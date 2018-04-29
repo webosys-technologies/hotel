@@ -26,18 +26,18 @@ class Clients extends MY_Controller
         if($result){
             $this->data['userdata']=$result;
         }
-//        $this->load->view('backend/client/index', $this->data);
-        load_backend_page('backend/client/index', $this->data);
+//        $this->load->view('htl/client/index', $this->data);
+        load_htlbackend_page('htl/client/index', $this->data);
     }
 
     function profile($id){
-
+       $cid=$this->session->userdata('htl_user_id');
        $includes = array('datatable','validate','iCheck','datepicker');
        $this->data['inclusions'] = inclusions($includes);
        $this->data['page_title'] = "User Detail";
-       $result = $this->client_model->getuserList($id);
-       $this->data['client_info']=$result;
-       load_backend_page('backend/client/profile', $this->data);
+//       $result = $this->client_model->getuserList($cid);
+//       $this->data['client_info']=$result;
+       load_htlbackend_page('htl/client/profile', $this->data);
 
    }
 
@@ -70,6 +70,6 @@ function delete_user()
 }
 public function hotel(){
 
-  load_backend_page('backend/client/hotel', $this->data);
+  load_htl_page('htl/client/hotel', $this->data);
 }
 }

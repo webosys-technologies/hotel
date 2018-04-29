@@ -7,22 +7,14 @@ class Client_model extends CI_Model {
 	}
 
 	function getuserList($id) {
-		// debug($id);
-		if($id!="")
-		{$data = array(
-				'id' => custom_decode($id)			
-				);
-			$this->db->where($data);
-		}
-		if($id=="na"){
-			return false;
-		}
-		$query = $this->db->select('*')->from('user')->get();
-		if ($query->num_rows() >=1) {
-			$result = $query->result();
-			return $result;
-		}
-		return false;	
+                if($id)
+                {
+		$this->db->from('user');
+                $this->db->where('owner_id',$id);
+                return $this->db->get()->result();
+                }else{
+                    return false;
+                }
 	}
 
 	function deleteUser($value){
