@@ -129,7 +129,7 @@ class Login_model extends CI_Model {
         
             if($result)
             {
-                return true;
+                return true;    
             }
         }
 }

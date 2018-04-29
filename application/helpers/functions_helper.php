@@ -656,6 +656,47 @@ function load_backend_page($views, $data = array()) {
 	load_view('backend/layout/footer');
 }
 
+
+function load_htlbackend_page($views, $data = array()) {
+	$CI = & get_instance();
+
+	if (sizeof($data['inclusions']) == 0) {
+		$inclusions = inclusions(array('iCheck'));
+	} else {
+		//$data['inclusions'] = array_merge($data['inclusions'], inclusions(array('iCheck')));
+		$inclusions = $data['inclusions'];
+	}
+
+	$inclusions['css'][] = 'assets/backend/css/bootstrap.min';
+	$inclusions['css'][] = 'assets/backend/css/font-awesome.min';
+	$inclusions['css'][] = 'assets/backend/css/backend/skin-blue';
+	$inclusions['css'][] = 'assets/backend/css/constants';
+	$inclusions['css'][] = 'assets/backend/css/backend/style';
+	$inclusions['css'][] = 'assets/backend/css/backend/responsive';
+	$inclusions['css'][] = 'assets/backend/css/backend/responsive';
+
+
+	$inclusions['header_js'][] = 'assets/backend/js/bootstrap.min';
+	$inclusions['header_js'][] = 'assets/backend/js/backend/app.min';
+	$inclusions['js'][] = 'assets/backend/js/bootbox.min';
+	$inclusions['js'][] = 'assets/backend/js/backend/main';
+
+
+	$data['inclusions'] = array_merge($data['inclusions'], $inclusions);
+	$CI->parser->parse('htl/layout/header', $data);
+
+	load_view('htl/layout/menu', $data);
+
+	if (!is_array($views))
+		$views = array($views);
+	foreach ($views as $view) {
+		load_view($view);
+	}
+
+	load_view('htl/layout/footer');
+}
+
+
 function format_datetime($datetime) {
 	return date('j M, Y - h:i A', $datetime/1000);
 }
@@ -950,6 +991,13 @@ function check_admin_logged_in() {
 
 function admin_logged_in() {
 	if (get_session('admin_logged_in') == "1") {
+		return true;
+	}
+	return false;
+}
+
+function htl_logged_in() {
+	if (get_session('htl_logged_in') == "1") {
 		return true;
 	}
 	return false;

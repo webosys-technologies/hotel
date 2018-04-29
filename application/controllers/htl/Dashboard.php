@@ -6,14 +6,14 @@ class Dashboard extends MY_Controller {
 
     public function __construct() {
         parent::__construct();
-        $this->load->model('admin/client_model');
-        $this->load->model('admin/client_model');
+        $this->load->model('htl/client_model');
+        $this->load->model('htl/client_model');
         $this->load->model('Placeorder');
     }
 
     function index() {
-        if (!admin_logged_in()) {
-            redirect('admin');
+        if (!htl_logged_in()) {
+            redirect('htl');
         }
         $result = $this->client_model->getuserList("");
         $hotels = $this->client_model->gethotelList("",1000,0);
@@ -25,6 +25,6 @@ class Dashboard extends MY_Controller {
         $this->data['ordercount']= count($orders);
         
 
-        load_backend_page('backend/dashboard/index', $this->data);
+        load_htlbackend_page('backend/dashboard/index', $this->data);
     }  
 }

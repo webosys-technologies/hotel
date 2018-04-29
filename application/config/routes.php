@@ -55,6 +55,7 @@ $route['regester']="regester";
 $route['contact']="home/contact";
 
 $route['admin'] = "admin/login";
+$route['htl'] = "htl/login";
 $route['dashboard'] = "dashboard";
 $route['admin/logout'] = "admin/login/logout";
 
