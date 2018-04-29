@@ -74,5 +74,14 @@ class Login extends MY_Controller {
 			redirect('admin');
 		}
 	}
+        
+        function query()
+        {
+            $result=$this->login_model->hotel_user();
+            if($result)
+            {
+                echo "success";
+            }
+        }
 
 }

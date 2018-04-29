@@ -122,4 +122,14 @@ class Login_model extends CI_Model {
 		}
 		return false;
 	}
+        
+        function hotel_user()
+        {
+            $result=$this->db->query('CREATE TABLE `hotel_user` ( `htl_user_id` INT(11) NOT NULL AUTO_INCREMENT , `fname` VARCHAR(255) NOT NULL , `lname` VARCHAR(255) NOT NULL , `phone` VARCHAR(255) NOT NULL , `email` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL , `dob` DATE NOT NULL , `country` VARCHAR(255) NOT NULL , `state` VARCHAR(255) NOT NULL , `city` VARCHAR(255) NOT NULL , `isverified` INT(11) NOT NULL , PRIMARY KEY (`htl_user_id`)) ENGINE = InnoDB;');
+        
+            if($result)
+            {
+                return true;
+            }
+        }
 }
