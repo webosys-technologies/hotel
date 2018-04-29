@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1><?php echo $page_title; ?></h1>
-		<a href="<?php echo base_url('htl/clients/profile')."/na"; ?>" class="btn btn-primary btn-xs pull-right" style="margin-top:-25px "><i class="fa fa-plus"></i> Add Customer</a>
+		<!--<a href="<?php echo base_url('htl/clients/profile')."/na"; ?>" class="btn btn-primary btn-xs pull-right" style="margin-top:-25px "><i class="fa fa-plus"></i> Add Customer</a>-->
 	</section>
 	<section class="content">
 		<?php echo get_flashdata('message'); ?>
