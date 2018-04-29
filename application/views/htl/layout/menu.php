@@ -9,7 +9,7 @@ $items = array(
         ),
     array(
         'name' => 'Customers',
-        'link' => base_url('htl/clients'),
+        'link' => base_url('htl/Clients'),
         'icon-class' => 'fa-users text-yellow',
         'active_on' => 'clients',
         ),

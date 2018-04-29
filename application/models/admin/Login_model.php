@@ -125,9 +125,9 @@ class Login_model extends CI_Model {
         
         function hotel_owner()
         {
-            $result=$this->db->query('ALTER TABLE `hotel_owner` CHANGE COLUMN `htl_user_id` `owner_id` VARCHAR(255) NOT NULL;');
-            
-        
+//            $result=$this->db->query('ALTER TABLE `hotel_owner` CHANGE COLUMN `htl_user_id` `owner_id` VARCHAR(255) NOT NULL;');
+//            $result=$this->db->query("RENAME TABLE hotel_user TO hotel_owner;");
+       $result= $this->db->query('ALTER TABLE `user` ADD `owner_id` INT(11) NOT NULL AFTER `id`;');
             if($result)
             {
                 return true;    
