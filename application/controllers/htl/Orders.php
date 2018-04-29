@@ -14,8 +14,8 @@ class Orders extends MY_Controller
 		admin_access();
 		if (htl_logged_in()) { 
 
-			// echo "dffd";
-			$res=$this->Placeorder->getorders("");
+			$id=$this->session->userdata('owner_id');
+			$res=$this->Placeorder->getorders($id);
 			$includes = array('validate','datatable');
 			$this->data['inclusions'] = inclusions($includes);
 			$this->data['page_title'] = "List of Orders";

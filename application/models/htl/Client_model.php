@@ -9,9 +9,11 @@ class Client_model extends CI_Model {
 	function getuserList($id) {
                 if($id)
                 {
-		$this->db->from('user');
-                $this->db->where('owner_id',$id);
+		$this->db->from('orders as ord');
+                $this->db->join('user as usr','usr.id=ord.user_id','LEFT');
+                $this->db->where('ord.owner_id',$id);
                 return $this->db->get()->result();
+               
                 }else{
                     return false;
                 }
@@ -331,17 +333,13 @@ function orderstatus($value){
 
 
 
-	function gethotel_with_room($id,$limit,$start,$data=array()) 
+	function gethotel_with_room($id) 
 	{
-		//$this->db->select('hd.*,hr.*')->from('hotel_details hd')->join('hotel_room hr', 'hd.hotel_id=hr.hotel_id','left');	
-		$this->db->select('hd.hotel_name,hr.*')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left');	
-		
-                if(isset($id) && $id!="") {	
-                    $hotelid=custom_decode($id);
-			$this->db->where('hr.hotel_room_id',$hotelid)->order_by('hr.hotel_room_id','DESC');;
-		}
-		$this->db->limit($limit, $start);
-		$query =$this->db->get();
+                  $this->db->from('hotel_details as det');
+                  $this->db->join('hotel_room as room', 'room.hotel_id=det.hotel_id', 'LEFT');
+
+                  $this->db->where('owner_id',$id);
+                  $query = $this->db->get();
 		if ($query) {
 			$result = $query->result();
 			return $result;

@@ -19,8 +19,8 @@ class Rooms extends MY_Controller
         $includes = array('datatable', 'iCheck');
         $this->data['inclusions'] = inclusions($includes);
         $this->data['page_title'] = "List of Rooms";
-
-        $result = $this->client_model->gethotel_with_room("",1000,0);
+        $id=$this->session->userdata('owner_id');
+        $result = $this->client_model->gethotel_with_room($id);
         // debug($result);
         if($result){
             $this->data['roomdata']=$result;

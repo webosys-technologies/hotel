@@ -108,18 +108,16 @@ class Placeorder extends CI_Model {
         
 	public function getorders($id)
 	{	
-		if($id!="") {
-					$where=array('orderid'=>$id);
-			$this->db->where($where);
-		}
-		$query = $this->db->select('*')->from('orders')->get();
-		
-		$result = $query->result();
-		if ($query->num_rows() >=1) {
+		$this->db->from('orders');
+                $this->db->where('owner_id',$id);
+                $query=$this->db->get();
 			$result = $query->result();
+                        if($result)
+                        {
 			return $result;
-		}
+		}else{
 		return false;
+                }
 	}
          public function getprice($filter=array())
 	{	
