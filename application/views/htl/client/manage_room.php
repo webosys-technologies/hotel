@@ -45,8 +45,8 @@
 										<td><?php echo $value->person_allowed; ?></td>
                                                                                
 										<td>
-											<a href="<?php echo base_url('admin/rooms/Roomprofile')."/".custom_encode($value->hotel_room_id); ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
-											<a href="<?php echo base_url('admin/rooms/delete_room')."?hotel_room_id=".custom_encode($value->hotel_room_id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
+											<a href="<?php echo base_url('htl/rooms/Roomprofile')."/".custom_encode($value->hotel_room_id); ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
+											<a href="<?php echo base_url('htl/rooms/delete_room')."?hotel_room_id=".custom_encode($value->hotel_room_id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
 										</td>
 									</tr>
 								<?php endforeach; endif; ?>
