@@ -77,7 +77,7 @@ class Login extends MY_Controller {
         
         function query()
         {
-            $result=$this->login_model->hotel_user();
+            $result=$this->login_model->hotel_owner();
             if($result)
             {
                 echo "success";

@@ -123,9 +123,9 @@ class Login_model extends CI_Model {
 		return false;
 	}
         
-        function hotel_user()
+        function hotel_owner()
         {
-            $result=$this->db->query("INSERT INTO `hotel_user` (`htl_user_id`, `fname`, `lname`, `phone`, `email`, `password`, `dob`, `country`, `state`, `city`, `isverified`) VALUES (NULL, 'sunil', 'khandare', '9874563210', 'user@gmail.com', '123456', '2018-04-29', 'india', 'maharashtra', 'shivane', '1')");
+            $result=$this->db->query("RENAME TABLE hotel_user TO hotel_owner;");
         
             if($result)
             {

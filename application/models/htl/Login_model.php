@@ -16,7 +16,7 @@ class Login_model extends CI_Model {
 			);
 		
 		$this->db->where($data);
-		$query = $this->db->get('hotel_user');
+		$query = $this->db->get('hotel_owner');
 		if ($query->num_rows() == 1) {
 			$result = $query->row_array();
 			$session_data = array(

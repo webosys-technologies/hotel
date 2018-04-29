@@ -3,43 +3,43 @@
 $items = array(
     array(
         'name' => 'Dashboard',
-        'link' => base_url('admin/dashboard'),
+        'link' => base_url('htl/dashboard'),
         'icon-class' => 'fa-dashboard text-red',
         'active_on' => 'Dashboard'
         ),
     array(
         'name' => 'Users',
-        'link' => base_url('admin/clients'),
+        'link' => base_url('htl/clients'),
         'icon-class' => 'fa-users text-yellow',
         'active_on' => 'clients',
         ),
     array(
         'name' => 'Hotel',
-        'link' => base_url('admin/hotel'),
+        'link' => base_url('htl/hotel'),
         'icon-class' => 'fa-bank text-aqua',
         'active_on' => 'hotel',
         ),
      array(
         'name' => 'Manage Room',
-        'link' => base_url('admin/Rooms'),
+        'link' => base_url('htl/Rooms'),
         'icon-class' => 'fa-fa plush text-yellow',
         'active_on' => 'RoomDetails',
         ),
         array(
         'name' => 'Manage Room Status',
-        'link' => base_url('admin/Room_status'),
+        'link' => base_url('htl/Room_status'),
         'icon-class' => 'fa-fa file text-red',
         'active_on' => 'RoomDetails',
         ),
     array(
         'name' => 'Orders',
-        'link' => base_url('admin/orders'),
+        'link' => base_url('htl/orders'),
         'icon-class' => 'fa-first-order text-green',
         'active_on' => 'orders',
         ),
     // array(
     //     'name' => 'Notification',
-    //     'link' => base_url('admin/dashboard'),
+    //     'link' => base_url('htl/dashboard'),
     //     'icon-class' => 'fa-bell',
     //     'active_on' => 'notification',
     //     ),
@@ -51,7 +51,7 @@ $items = array(
     //     'subitems' => array(
     //         array(
     //             'name' => 'Password',
-    //             'link' => base_url('admin/dashboard'),
+    //             'link' => base_url('htl/dashboard'),
     //             'icon-class' => 'fa-circle-o',
     //             'active_on' => 'index'
     //             ),
