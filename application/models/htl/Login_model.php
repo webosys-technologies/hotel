@@ -11,18 +11,18 @@ class Login_model extends CI_Model {
 		$username = $this->input->post('username');
 		$password = $this->input->post('password');
 		$data = array(
-			'admin_username' => $username,
-			'admin_pass' => $password
+			'email' => $username,
+			'password' => $password
 			);
 		
 		$this->db->where($data);
-		$query = $this->db->get('admin');
+		$query = $this->db->get('hotel_user');
 		if ($query->num_rows() == 1) {
 			$result = $query->row_array();
 			$session_data = array(
-				'admin_id' => $result['admin_id'],
-				'admin_email'=>$result['admin_username'],
-				'admin_logged_in' => 1
+				'htl_user_id' => $result['htl_user_id'],
+				'email'=>$result['email'],
+				'htl_logged_in' => 1
 				); 
 			set_sessions($session_data);
 			return true;
@@ -109,7 +109,7 @@ class Login_model extends CI_Model {
 	}
 
 	function profile() {
-		$user_id = get_session('admin_id');
+		$user_id = get_session('htl_user_id');
 		$response = getParamRecord(ADMIN, array('id' => $user_id));
 		if($response['status'] == 'success') {
 			$result = $response['data'];
@@ -122,14 +122,4 @@ class Login_model extends CI_Model {
 		}
 		return false;
 	}
-        
-        function hotel_user()
-        {
-            $result=$this->db->query('CREATE TABLE `hotel_user` ( `htl_user_id` INT(11) NOT NULL AUTO_INCREMENT , `fname` VARCHAR(255) NOT NULL , `lname` VARCHAR(255) NOT NULL , `phone` VARCHAR(255) NOT NULL , `email` VARCHAR(255) NOT NULL , `password` VARCHAR(255) NOT NULL , `dob` DATE NOT NULL , `country` VARCHAR(255) NOT NULL , `state` VARCHAR(255) NOT NULL , `city` VARCHAR(255) NOT NULL , `isverified` INT(11) NOT NULL , PRIMARY KEY (`htl_user_id`)) ENGINE = InnoDB;');
-        
-            if($result)
-            {
-                return true;    
-            }
-        }
 }
