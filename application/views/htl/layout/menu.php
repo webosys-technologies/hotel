@@ -8,7 +8,7 @@ $items = array(
         'active_on' => 'Dashboard'
         ),
     array(
-        'name' => 'Users',
+        'name' => 'Customers',
         'link' => base_url('htl/clients'),
         'icon-class' => 'fa-users text-yellow',
         'active_on' => 'clients',
