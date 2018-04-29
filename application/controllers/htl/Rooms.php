@@ -19,8 +19,9 @@ class Rooms extends MY_Controller
         $includes = array('datatable', 'iCheck');
         $this->data['inclusions'] = inclusions($includes);
         $this->data['page_title'] = "List of Rooms";
-
-        $result = $this->client_model->gethotel_with_room("",1000,0);
+    $id=$this->session->userdata('owner_id');
+        
+        $result = $this->client_model->gethotel_with_room($id);
         // debug($result);
         if($result){
             $this->data['roomdata']=$result;
@@ -33,7 +34,7 @@ class Rooms extends MY_Controller
    $includes = array('datatable','validate','iCheck','datepicker');
    $this->data['inclusions'] = inclusions($includes);
    $this->data['page_title'] = "Room Detail";
-   $result = $this->client_model->gethotel_with_room($hotel_room_id,"","");
+   $result = $this->client_model->gethotel_with_room_id($hotel_room_id);
    $this->data['room_info']=$result;
 
    load_htlbackend_page('htl/client/manage_room_details', $this->data);

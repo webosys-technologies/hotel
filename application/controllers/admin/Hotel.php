@@ -29,7 +29,8 @@ class Hotel extends MY_Controller
 
   function profile($hotel_id){
   
-      
+      echo $hotel_id;
+      //die();
    $includes = array('datatable','validate','iCheck','datepicker');
    $this->data['inclusions'] = inclusions($includes);
    $this->data['page_title'] = "Hotel Detail";

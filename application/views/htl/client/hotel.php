@@ -33,7 +33,7 @@
 									foreach ($hoteldata as $key => $value):
 										?>
 									<tr>
-										<td><?php echo $key+1; ?></td>
+										<td><?php echo $value->hotel_id; ?></td>
 										<td><?php echo $value->hotel_name; ?></td>
 										<td><?php echo $value->hotel_address; ?></td>	
                                                                                    <td><?php echo $value->state; ?></td>	

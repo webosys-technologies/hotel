@@ -11,15 +11,16 @@ class Hotel extends MY_Controller
     if (!htl_logged_in()) {
       redirect('htl');
     }
-    $this->load->model('admin/client_model');
+    $this->load->model('htl/client_model');
   }
 
   function index()
   {
+    $id=$this->session->userdata('owner_id');
     $includes = array('datatable', 'fancybox');
     $this->data['inclusions'] = inclusions($includes);
     $this->data['page_title'] = "List of Hotels";
-    $result = $this->client_model->gethotelList("",1000,0);
+    $result = $this->client_model->gethotelList_byowner($id);
     if($result){
       $this->data['hoteldata']=$result;
     }
@@ -29,7 +30,6 @@ class Hotel extends MY_Controller
 
   function profile($hotel_id){
   
-      
    $includes = array('datatable','validate','iCheck','datepicker');
    $this->data['inclusions'] = inclusions($includes);
    $this->data['page_title'] = "Hotel Detail";
@@ -48,7 +48,7 @@ class Hotel extends MY_Controller
 
     $removed = array_shift($hotel_room);
     $this->data['room_info']=$hotel_room;
-   load_htlbackend_page('htl/client/add_hotel', $this->data);
+   load_backend_page('backend/client/add_hotel', $this->data);
  }
  
    function updatehotelroom($hotel_id){
@@ -108,7 +108,7 @@ function delete_hotel()
    redirect('htl/hotel');
  }else {
    set_flashdata('message', "Opps: Some thing went wrong, please try again!", 'danger');
-   redirect('admin/hotel');
+   redirect('htl/hotel');
  }
 }
 
