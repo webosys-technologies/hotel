@@ -25,7 +25,7 @@ class Regester extends CI_Controller {
       'state'=>$_POST['state'],
       'city'=>$_POST['city'], 
       'isverified'=>0,
-      'id'=>""
+      
       );
     $falag=0;
     if(isset($_POST['updateProduct'])){
@@ -33,14 +33,17 @@ class Regester extends CI_Controller {
     }
     
     if(isset($_POST['userid'])){
-      $data['id']=$_POST['userid'];
+      $id=$_POST['userid'];
 
       $data['isverified']=$_POST['status'];
       $falag=1;
-    }
+    $result = $this->signup_model->user_update(array('id' => custom_decode($id)),$data);
+
+    }else{
+    $result = $this->signup_model->signup($data);
+       }
 
     // debug($data);
-    $result = $this->signup_model->signup($data);
     // echo $this->db->last_query();
     // die();
     if(isset($_POST['updateProduct'])){
@@ -105,14 +108,18 @@ class Regester extends CI_Controller {
     }
     
     if(isset($_POST['userid'])){
-      $data['id']=$_POST['userid'];
+      $id=$_POST['userid'];
+      
 
       $data['isverified']=$_POST['status'];
       $falag=1;
+      $result=$this->signup_model->owner_update(array('owner_id' => custom_decode($id)),$data);
+    }else{
+    $result = $this->signup_model->owner_signup($data);
+
     }
 
     // debug($data);
-    $result = $this->signup_model->owner_signup($data);
     // echo $this->db->last_query();
     // die();
     if(isset($_POST['updateProduct'])){
