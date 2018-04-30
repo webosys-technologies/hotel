@@ -12,6 +12,12 @@ class Signup_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	function owner_signup($data) {
+      
+		$this->db->insert('hotel_owner', $data);
+		return $this->db->insert_id();
+	}
+
 	function resetPass() {
 		$post = $this->input->post();
 		$this->db->where('email', $post['email']);

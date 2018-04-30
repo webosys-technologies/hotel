@@ -130,7 +130,7 @@ class Login_model extends CI_Model {
 //       $result= $this->db->query('ALTER TABLE `user` ADD `owner_id` INT(11) NOT NULL AFTER `id`;');
 //            $result= $this->db->query('ALTER TABLE `hotel_details` ADD `owner_id` INT(11) NOT NULL AFTER `hotel_id`;');
 
-             $result= $this->db->query('ALTER TABLE `orders` ADD `owner_id` INT(11) NOT NULL AFTER `hotel_id`, ADD `user_id` INT(11) NOT NULL AFTER `owner_id`;');
+           //  $result= $this->db->query('ALTER TABLE `orders` ADD `owner_id` INT(11) NOT NULL AFTER `hotel_id`, ADD `user_id` INT(11) NOT NULL AFTER `owner_id`;');
 //            $result= $this->db->query('ALTER TABLE `user` CHANGE `id` `user_id` INT(11) NOT NULL AUTO_INCREMENT');
             $result= $this->db->query('ALTER TABLE hotel_owner DROP COLUMN owner_id');
              $result= $this->db->query('ALTER TABLE `hotel_owner` ADD `owner_id` INT(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`owner_id`);');

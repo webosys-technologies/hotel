@@ -37,9 +37,11 @@ class Hotel extends MY_Controller
    if($hotel_id == 'na'){
        $result = $this->client_model->gethotelList1($hotel_id,"",""); 
          $this->data['client_info']=$result;
+         echo "string1";
    }else{
           $result = $this->client_model->gethotelList($hotel_id,"","");
    $this->data['client_info']=$result;
+   echo "string";
    }
 
 

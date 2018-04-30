@@ -181,24 +181,22 @@ function orderstatus($value){
 
 		// debug($id['userid']);
 //		$this->db->select('hd.*,ar.room_id,tp.price_id')->from('hotel_details hd')->join('available_room ar', 'hd.hotel_id=ar.hotel_id','left')->where('hd.left_hotel>0')->join('total_price tp', 'hd.hotel_id=tp.hotel_id','left')->where('left_hotel>0')->order_by('hd.hotel_id','DESC');	
-		$this->db->select('hd.*')->from('hotel_details hd')->where('hd.hotel_id>0')->order_by('hd.hotel_id','DESC');	
+		$this->db->select('hd.*')->from('hotel_details hd')->order_by('hd.hotel_id','DESC');	
 			echo $id;
 			
-                if(!isset($id) && $id!="") {			
+                if(isset($id) && $id!="") {			
 			$this->db->where('hd.hotel_id',custom_decode($id));
-			echo "1";
 
 		}
 		if(isset($id['userid'])){
 			$this->db->where('hd.create_user',$id['userid']);
-			echo "2";
 
 		}
 		$this->db->limit($limit, $start);
 		$query =$this->db->get();
 //		 echo $this->db->last_query();
 //		 die();
-		// debug($query);
+		 //debug($query);
 		if ($query) {
 			$result = $query->result();
 			return $result;

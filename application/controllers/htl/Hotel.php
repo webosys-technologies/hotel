@@ -48,7 +48,7 @@ class Hotel extends MY_Controller
 
     $removed = array_shift($hotel_room);
     $this->data['room_info']=$hotel_room;
-   load_backend_page('backend/client/add_hotel', $this->data);
+   load_htlbackend_page('htl/client/add_hotel', $this->data);
  }
  
    function updatehotelroom($hotel_id){
