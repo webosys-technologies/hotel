@@ -204,6 +204,8 @@ function orderstatus($value){
 		}
 		$this->db->limit($limit, $start);
 		$query =$this->db->get();
+//                print_r($query->result());
+//                die;
 //		 echo $this->db->last_query();
 //		 die();
 		// debug($query);

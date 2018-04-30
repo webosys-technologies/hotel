@@ -294,8 +294,7 @@ public function book_hotel($id) {
 //   $result = $this->client_model->getroomprice($data);  
   $data['booking_info']= $result;
   $data['pickup']=$_POST;
-//  print_r($data); 
-//  die();
+  $data['userid']=$this->session->userdata('userid');
   $this->load->view('user/booking_dashboard',$data);
 }
 

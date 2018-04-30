@@ -31,11 +31,12 @@ class Rooms extends MY_Controller
     }
 
  function Roomprofile($hotel_room_id){
-       
+//       echo $hotel_room_id;
+//       die;
    $includes = array('datatable','validate','iCheck','datepicker');
    $this->data['inclusions'] = inclusions($includes);
    $this->data['page_title'] = "Room Detail";
-   $result = $this->client_model->gethotel_with_room_id($hotel_room_id);
+   $result = $this->client_model->gethotel_with_room_id(custom_decode($hotel_room_id));
    $this->data['room_info']=$result;
 
    load_htlbackend_page('htl/client/manage_room_details', $this->data);

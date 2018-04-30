@@ -137,7 +137,8 @@ class Placeorder extends CI_Model {
                  $this->db->group_by("hotel_id");
        
        $return =$this->db->get()->result_array();
-//       
+//       print_r($return);
+//       die;
 //       echo $this->db->last_query();
 //       die();
        return $return;
