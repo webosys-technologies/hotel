@@ -35,6 +35,8 @@ class Orders extends CI_Controller {
 			'transaction_id'=>$_POST['razorpay_payment_id'],
                         'hotel_id'=>$_POST['hotel_id'],
 			'bed_type'=>$_POST['bed_type'],
+                        'owner_id'=>$_POST['owner_id'],
+                        'user_id'=>$_POST['userid'],
                         'no_of_room'=>$_POST['no_of_room'],
 			'checkin'=>$searchcheckin,
 			'checkout'=>$searchcheckout,
@@ -121,6 +123,7 @@ class Orders extends CI_Controller {
              $req=$this->input->post();
 //             print_r($req);
 //             die();
+             
                         $res = $this->placeorder->getprice($req);
                         
 //                        print_r($res);

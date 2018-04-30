@@ -53,8 +53,8 @@
 											
                                                                                 <td><?php echo $value->city; ?></td>
 										<td><?php echo $value->pincode; ?></td>
-										<td><?php echo $value->transaction_id; ?></td>
-										<td><i class="fa fa-inr"></i><?php echo $value->amount_pay; ?></a></td>
+										<td><i class="fa fa-inr"></i><?php echo $value->amount_pay; ?></td>
+										<td><?php echo $value->transaction_id; ?></a></td>
 										<td>
 											<?php echo $value->created_At; ?>
 										</td>
