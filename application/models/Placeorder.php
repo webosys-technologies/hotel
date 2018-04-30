@@ -108,10 +108,12 @@ class Placeorder extends CI_Model {
         
 	public function getorders($id)
 	{	
-		$this->db->from('orders');
-                $this->db->where('owner_id',$id);
-                $query=$this->db->get();
-			$result = $query->result();
+		  $this->db->from('orders as ord');
+                  $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT');
+
+                  $this->db->where('owner_id',$id);
+                  $query = $this->db->get();
+                  $result=$query->result();
                         if($result)
                         {
 			return $result;

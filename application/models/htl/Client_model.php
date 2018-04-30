@@ -340,6 +340,7 @@ function orderstatus($value){
 
                   $this->db->where('owner_id',$id);
                   $query = $this->db->get();
+
 		if ($query) {
 			$result = $query->result();
 			return $result;
