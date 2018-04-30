@@ -111,7 +111,7 @@ class Placeorder extends CI_Model {
 		  $this->db->from('orders as ord');
                   $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT');
 
-                  $this->db->where('owner_id',$id);
+                  $this->db->where('ord.owner_id',$id);
                   $query = $this->db->get();
                   $result=$query->result();
                         if($result)
