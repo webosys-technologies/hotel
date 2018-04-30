@@ -7,6 +7,13 @@ $items = array(
         'icon-class' => 'fa-dashboard text-red',
         'active_on' => 'Dashboard'
         ),
+
+    array(
+        'name' => 'Hotel Owners',
+        'link' => base_url('admin/Owners'),
+        'icon-class' => 'fa-users text-blue',
+        'active_on' => 'Owners',
+        ),
     array(
         'name' => 'Users',
         'link' => base_url('admin/clients'),

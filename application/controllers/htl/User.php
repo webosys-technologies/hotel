@@ -35,11 +35,15 @@ class User extends CI_Controller {
   }
 }
 public function add_hotel() {
+
+    $id=$this->session->userdata('owner_id');
+
   $req=$this->input->post();  
 //  echo '<pre>';
 //  print_r($req);
 //  die();
   $data=array(
+    'owner_id' => $id,
     'hotel_name' => $_POST['hotel_name'],
             'create_user' => $_POST['create_user'],
 //    'hotel_price'=>$_POST['hotel_price'],

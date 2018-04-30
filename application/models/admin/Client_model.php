@@ -50,6 +50,37 @@ class Client_model extends CI_Model {
 		}
 		return false;
 	}
+
+	function getownerList($id) {
+		// debug($id);
+		if($id!="")
+		{$data = array(
+				'owner_id' => custom_decode($id)			
+				);
+			$this->db->where($data);
+		}
+		if($id=="na"){
+			return false;
+		}
+		$query = $this->db->select('*')->from('hotel_owner')->get();
+		if ($query->num_rows() >=1) {
+			$result = $query->result();
+			return $result;
+		}
+		return false;	
+	}
+
+	function deleteowner($value){
+		$where = array(
+			'id' =>custom_decode($value)
+			);
+		$result = $this->db->delete('hotel_owner', $where);
+		if ($result) {
+			return true;
+		}
+		return false;
+	}
+
 function orderstatus($value){
 		$status=1;
 		if($value['status']=="checkin"){
@@ -165,7 +196,7 @@ function orderstatus($value){
 //		$this->db->select('hd.*,ar.room_id,tp.price_id')->from('hotel_details hd')->join('available_room ar', 'hd.hotel_id=ar.hotel_id','left')->where('hd.left_hotel>0')->join('total_price tp', 'hd.hotel_id=tp.hotel_id','left')->where('left_hotel>0')->order_by('hd.hotel_id','DESC');	
 		$this->db->select('hd.*')->from('hotel_details hd')->where('hd.hotel_id>0')->order_by('hd.hotel_id','DESC');	
 			
-                if(!isset($id) && $id!="") {			
+                if(isset($id) && $id!="") {			
 			$this->db->where('hd.hotel_id',custom_decode($id));
 		}
 		if(isset($id['userid'])){
