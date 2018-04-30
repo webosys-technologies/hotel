@@ -57,7 +57,7 @@
 											<a href="<?php echo base_url('admin/Owners/status')."?status=".urlencode($message)."&id=".custom_encode($value->owner_id); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td>
 											<td>
 												<a href="<?php echo base_url('admin/Owners/profile')."/".custom_encode($value->owner_id); ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
-												<a href="<?php echo base_url('admin/Owners/delete_user')."?id=".custom_encode($value->owner_id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
+												<a href="<?php echo base_url('admin/Owners/delete_owner')."?id=".custom_encode($value->owner_id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
 											</td>
 										</tr>
 									<?php endforeach; endif; ?>

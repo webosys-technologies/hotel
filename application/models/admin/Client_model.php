@@ -72,7 +72,7 @@ class Client_model extends CI_Model {
 
 	function deleteowner($value){
 		$where = array(
-			'id' =>custom_decode($value)
+			'owner_id' =>custom_decode($value)
 			);
 		$result = $this->db->delete('hotel_owner', $where);
 		if ($result) {

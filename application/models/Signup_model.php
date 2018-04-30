@@ -12,10 +12,22 @@ class Signup_model extends CI_Model {
 		return $this->db->insert_id();
 	}
 
+	function user_update($where,$data) {
+      
+		$this->db->update('user', $data,$where);
+		return $this->db->affected_rows();
+	}
+
 	function owner_signup($data) {
       
 		$this->db->insert('hotel_owner', $data);
 		return $this->db->insert_id();
+	}
+
+	function owner_update($where,$data) {
+      
+		$this->db->update('hotel_owner', $data,$where);
+		return $this->db->affected_rows();
 	}
 
 	function resetPass() {

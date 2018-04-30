@@ -18,12 +18,12 @@
                         <div class="box-body">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="prodId">First Name</label>
+                                    <label for="prodId">Fir Name</label>
                                     <input type="text" class="form-control" id="fname"  name="fname"  value="<?php if(isset($client_info[0]->fname)){ echo $client_info[0]->fname; } ?>" autofocus=""  placeholder="Enter First Name">
                                 </div>
                             </div>
-                            <?php if(isset($client_info[0]->id)): ?>
-                                <input type="hidden" name="userid" value="<?php echo custom_encode($client_info[0]->id); ?>" />
+                            <?php if(isset($client_info[0]->owner_id)): ?>
+                                <input type="hidden" name="userid" value="<?php echo custom_encode($client_info[0]->owner_id); ?>" />
                                 <input type="hidden" name="status" value="<?php echo $client_info[0]->isverified; ?>" />
 
                             <?php  endif; ?> 

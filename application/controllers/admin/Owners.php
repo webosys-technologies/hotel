@@ -61,10 +61,10 @@ function delete_owner()
     $result = $this->client_model->deleteowner($_GET['id']);
     if ($result) {
        set_flashdata('message', "Account is deleted successfully!", 'success');
-       redirect('admin/clients');
+       redirect('admin/Owners');
    }else {
        set_flashdata('message', "Opps: Some thing went wrong, please try again!", 'danger');
-       redirect('admin/clients');
+       redirect('admin/Owners');
    }
 }
 public function hotel(){
