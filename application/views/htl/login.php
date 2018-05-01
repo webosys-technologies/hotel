@@ -21,7 +21,7 @@
           <div id="content" class="col-md-12 col-sm-12 col-xs-12">
             <div class="post-wrapper row clearfix">
               <div class="col-md-6">
-                <h5>NEW COSTUMER</h5>
+                <h5>NEW HOTEL REGISTRATION</h5>
                 <p>By creating an account you will be able to shop faster, be up to date on an order’s status, and keep track of the orders you have previously made.</p>
                 <hr>
                 <a href="<?php echo base_url('htl/Register'); ?>" class="btn btn-primary btn-normal border-radius">Register Now</a>
@@ -29,8 +29,8 @@
               </div><!-- end col -->
 
               <div class="col-md-6">
-                <h5>RETURN COSTUMER</h5>
-                <p>I am a returning customer</p>
+                <h5>Hotel Owner</h5>
+                <!--<p>I am a returning customer</p>-->
                 <br>
                 <form class="form-horizontal" method="POST" action="<?php echo base_url('htl'); ?>" id="loginForm">
                   <div class="form-group">
