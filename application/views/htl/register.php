@@ -1,4 +1,4 @@
-<?php $this->load->view('htl/header1'); ?>
+<?php $this->load->view('common/header1'); ?>
 
 <section id="page-header" class="section background">
   <div class="container">
