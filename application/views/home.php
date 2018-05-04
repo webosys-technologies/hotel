@@ -1,6 +1,20 @@
 <?php $this->load->view('common/header'); ?>
+
 <section class="section fullscreen background parallax" style="background-image:url('<?php echo base_url()?>/assets/upload/parallax_04.jpg');" data-img-width="1920" data-img-height="1133" data-diff="100">
+<!-- <section id="page-header"  >
   <div class="container">
+    <div class="row">
+      <div class="col-sm-12">
+        <ul class="c1 breadcrumb text-left">
+           <li><a href="#">Pages</a></li> 
+           <li>Page Login & Register</li> 
+        </ul>
+        <h3>Hotel Owner Registration</h3>
+      </div>
+    </div> end row 
+  </div> end container 
+</section> end section -->
+    <div class="container">
     <div class="row homeform">
       <div class="col-md-6 col-xs-12">
         <div class="home-form">
