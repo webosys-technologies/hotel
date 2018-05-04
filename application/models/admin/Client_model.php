@@ -51,6 +51,21 @@ class Client_model extends CI_Model {
 		return false;
 	}
 
+	function owner_status($value){
+		$status=1;
+		if($value['isverified']=="verified"){
+			$status=0;
+		}
+		$value['isverified']=$status;
+		$this->db->where('owner_id',custom_decode($value['id']));
+		array_shift($value);
+		$result = $this->db->update('hotel_owner', $value);
+		if ($result) {
+			return true;
+		}
+		return false;
+	}
+
 	function getownerList($id) {
 		// debug($id);
 		if($id!="")

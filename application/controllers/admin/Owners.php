@@ -46,13 +46,13 @@ class Owners extends MY_Controller
         'id' =>$_GET['id'],
         'isverified' => $_GET['status']
         );
-    $result = $this->client_model->status($request);
+    $result = $this->client_model->owner_status($request);
     if ($result) {
         set_flashdata('message', "Status is updated successfully!", 'success');
-        redirect('admin/clients');
+        redirect('admin/Owners');
     }else {
        set_flashdata('message', "Opps: Some thing went wrong, please try again!", 'danger');
-       redirect('admin/clients');
+       redirect('admin/Owners');
    }
 }
 
