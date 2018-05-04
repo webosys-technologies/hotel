@@ -64,6 +64,9 @@
       </ul><!-- end dropdown-menu -->
   </li><!-- end yamm-fw -->
   <li><a href="<?php echo base_url('hotel'); ?>">HOTELS</a></li>
+
+  <li><a href="<?php echo base_url('htl'); ?>">HOTEL Login</a></li>
+
                
 <li><a href="<?php echo base_url('contact'); ?>">CONTACT</a></li>
 </ul><!-- end navbar-right -->
