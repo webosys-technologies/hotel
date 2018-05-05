@@ -1,8 +1,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1><?php echo $page_title; ?></h1>
-		<a href="<?php echo base_url('admin/Hotel/profile')."/na"; ?>" class="btn btn-primary btn-xs pull-right" style="margin-top:-25px "><i class="fa fa-plus"></i> Add Hotel</a>
-	</section>
+        </section>
 	<section class="content">
 		<?php echo get_flashdata('message'); ?>
 		<div class="row">
@@ -14,30 +13,41 @@
 							<thead>
 								<tr>
 									<th class="nowrap">S.No.</th>
-									<th class="nowrap">Hotel Name</th>
-									<th class="nowrap">No. Of Room</th>									
+                                                                        <th class="nowrap">Hotel Name</th>
+									<th class="nowrap">Room No.</th>
+									
+									<th class="nowrap">Bed Type</th>
+									
+									<th class="nowrap" >Price</th>
+									<th class="nowrap">Room Type</th>
+									<th class="nowrap">Allowed person</th>
+								
 									<th class="nowrap">View/Delete</th>
 								</tr>
 							</thead>
 							<tbody>
 								<?php 
-								if(isset($hoteldata) && count($hoteldata)>0):
-									foreach ($hoteldata as $key => $value):
+								if(isset($roomdata) && count($roomdata)>0):
+									foreach ($roomdata as $key => $value):
 										?>
-									<tr class="clickable-row" data-href="<?php echo base_url('admin/Rooms/roomlist')."/".custom_encode($value->hotel_id); ?>">
+									<tr>
 										<td><?php echo $key+1; ?></td>
 										<td><?php echo $value->hotel_name; ?></td>
-										<td><?php $no=$this->Client_model->count_rooms($value->hotel_id);
-										echo $no; ?></td>
-                                             
-											
-										<td>
-											<a href="<?php echo base_url('admin/Rooms/roomlist')."/".custom_encode($value->hotel_id); ?>" onclick="" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
-											
-<!--										        <a href="<?php //echo base_url('admin/hotel/addhotelroom')."?hotelid=".custom_encode($value->hotel_id); ?>" class="btn btn-info btn-xs" title="Add"><i class="fa fa-plus"></i>Room</a>
-                                                                                        <a href="<?php //echo base_url('admin/hotel/updatehotelroom')."/".custom_encode($value->hotel_id); ?>" class="btn btn-primary btn-xs" title="Edit"><i class="fa fa-edit"></i>Room</a>
-                                                                                -->
+										<td><?php echo $value->room_no; ?></td>										
+										<td><?php if(($value->bed_type)==1){ echo 'Single Bed + 1 person'; } ?>
+                                                                                    <?php if(($value->bed_type)==2){ echo 'Single Bed + 1 person'; } ?> 
+                                                                                    <?php if(($value->bed_type)==3){ echo 'Single Bed + 1 person'; } ?> 
+                                                                                    <?php if(($value->bed_type)==4){ echo 'Single Bed + 1 person'; } ?> 
                                                                                 </td>
+                                                                                <td><?php echo $value->price; ?></td>
+										<td> <?php if(($value->ac_non_room)==1){ echo 'AC'; } ?> 
+                                                                                 <?php if(($value->ac_non_room)==2){ echo 'Non AC'; } ?> </td>
+										<td><?php echo $value->person_allowed; ?></td>
+                                                                               
+										<td>
+											<a href="<?php echo base_url('admin/rooms/Roomprofile')."/".custom_encode($value->hotel_room_id); ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
+											<a href="<?php echo base_url('admin/rooms/delete_room')."?hotel_room_id=".custom_encode($value->hotel_room_id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
+										</td>
 									</tr>
 								<?php endforeach; endif; ?>
 							</tbody>
@@ -59,6 +69,11 @@
 				{"bSortable": true},
 				{"bSortable": true},
 				{"bSortable": true},
+				{"bSortable": true},
+				{"bSortable": true},
+				{"bSortable": true},
+				{"bSortable": true},
+//                                {"bSortable": true},
 				{"bSortable": false},
 				]
 			});
@@ -130,16 +145,4 @@
 	})
 	});
 
-	jQuery(document).ready(function($) {
-    $(".clickable-row").click(function() {
-        window.location = $(this).data("href");
-    });
-});
-
-	
-
-
 </script>
-
-
- 

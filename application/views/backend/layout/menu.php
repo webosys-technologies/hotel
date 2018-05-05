@@ -30,6 +30,13 @@ $items = array(
         'name' => 'Manage Room',
         'link' => base_url('admin/Rooms'),
         'icon-class' => 'fa-fa plush text-yellow',
+        'active_on' => 'Rooms',
+        ),
+
+     array(
+        'name' => 'Manage Room1',
+        'link' => base_url('admin/Rooms/manage_room1'),
+        'icon-class' => 'fa-fa plush text-yellow',
         'active_on' => 'RoomDetails',
         ),
         array(
@@ -37,6 +44,12 @@ $items = array(
         'link' => base_url('admin/Room_status'),
         'icon-class' => 'fa-fa file text-red',
         'active_on' => 'RoomDetails',
+        ),
+    array(
+        'name' => 'Bookings',
+        'link' => base_url('admin/Bookings'),
+        'icon-class' => 'fa-first-order text-orange',
+        'active_on' => 'Bookings',
         ),
     array(
         'name' => 'Orders',

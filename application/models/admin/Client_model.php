@@ -390,11 +390,29 @@ function orderstatus($value){
 	function gethotel_with_room($id,$limit,$start,$data=array()) 
 	{
 		//$this->db->select('hd.*,hr.*')->from('hotel_details hd')->join('hotel_room hr', 'hd.hotel_id=hr.hotel_id','left');	
-		$this->db->select('hd.hotel_name,hr.*')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left');	
+		$this->db->select('hd.hotel_name,hr.*')->group_by('hr.hotel_id')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left');	
 		
                 if(isset($id) && $id!="") {	
                     $hotelid=custom_decode($id);
 			$this->db->where('hr.hotel_room_id',$hotelid)->order_by('hr.hotel_room_id','DESC');;
+		}
+		$this->db->limit($limit, $start);
+		$query =$this->db->get();
+		if ($query) {
+			$result = $query->result();
+			return $result;
+		}
+		return false;	
+	}
+
+	function gethotel_with_room1($id,$limit,$start,$data=array()) 
+	{
+		//$this->db->select('hd.*,hr.*')->from('hotel_details hd')->join('hotel_room hr', 'hd.hotel_id=hr.hotel_id','left');	
+		$this->db->select('hd.hotel_name,hr.*')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left');	
+		
+                if(isset($id) && $id!="") {	
+                    $hotelid=custom_decode($id);
+			$this->db->where('hr.hotel_id',$hotelid)->order_by('hr.hotel_room_id','DESC');;
 		}
 		$this->db->limit($limit, $start);
 		$query =$this->db->get();
@@ -425,6 +443,15 @@ function orderstatus($value){
     return $this->db->insert_id();
 }
 }
+
+ function updatehotelroom1($where,$data) 
+{
+	$this->db->update('hotel_room',$data,$where);
+
+	return $this->db->affected_rows();
+
+
+}
 function gethotel_room($id,$limit,$start,$data=array()) 
 	{
 		//$this->db->select('hd.*,hr.*')->from('hotel_details hd')->join('hotel_room hr', 'hd.hotel_id=hr.hotel_id','left');	
@@ -443,5 +470,28 @@ function gethotel_room($id,$limit,$start,$data=array())
 			return $result;
 		}
 		return false;	
+	}
+
+	function count_rooms($id)
+	{
+		$res=$this->db->from('hotel_room')->where('hotel_id',$id)->get();
+		return $res->num_rows();
+	}
+
+	function booked_room()
+	{
+		$this->db->select('*')->from('hotel_room hr')->order_by('hr.hotel_id','ASEC')->where('hr.booking_status','1')->join('hotel_details hd','hd.hotel_id=hr.hotel_id','LEFT');
+
+		$query=$this->db->get();
+
+		
+		if ($query) {
+			$result = $query->result();
+			return $result;
+		}
+		return false;	
+
+
+
 	}
 }  
