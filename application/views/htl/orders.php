@@ -14,6 +14,7 @@
 									<th class="nowrap">S.No.</th>
 									<th char="nowrap">OrderID</th>
 									<th class="nowrap">Customer Name</th>
+                                                                        <th class="nowrap">Hotel Name</th>
 									<th class="nowrap">Customer Email</th>
 									<th class="nowrap">Customer Mobile</th>
 									<th class="nowrap">Total Booked rooms</th>
@@ -37,6 +38,7 @@
 										<td><?php echo $key+1; ?></td>
 										<td><?php echo $value->orderid?></td>
 										<td><?php echo $value->customer_name; ?></td>
+                                                                                <td><?php echo $value->hotel_name; ?></td>
 										<td><?php echo $value->customer_email; ?></td>
 										<td><?php echo $value->customer_mobile; ?></td>
 										<td><?php echo $value->no_of_room; ?></td>

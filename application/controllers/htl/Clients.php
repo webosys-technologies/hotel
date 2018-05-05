@@ -19,9 +19,9 @@ class Clients extends MY_Controller
         $includes = array('datatable', 'iCheck');
         $this->data['inclusions'] = inclusions($includes);
         $this->data['page_title'] = "List of Users";
-        $cid=$this->session->userdata('owner_id');
+        $oid=$this->session->userdata('owner_id');
         
-        $result = $this->client_model->getuserList($cid);
+        $result = $this->client_model->getuserList($oid);
       
         // debug($result);
         if($result){

@@ -25,6 +25,10 @@
           <div class="post-wrapper row clearfix">
               <?php echo get_flashdata('message'); ?>
             <div class="col-md-12">
+<!--              <form name="myForm" action="/action_page.php" onsubmit="return validateForm()" method="post">
+Name: <input type="text" name="fname">
+<input type="submit" value="Submit">
+</form>-->
               <form class="form-horizontal" method="POST" onsubmit="return validateForm()" action="<?php echo base_url('htl/Register/signup'); ?>">
                <div class="form-group">
                    <div class="hide alert alert-danger" id="errormessage"><a href="" class="close" data-dismiss="alert" aria-label="close">×</a>Incorrect Email or Password.</div>
@@ -58,14 +62,16 @@
               <div class="col-sm-6">
                 <label for="password" class="col-sm-3 control-label">Password:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="password" id="password" placeholder="Password" required="required">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="required">
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="confpassword" class="col-sm-3 control-label">Conf. Password:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="confpassword" id="confpassword" placeholder="Confirm Password" required="required">
+                  <input type="password" class="form-control" name="confpassword" id="confpassword" placeholder="Confirm Password" required="required">
+                 <span id="pass_error" style="color:red"></span> 
                 </div>
+               
               </div>
               <div class="col-sm-6">
                 <label for="dob" class="col-sm-3 control-label">D.o.b:</label>
@@ -101,6 +107,7 @@
                 <input type="submit" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Register with us">
                 <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
               </div>
+              
             </div>
           </form>
         </div><!-- end col -->
@@ -112,23 +119,26 @@
 </div><!-- end row -->
 </div><!-- end container -->
 </section><!-- end section -->
+<script>
+function validateForm() {
+    
+    if($("#password").val()==$("#confpassword").val())
+    {
+        return true;
+    }
+    else
+    {
+        $("#pass_error").html("incorrect Password");
+        return false;
+        
+    }
+
+
+}
+</script>
 <?php $this->load->view('common/footer'); ?>
 
 <script type="text/javascript">
-
-function validateForm() {
-//    if($("#passwod").val()==$("#confpasswod").val())
-//    {
-//        return true;
-//    }
-//    else
-//    {
-//        alert();
-//        return false;
-//        
-//    }
-alert();
-}
 
 
 //

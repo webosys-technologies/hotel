@@ -15,6 +15,7 @@ class Orders extends MY_Controller
 		if (htl_logged_in()) { 
 
 			$id=$this->session->userdata('owner_id');
+                        
 			$res=$this->Placeorder->getorders($id);
 			$includes = array('validate','datatable');
 			$this->data['inclusions'] = inclusions($includes);

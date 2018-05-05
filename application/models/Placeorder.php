@@ -108,18 +108,37 @@ class Placeorder extends CI_Model {
         
 	public function getorders($id)
 	{	
+           
+            if(empty($id))
+            {
+                  $this->db->from('orders as ord');
+                  $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT'); 
+                   $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT'); 
+                   $query1 = $this->db->get();
+                  $result1=$query1->result();
+//                  print_r($result1);
+//                  die;
+               if($result1)
+                        {
+			return $result1;
+		}else{
+		return false;
+                }
+            }else{
 		  $this->db->from('orders as ord');
                   $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT');
-
+                   $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT'); 
                   $this->db->where('ord.owner_id',$id);
                   $query = $this->db->get();
                   $result=$query->result();
+                
                         if($result)
                         {
 			return $result;
 		}else{
 		return false;
                 }
+            }
 	}
          public function getprice($filter=array())
 	{	
