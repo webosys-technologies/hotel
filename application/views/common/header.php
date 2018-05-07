@@ -1,3 +1,9 @@
+<style>
+    .header
+    {
+            
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +63,7 @@
         </div><!-- end right -->
     </div><!-- end container -->
 </div><!-- end topbar -->
-<header class="header fixedheader nobg">
+<header class="header fixedheader nobg" style="background-color: #818080 !important;">
     <div class="menu-container">
         <div class="container">
             <div class="menu-wrapper">
