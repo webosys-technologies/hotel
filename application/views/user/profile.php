@@ -22,7 +22,7 @@
             <ul class="nav nav-tabs nav-tabs2" role="tablist">
               <li class="active"><a href="#tab_01" aria-controls="tab_01" role="tab" data-toggle="tab"><i class="fa fa-user-circle-o" aria-hidden="true"></i> USER PROFILE</a></li>
               <!-- <li><a href="#tab_02" aria-controls="tab_02" role="tab" data-toggle="tab"><i class="fa fa-unlock-alt" aria-hidden="true"></i> CHANGE PASSWORD</a></li> -->
-              <li><a href="#tab_03" aria-controls="tab_03" role="tab" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i>ADD HOTEL</a></li>
+              <!-- <li><a href="#tab_03" aria-controls="tab_03" role="tab" data-toggle="tab"><i class="fa fa-home" aria-hidden="true"></i>ADD HOTEL</a></li> -->
             </ul>
             <div class="tab-content">
               <div role="tabpanel" class="tab-pane active" id="tab_01">
@@ -102,7 +102,7 @@
             </form>
           </div> -->
           <!-- end tab-pane -->
-          <div role="tabpanel" class="tab-pane" id="tab_03">
+<!--          <div role="tabpanel" class="tab-pane" id="tab_03">
             <?php 
 
             // print_r($_SESSION);
@@ -257,10 +257,10 @@
              </div>
              <div class="form-group col-md-2 col-sm-4 col-xs-6">
                   <input type="text" class="form-control" name="person_allowed[]" placeholder="Person Allowed" >
-<!--               <select name="room_avalivality[]" class="form-control">
+               <select name="room_avalivality[]" class="form-control">
                  <option value="1">Yes</option>
                  <option value="2">No</option>
-               </select>-->
+               </select>
              </div>
                   <div class="input_fields_wrap">
                       <button class="btn btn-success add-more" type="button">Add More Fields</button>
@@ -268,7 +268,7 @@
              </div></div>
              </div>
 
-<!-- code>cop -->
+ code>cop 
 <div class="row copy hidden ">
   <div class="col-md-12 control-group" >
   
@@ -294,10 +294,10 @@
              </div>
              <div class="form-group col-md-2 col-sm-4 col-xs-6">
                    <input type="text" class="form-control" name="person_allowed[]" placeholder="Allowed Person" >
-<!--               <select name="room_avalivality[]" class="form-control">
+               <select name="room_avalivality[]" class="form-control">
                  <option value="1">Yes</option>
                  <option value="2">No</option>
-               </select>-->
+               </select>
              </div>
               <div class="input-group-btn"> 
               <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove Fields</button>
@@ -306,14 +306,14 @@
 
 </div>
 
-<!-- <----copy cde> -->
+ <----copy cde> 
 
         
             <div class="form-group col-md-12 ">
               <input type="submit" class="btn btn-primary"  value="Add New Hotel">
             </div>
           </form>
-        </div> 
+        </div> -->
       </div>
     </div>
   </div>

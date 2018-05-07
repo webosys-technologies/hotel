@@ -30,7 +30,7 @@ class Login extends MY_Controller {
 	}
 
 	function logout() {
-		unset_htl_sessions();
+//		unset_htl_sessions();
 		$this->session->sess_destroy();
 		redirect('htl');
 	}

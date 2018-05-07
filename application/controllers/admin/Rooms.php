@@ -13,6 +13,7 @@ class Rooms extends MY_Controller
         }
         $this->load->model('admin/client_model');
             $this->load->model('User_model');
+            $this->load->model('Client_model');
     }
     function index()
     {
@@ -20,10 +21,12 @@ class Rooms extends MY_Controller
         $this->data['inclusions'] = inclusions($includes);
         $this->data['page_title'] = "List of Rooms";
 
-        $result = $this->client_model->gethotel_with_room("",1000,0);
+       // $result = $this->client_model->gethotel_with_room("",1000,0);
+    $result = $this->client_model->gethotelList("",1000,0);
+    // print_r($result);
         // debug($result);
         if($result){
-            $this->data['roomdata']=$result;
+            $this->data['hoteldata']=$result;
         }
         load_backend_page('backend/client/manage_room', $this->data);
     }
@@ -103,4 +106,58 @@ public function update_room() {
 } 
 
 }
+
+function manage_room1()
+    {
+        $includes = array('datatable', 'iCheck');
+        $this->data['inclusions'] = inclusions($includes);
+        $this->data['page_title'] = "List of Rooms";
+
+        $result = $this->client_model->gethotel_with_room1("",1000,0);
+        // debug($result);
+        
+        if($result){
+            $this->data['roomdata']=$result;
+        }
+        load_backend_page('backend/client/manage_room1', $this->data);
+    }
+
+    function roomlist($id)
+    {
+      $includes = array('datatable', 'iCheck');
+        $this->data['inclusions'] = inclusions($includes);
+        $this->data['page_title'] = "List of Hotels Rooms";
+
+        $result = $this->client_model->gethotel_with_room1($id,1000,0);
+        // debug($result);
+        // print_r($result);
+        if($result){
+            $this->data['roomdata']=$result;
+        }
+        load_backend_page('backend/client/manage_hotel_room', $this->data);
+    }
+
+    function update_hotel_room()
+    {
+
+       $data=array(
+    'bed_type'=>$this->input->post('bed_type'),
+    'price'=>$this->input->post('price'),
+    'ac_non_room'=>$this->input->post('ac_non_room'),
+    'room_no'=>$this->input->post('room_no'),
+      'person_allowed'=>$this->input->post('person_allowed'),
+      
+ 
+    );
+       // print_r($data);
+       // die();
+       $id=$this->input->post('hotel_room_id');
+
+      $res = $this->client_model->updatehotelroom1(array('hotel_room_id' => $id),$data);
+
+      echo json_encode(array('status' => True));
+
+
+
+    }
 }

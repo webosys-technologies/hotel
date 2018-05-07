@@ -1,7 +1,7 @@
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1><?php echo $page_title; ?></h1>
-		<a href="<?php echo base_url('admin/Hotel/profile')."/na"; ?>" class="btn btn-primary btn-xs pull-right" style="margin-top:-25px "><i class="fa fa-plus"></i> Add Hotel</a>
+		<a href="<?php echo base_url('htl/Hotel/profile')."/na"; ?>" class="btn btn-primary btn-xs pull-right" style="margin-top:-25px "><i class="fa fa-plus"></i> Add Hotel</a>
 	</section>
 	<section class="content">
 		<?php echo get_flashdata('message'); ?>
@@ -54,8 +54,8 @@
 											<a href="<?php echo base_url('admin/hotel/status')."?status=".urlencode($message)."&hotel_id=".custom_encode($value->hotel_id); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td>
 											
 										<td>
-											<a href="<?php echo base_url('admin/hotel/profile')."/".custom_encode($value->hotel_id); ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
-											<a href="<?php echo base_url('admin/hotel/delete_hotel')."?hotel_id=".custom_encode($value->hotel_id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
+											<a href="<?php echo base_url('htl/hotel/profile')."/".custom_encode($value->hotel_id); ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
+											<a href="<?php echo base_url('htl/hotel/delete_hotel')."?hotel_id=".custom_encode($value->hotel_id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete"><i class="fa fa-trash"></i></a>
 <!--										        <a href="<?php //echo base_url('admin/hotel/addhotelroom')."?hotelid=".custom_encode($value->hotel_id); ?>" class="btn btn-info btn-xs" title="Add"><i class="fa fa-plus"></i>Room</a>
                                                                                         <a href="<?php //echo base_url('admin/hotel/updatehotelroom')."/".custom_encode($value->hotel_id); ?>" class="btn btn-primary btn-xs" title="Edit"><i class="fa fa-edit"></i>Room</a>
                                                                                 -->

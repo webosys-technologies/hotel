@@ -14,14 +14,15 @@
 									<th class="nowrap">S.No.</th>
 									<th char="nowrap">OrderID</th>
 									<th class="nowrap">Customer Name</th>
+                                                                        <th class="nowrap">Hotel Name</th>
 									<th class="nowrap">Customer Email</th>
 									<th class="nowrap">Customer Mobile</th>
 									<th class="nowrap">Total Booked rooms</th>
                                                                         <th class="nowrap">Status</th>
 									<th class="nowrap">City</th>
 									<th class="nowrap" >Pincode</th>
-									<th class="nowrap">Amount Paid</th>
 									<th class="nowrap">Transaction id</th>
+									<th class="nowrap">Amount Paid</th>
 									<th class="nowrap">Created at</th>
 								</tr>
 							</thead>
@@ -36,7 +37,8 @@
 									<tr>
 										<td><?php echo $key+1; ?></td>
 										<td><?php echo $value->orderid?></td>
-										<td><?php echo $value->customer_name; ?></td>
+                                                                                <td><?php echo $value->customer_name; ?></td>
+                                                                                <td><?php echo $value->hotel_name?></td>										
 										<td><?php echo $value->customer_email; ?></td>
 										<td><?php echo $value->customer_mobile; ?></td>
 										<td><?php echo $value->no_of_room; ?></td>
@@ -53,8 +55,8 @@
 											
                                                                                 <td><?php echo $value->city; ?></td>
 										<td><?php echo $value->pincode; ?></td>
-										<td><?php echo $value->transaction_id; ?></td>
-										<td><i class="fa fa-inr"></i><?php echo $value->amount_pay; ?></a></td>
+                                                                                <td><i class="fa fa-inr"></i><?php echo $value->amount_pay; ?></a></td>
+										<td><?php echo $value->transaction_id; ?></td>										
 										<td>
 											<?php echo $value->created_At; ?>
 										</td>

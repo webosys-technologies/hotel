@@ -54,8 +54,8 @@
                           <article class="col-md-6">
                             <ul>
                               <li><h3>HOME PAGES</h3></li>
-                              <li><a href="<?php echo base_url(); ?>assets/index-2.html">Home Default</a></li>
-                              <li><a href="<?php echo base_url(); ?>assets/index1.html">Home Version 1</a></li>
+                              <li><a href="<?php echo base_url(); ?>">Home</a></li>
+                              <li><a href="#">Home Version 1</a></li>
                           </ul>
                       </article>
                   </div><!-- end row -->
@@ -64,6 +64,9 @@
       </ul><!-- end dropdown-menu -->
   </li><!-- end yamm-fw -->
   <li><a href="<?php echo base_url('hotel'); ?>">HOTELS</a></li>
+
+  <li><a href="<?php echo base_url('htl'); ?>">HOTEL Login</a></li>
+
                
 <li><a href="<?php echo base_url('contact'); ?>">CONTACT</a></li>
 </ul><!-- end navbar-right -->

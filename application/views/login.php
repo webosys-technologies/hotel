@@ -29,7 +29,7 @@
               </div><!-- end col -->
 
               <div class="col-md-6">
-                <h5>RETURN COSTUMER</h5>
+                <h5>COSTUMER LOGIN</h5>
                 <p>I am a returning customer</p>
                 <br>
                 <form class="form-horizontal" method="POST" action="<?php echo base_url('login/login'); ?>" id="loginForm">

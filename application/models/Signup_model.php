@@ -7,23 +7,27 @@ class Signup_model extends CI_Model {
 	}
 
 	function signup($data) {
+      
+		$this->db->insert('user', $data);
+		return $this->db->insert_id();
+	}
 
-		// debug($data);
-		if(empty($data['id'])) {
-			array_pop($data);
-			$query = $this->db->insert('user', $data);
-		}else{
-			// echo custom_decode($data['id']);
-			// debug($data);
-			$this->db->where('id',custom_decode($data['id']));
-			$data['id']=custom_decode($data['id']);
-			$query = $this->db->update('user', $data);
-		}
-		if($query){
-			return true;	
-		}else{			
-			return false;
-		}
+	function user_update($where,$data) {
+      
+		$this->db->update('user', $data,$where);
+		return $this->db->affected_rows();
+	}
+
+	function owner_signup($data) {
+      
+		$this->db->insert('hotel_owner', $data);
+		return $this->db->insert_id();
+	}
+
+	function owner_update($where,$data) {
+      
+		$this->db->update('hotel_owner', $data,$where);
+		return $this->db->affected_rows();
 	}
 
 	function resetPass() {

@@ -35,7 +35,9 @@
             <div class="cart-page-tile address-tile">
               <form  id="order_details" method="post" action="">
   <input type="hidden" class="form-control"  value="<?php echo $booking_info[0]->hotel_id; ?>"  name="hotel_id" >
-  <input type="hidden" name="left_hotel" value="<?php echo $booking_info[0]->left_hotel; ?>">         
+  <input type="hidden" name="left_hotel" value="<?php echo $booking_info[0]->left_hotel; ?>"> 
+  <input type="hidden" name="owner_id" value="<?php echo $booking_info[0]->owner_id; ?>"> 
+  <input type="hidden" name="userid" value="<?php echo $userid; ?>"> 
                 <div class="form-group">
                   <label class="weight-light">Your Name *</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Customer Name" value="" required>

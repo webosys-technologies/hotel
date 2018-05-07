@@ -7,22 +7,16 @@ class Client_model extends CI_Model {
 	}
 
 	function getuserList($id) {
-		// debug($id);
-		if($id!="")
-		{$data = array(
-				'id' => custom_decode($id)			
-				);
-			$this->db->where($data);
-		}
-		if($id=="na"){
-			return false;
-		}
-		$query = $this->db->select('*')->from('user')->get();
-		if ($query->num_rows() >=1) {
-			$result = $query->result();
-			return $result;
-		}
-		return false;	
+                if($id)
+                {
+		$this->db->from('orders as ord');
+                $this->db->join('user as usr','usr.id=ord.user_id','LEFT');
+                $this->db->where('ord.owner_id',$id);
+                return $this->db->get()->result();
+               
+                }else{
+                    return false;
+                }
 	}
 
 	function deleteUser($value){
@@ -158,24 +152,51 @@ function orderstatus($value){
 	}
             
         
+	function gethotelList_byowner($id) 
+	{
+
+		// debug($id['userid']);
+//		$this->db->select('hd.*,ar.room_id,tp.price_id')->from('hotel_details hd')->join('available_room ar', 'hd.hotel_id=ar.hotel_id','left')->where('hd.left_hotel>0')->join('total_price tp', 'hd.hotel_id=tp.hotel_id','left')->where('left_hotel>0')->order_by('hd.hotel_id','DESC');	
+		$this->db->select('hd.*')->from('hotel_details hd')->where('hd.owner_id',$id)->order_by('hd.hotel_id','DESC');	
+			
+  //               if(!isset($id) && $id!="") {			
+		// 	$this->db->where('hd.hotel_id',custom_decode($id));
+		// }
+		// if(isset($id['userid'])){
+		// 	$this->db->where('hd.create_user',$id['userid']);
+		// }
+		//$this->db->limit($limit, $start);
+		$query =$this->db->get();
+//		 echo $this->db->last_query();
+//		 die();
+		// debug($query);
+		if ($query) {
+			$result = $query->result();
+			return $result;
+		}
+		return false;	
+	}
 	function gethotelList($id,$limit,$start,$data=array()) 
 	{
 
 		// debug($id['userid']);
 //		$this->db->select('hd.*,ar.room_id,tp.price_id')->from('hotel_details hd')->join('available_room ar', 'hd.hotel_id=ar.hotel_id','left')->where('hd.left_hotel>0')->join('total_price tp', 'hd.hotel_id=tp.hotel_id','left')->where('left_hotel>0')->order_by('hd.hotel_id','DESC');	
-		$this->db->select('hd.*')->from('hotel_details hd')->where('hd.hotel_id>0')->order_by('hd.hotel_id','DESC');	
+		$this->db->select('hd.*')->from('hotel_details hd')->order_by('hd.hotel_id','DESC');	
+			echo $id;
 			
-                if(!isset($id) && $id!="") {			
+                if(isset($id) && $id!="") {			
 			$this->db->where('hd.hotel_id',custom_decode($id));
+
 		}
 		if(isset($id['userid'])){
 			$this->db->where('hd.create_user',$id['userid']);
+
 		}
 		$this->db->limit($limit, $start);
 		$query =$this->db->get();
 //		 echo $this->db->last_query();
 //		 die();
-		// debug($query);
+		 //debug($query);
 		if ($query) {
 			$result = $query->result();
 			return $result;
@@ -339,17 +360,44 @@ function orderstatus($value){
 
 
 
-	function gethotel_with_room($id,$limit,$start,$data=array()) 
+	function gethotel_with_room($id) 
 	{
 		//$this->db->select('hd.*,hr.*')->from('hotel_details hd')->join('hotel_room hr', 'hd.hotel_id=hr.hotel_id','left');	
-		$this->db->select('hd.hotel_name,hr.*')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left');	
+		$this->db->select('hd.hotel_name,hr.*')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left')->join('hotel_owner ho','ho.owner_id=hd.owner_id','left');	
 		
-                if(isset($id) && $id!="") {	
-                    $hotelid=custom_decode($id);
-			$this->db->where('hr.hotel_room_id',$hotelid)->order_by('hr.hotel_room_id','DESC');;
-		}
-		$this->db->limit($limit, $start);
+			$this->db->where('hd.owner_id',$id)->order_by('hr.hotel_room_id','DESC');;
+		
+		//$this->db->limit($limit, $start);
 		$query =$this->db->get();
+		if ($query) {
+			$result = $query->result();
+			return $result;
+		}
+		return false;	
+	}
+
+	function gethotel_with_room_id($id) 
+	{
+//            custom_decode($id);
+                    
+		//$this->db->select('hd.*,hr.*')->from('hotel_details hd')->join('hotel_room hr', 'hd.hotel_id=hr.hotel_id','left');	
+//		$this->db->select('hd.hotel_name,hr.*')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left');	
+//		
+//                if(isset($id) && $id!="") {	
+//                    $hotelid=custom_decode($id);
+//			$this->db->where('hr.hotel_room_id',$hotelid)->order_by('hr.hotel_room_id','DESC');;
+//		}
+		//$this->db->limit($limit, $start);
+		//$query =$this->db->get();
+	
+                  $this->db->from('hotel_room as room');
+                  $this->db->join('hotel_details as det', 'room.hotel_id=det.hotel_id', 'LEFT');
+
+                  $this->db->where('hotel_room_id',$id);
+                  $query = $this->db->get();
+//                  print_r($query->result());
+//                  die;
+
 		if ($query) {
 			$result = $query->result();
 			return $result;

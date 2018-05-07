@@ -11,9 +11,10 @@ class Success extends CI_Controller {
 
 	public function index($id ="")
 	{
+		echo $id;
 		if(isset($id) && $id !="")
 		{
-			$result = $this->placeorder->getorders($id);
+			$result = $this->placeorder->getorders(custom_decode($id));
                         
 		}
 		if($result){

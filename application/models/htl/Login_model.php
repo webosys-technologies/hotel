@@ -16,11 +16,11 @@ class Login_model extends CI_Model {
 			);
 		
 		$this->db->where($data);
-		$query = $this->db->get('hotel_user');
+		$query = $this->db->get('hotel_owner');
 		if ($query->num_rows() == 1) {
 			$result = $query->row_array();
 			$session_data = array(
-				'htl_user_id' => $result['htl_user_id'],
+				'owner_id' => $result['owner_id'],
 				'email'=>$result['email'],
 				'htl_logged_in' => 1
 				); 

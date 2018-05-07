@@ -108,18 +108,37 @@ class Placeorder extends CI_Model {
         
 	public function getorders($id)
 	{	
-		if($id!="") {
-					$where=array('orderid'=>$id);
-			$this->db->where($where);
-		}
-		$query = $this->db->select('*')->from('orders')->get();
-		
-		$result = $query->result();
-		if ($query->num_rows() >=1) {
-			$result = $query->result();
-			return $result;
-		}
+           
+            if(empty($id))
+            {
+                  $this->db->from('orders as ord');
+                  $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT'); 
+                   $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT'); 
+                   $query1 = $this->db->get();
+                  $result1=$query1->result();
+//                  print_r($result1);
+//                  die;
+               if($result1)
+                        {
+			return $result1;
+		}else{
 		return false;
+                }
+            }else{
+		  $this->db->from('orders as ord');
+                  $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT');
+                   $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT'); 
+                  $this->db->where('ord.owner_id',$id);
+                  $query = $this->db->get();
+                  $result=$query->result();
+                
+                        if($result)
+                        {
+			return $result;
+		}else{
+		return false;
+                }
+            }
 	}
          public function getprice($filter=array())
 	{	
@@ -137,7 +156,8 @@ class Placeorder extends CI_Model {
                  $this->db->group_by("hotel_id");
        
        $return =$this->db->get()->result_array();
-//       
+//       print_r($return);
+//       die;
 //       echo $this->db->last_query();
 //       die();
        return $return;

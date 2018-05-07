@@ -123,10 +123,17 @@ class Login_model extends CI_Model {
 		return false;
 	}
         
-        function hotel_user()
+        function hotel_owner()
         {
-            $result=$this->db->query("INSERT INTO `hotel_user` (`htl_user_id`, `fname`, `lname`, `phone`, `email`, `password`, `dob`, `country`, `state`, `city`, `isverified`) VALUES (NULL, 'sunil', 'khandare', '9874563210', 'user@gmail.com', '123456', '2018-04-29', 'india', 'maharashtra', 'shivane', '1')");
-        
+//            $result=$this->db->query('ALTER TABLE `hotel_owner` CHANGE COLUMN `htl_user_id` `owner_id` VARCHAR(255) NOT NULL;');
+//            $result=$this->db->query("RENAME TABLE hotel_user TO hotel_owner;");
+//       $result= $this->db->query('ALTER TABLE `user` ADD `owner_id` INT(11) NOT NULL AFTER `id`;');
+//            $result= $this->db->query('ALTER TABLE `hotel_details` ADD `owner_id` INT(11) NOT NULL AFTER `hotel_id`;');
+
+           //  $result= $this->db->query('ALTER TABLE `orders` ADD `owner_id` INT(11) NOT NULL AFTER `hotel_id`, ADD `user_id` INT(11) NOT NULL AFTER `owner_id`;');
+//            $result= $this->db->query('ALTER TABLE `user` CHANGE `id` `user_id` INT(11) NOT NULL AUTO_INCREMENT');
+            $result= $this->db->query('ALTER TABLE hotel_owner DROP COLUMN owner_id');
+             $result= $this->db->query('ALTER TABLE `hotel_owner` ADD `owner_id` INT(11) NOT NULL AUTO_INCREMENT FIRST, ADD PRIMARY KEY (`owner_id`);');
             if($result)
             {
                 return true;    

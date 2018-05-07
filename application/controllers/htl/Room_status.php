@@ -8,10 +8,10 @@ class Room_status extends MY_Controller
     public function __construct()
     {
         parent::__construct();
-        if (!admin_logged_in()) {
-            redirect('admin');
+        if (!htl_logged_in()) {
+            redirect('htl');
         }
-        $this->load->model('admin/client_model');
+        $this->load->model('htl/client_model');
             $this->load->model('User_model');
     }
     function index()
@@ -19,15 +19,15 @@ class Room_status extends MY_Controller
         $includes = array('datatable', 'iCheck');
         $this->data['inclusions'] = inclusions($includes);
         $this->data['page_title'] = "List of Rooms";
-
-        $result = $this->client_model->gethotel_with_room("",1000,0);
+        $id=$this->session->userdata('owner_id');
+        $result = $this->client_model->gethotel_with_room($id);
 //         debug($result);
 //         die();
         if($result){
             $this->data['roomdata']=$result;
         }
 //        print_r($this->data);
-        load_backend_page('backend/client/manage_room_status', $this->data);
+        load_htlbackend_page('htl/client/manage_room_status', $this->data);
     }
 
    function status()
@@ -39,10 +39,10 @@ class Room_status extends MY_Controller
     $result = $this->client_model->status($request);
     if ($result) {
         set_flashdata('message', "Status is updated successfully!", 'success');
-        redirect('admin/clients');
+        redirect('htl/clients');
     }else {
        set_flashdata('message', "Opps: Some thing went wrong, please try again!", 'danger');
-       redirect('admin/clients');
+       redirect('htl/clients');
    }
 }
 

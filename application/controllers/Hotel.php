@@ -5,7 +5,7 @@ class Hotel extends CI_Controller {
 
 	public function __construct(){
 		parent::__construct();
-		$this->load->model('admin/client_model');
+		$this->load->model('htl/client_model');
 	}
 
 	public function index()

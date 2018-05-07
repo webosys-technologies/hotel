@@ -31,7 +31,7 @@
 	<div class="wrapper">
 		<header class="main-header">
 			<!-- Logo -->
-			<a href="<?php echo base_url('admin'); ?>" class="logo">
+			<a href="<?php echo base_url('htl'); ?>" class="logo">
 				<span class="logo-mini"><img src="<?php echo base_url('assets/images/logo.png'); ?>"/>TS</span>
 				<span class="logo-lg"><img src="<?php echo base_url('assets/images/logo.png'); ?>" alt="TODAYSALE"/></span>
 			</a>
@@ -45,7 +45,7 @@
 				<div class="navbar-custom-menu">
 					<ul class="nav navbar-nav">
 						<li class="dropdown user user-menu">
-							<a href="<?php echo base_url('admin/logout') ?>" class="btn btn-flat" >
+							<a href="<?php echo base_url('htl/Login/logout') ?>" class="btn btn-flat" >
 								<span class="hidden-xs">Logout</span>
 							</a>					
 						</li>
