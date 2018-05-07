@@ -1,5 +1,5 @@
 <?php $this->load->view('common/header1'); ?>
-<section class="section fullscreen background parallax" style="background-image:url('<?php echo base_url() ?>/assets/upload/parallax_04.jpg');" data-img-width="1920" data-img-height="1133" data-diff="100">
+<section class="section fullscreen background parallax" style="style="padding:172px 0;" background-image:url('<?php echo base_url() ?>/assets/upload/parallax_04.jpg');" data-img-width="1920" data-img-height="1133" data-diff="100">
     <div class="container">
         <div class="row">
             <div class="col-md-12 col-xs-12">

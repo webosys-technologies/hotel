@@ -1,27 +1,9 @@
 <?php $this->load->view('common/header'); ?>
 
-<section class="section fullscreen background parallax" style="background-image:url('<?php echo base_url()?>/assets/upload/parallax_04.jpg');" data-img-width="1920" data-img-height="1133" data-diff="100">
-<!-- <section id="page-header"  >
-  <div class="container">
-<<<<<<< HEAD
-      <div class="row" style="padding: 80px 0;">
-      <div class="col-md-12 col-xs-12">
-=======
-    <div class="row">
-      <div class="col-sm-12">
-        <ul class="c1 breadcrumb text-left">
-           <li><a href="#">Pages</a></li> 
-           <li>Page Login & Register</li> 
-        </ul>
-        <h3>Hotel Owner Registration</h3>
-      </div>
-    </div> end row 
-  </div> end container 
-</section> end section -->
+<section class="section fullscreen background parallax" style="padding:172px 0 !important; background-image:url('<?php echo base_url()?>/assets/upload/parallax_04.jpg');" data-img-width="1920" data-img-height="1133" data-diff="100">
     <div class="container">
-    <div class="row homeform">
-      <div class="col-md-6 col-xs-12">
->>>>>>> 5ddec51c7f41b6ed95b4e43161cc41d6bf5491fd
+    <div class="row">
+      <div class="col-md-12 col-xs-12">
         <div class="home-form">
           <div class="tab-content">
             <div role="tabpanel" class="tab-pane active" id="tab_01">
