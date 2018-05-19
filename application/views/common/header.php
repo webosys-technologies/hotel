@@ -1,3 +1,9 @@
+<style>
+    .header
+    {
+            
+    }
+</style>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,7 +63,7 @@
         </div><!-- end right -->
     </div><!-- end container -->
 </div><!-- end topbar -->
-<header class="header fixedheader nobg">
+<header class="header fixedheader nobg" style="background-color: #818080 !important;">
     <div class="menu-container">
         <div class="container">
             <div class="menu-wrapper">
@@ -79,6 +85,7 @@
                                     <a href="<?php echo base_url('home/about');?>" class="" >ABOUT US</a>
                                 </li>
                                 <li><a href="<?php echo base_url('hotel'); ?>">HOTELS</a></li>
+                                <li><a href="<?php echo base_url('htl'); ?>">HOTEL Login</a></li>
                                 <li><a href="<?php echo base_url('contact'); ?>">CONTACT</a></li>
                             </ul><!-- end navbar-right -->
                         </div><!-- end navbar-callopse -->
