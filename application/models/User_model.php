@@ -124,8 +124,7 @@ function add_hotel_room($filters = array()) {
 		return false;
     }else{
     $this->db->insert_batch("hotel_room", $filters);
-     echo $this->db->last_query();
-     die();
+    
     return $this->db->insert_id();
  }
 }
