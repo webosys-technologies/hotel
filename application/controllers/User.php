@@ -295,7 +295,7 @@ public function book_hotel($id) {
   $data['booking_info']= $result;
   $data['pickup']=$_POST;
   $data['userid']=$this->session->userdata('userid');
-  echo $data['userid'];
+  // echo $data['userid'];
   $this->load->view('user/booking_dashboard',$data);
 }
 

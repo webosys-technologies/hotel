@@ -51,6 +51,20 @@ class Login extends CI_Controller {
 
 	}
 
+	function islogin()
+	{
+		if(!isset($_SESSION['userid'])){
+			echo json_encode(array('status' => "fail"));
+			// echo "success";
+			// redirect('home');
+		}else{
+			echo json_encode(array('status' => "success"));
+			// echo "fail";
+  // $this->load->view('user/booking_dashboard',$data);
+		}
+
+	}
+
 
 
 }

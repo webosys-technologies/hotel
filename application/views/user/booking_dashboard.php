@@ -245,7 +245,29 @@ $('#order_details').validate({
     $(element).parent('div').removeClass('has-error');
   },
   submitHandler:function(element){
-   rzp1.open();
+    // alert('submit');
+    // islogin();
+                      // rzp1.open();
+      $.ajax({
+            url: '<?php echo base_url("Login/islogin"); ?>',
+            type: 'get',
+            dataType: 'json',
+             success: function (response) {
+      //                    
+                                // alert(response.status);
+
+                          if(response.status =='success'){
+
+                            rzp1.open();
+
+                          }else{
+                              
+                            // $(".youpay").val(response.data);
+                                 $('#msg').html("Please Login Your Account For Booking");
+                          }
+                         
+                      }
+          });
  }
 });
 </script>
@@ -313,7 +335,7 @@ function getprice()
                     }
                    
                 }
-    })
+    });
   }
 </script>
 

@@ -130,7 +130,7 @@ class Orders extends CI_Controller {
             // die();  
 		if($res)
 		{
-                              if (!empty($res[0]['price'])) {
+                              if (!empty($res[0]['hotel_price'])) {
                               	$response['success'] = TRUE;
                               $response['msg'] = "Room Available";
                               $per=$res[0]['hotel_price']/100;
