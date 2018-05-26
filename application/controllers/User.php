@@ -106,7 +106,7 @@ public function add_hotel() {
            
            
        set_flashdata('message', "Hotel is update Successfully", 'success');
-       redirect('admin/hotel/profile/'.$_POST['hotel_id']);
+       redirect('admin/hotel/index');
      }else{
       set_flashdata('message', "Oops! Failed to update hotel.", 'danger');
       redirect('admin/hotel/profile/'.$_POST['hotel_id']);
@@ -138,7 +138,7 @@ public function add_hotel() {
        
      $res = $this->User_model->add_hotel_room($row_data);
        set_flashdata('message', "Hotel details is added Successfully", 'success');
-       redirect('admin/hotel/profile/na');
+       redirect('admin/Hotel/index');
      }else{
       set_flashdata('message', "Oops! Failed to added hotel.", 'danger');
       redirect('admin/hotel/profile/na');
@@ -295,6 +295,7 @@ public function book_hotel($id) {
   $data['booking_info']= $result;
   $data['pickup']=$_POST;
   $data['userid']=$this->session->userdata('userid');
+  echo $data['userid'];
   $this->load->view('user/booking_dashboard',$data);
 }
 

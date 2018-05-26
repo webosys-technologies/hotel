@@ -28,6 +28,14 @@ class Bookings extends MY_Controller
 			load_backend_page('backend/client/booking',$this->data);
 		
 	}
+
+	function query()
+	{
+		$res=$this->Placeorder->query();
+		if ($res) {
+			echo "sucess";
+		}
+	}
 }
 
 ?>	

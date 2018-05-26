@@ -60,7 +60,7 @@
                          <div class="form-group">    
                                 <div class="col-sm-6">
                                     <label >Website</label>
-                                    <input type="text" class="form-control" name="website" id="website" value="<?php if(isset($client_info[0]->website)){ echo $client_info[0]->website; } ?>"   required="required">
+                                    <input type="text" class="form-control" name="website" id="website" value="<?php if(isset($client_info[0]->website)){ echo $client_info[0]->website; } ?>"   >
                                 </div>  
                                 <div class="col-sm-6">
                                     <label >Mobile No.</label>
@@ -70,11 +70,11 @@
                               <div class="form-group">    
                                 <div class="col-sm-6">
                                     <label >Telephone No.</label>
-                                    <input type="text" class="form-control" name="telephone_no" id="telephone_no" value="<?php if(isset($client_info[0]->telephone_no)){ echo $client_info[0]->telephone_no; } ?>"  required="required" >
+                                    <input type="text" class="form-control" name="telephone_no" id="telephone_no" value="<?php if(isset($client_info[0]->telephone_no)){ echo $client_info[0]->telephone_no; } ?>"   >
                                 </div>  
                                 <div class="col-sm-6">
                                     <label >Fax No.</label>
-                                    <input type="text" class="form-control" name="fax_no" id="fax_no" value="<?php if(isset($client_info[0]->fax_no)){ echo $client_info[0]->fax_no; } ?>"   required="required">
+                                    <input type="text" class="form-control" name="fax_no" id="fax_no" value="<?php if(isset($client_info[0]->fax_no)){ echo $client_info[0]->fax_no; } ?>"   >
                                 </div> 
                             </div>
                          <div class="form-group">    
@@ -111,7 +111,7 @@
                                </div>
                             <div class="col-sm-6">  
                                 <label >Hotel Picture</label>
-                                <input type="file" class="form-control" name="hotel_pic" id="hotel_pic" value="<?php if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   required="required">
+                                <input type="file" class="form-control" name="hotel_pic" id="hotel_pic" value="<?php if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
                                 <?php if(isset($client_info[0]->hotel_pic)): ?>
                                     <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
                                 <?php endif; ?>
@@ -123,7 +123,7 @@
                                     <textarea row="5" cols="45" class="form-control" id="hotel_description" name="hotel_description"  required="required"><?php if(isset($client_info[0]->hotel_description)){ echo $client_info[0]->hotel_description; } ?></textarea> 
                                 </div>
                               </div>          
-                            <h4>Contact Information</h4>
+                            <!-- <h4>Contact Information</h4>
                         <hr>
                          <div class="form-group">    
                                 <div class="col-sm-6">
@@ -144,7 +144,7 @@
                                     <label>E-mail</label>
                                     <input type="text" class="form-control" name="owner_email" id="owner_email" value="<?php if(isset($client_info[0]->owner_email)){ echo $client_info[0]->owner_email; } ?>"   required="required">
                                 </div> 
-                            </div>
+                            </div> -->
                         
                         
                         

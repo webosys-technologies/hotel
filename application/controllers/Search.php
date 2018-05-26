@@ -12,8 +12,8 @@ class Search extends CI_Controller {
 	{ 
             
             $req=$this->input->post();
-//               print_r($req);
-//          die();
+         //      print_r($req);
+         // die();
              if((isset($req['checkin'])&& $req['checkin']!='')&& (isset($req['checkout'])&& $req['checkout']!='')){
             $checkin=$req['checkin'];
             $checkinvalue=(explode("/",$checkin));

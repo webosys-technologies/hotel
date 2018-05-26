@@ -494,4 +494,20 @@ function gethotel_room($id,$limit,$start,$data=array())
 
 
 	}
+	function rooms_list($id,$limit,$start,$data=array())
+	{
+		$this->db->select('*')->from('hotel_room hr')->order_by('hr.hotel_id','ASEC')->join('hotel_details hd','hd.hotel_id=hr.hotel_id','LEFT');
+
+		$query=$this->db->get();
+
+		
+		if ($query) {
+			$result = $query->result();
+			return $result;
+		}
+		return false;	
+
+
+
+	}
 }  

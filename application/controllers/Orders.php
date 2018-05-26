@@ -121,18 +121,31 @@ class Orders extends CI_Controller {
 	{
              $response=array();
              $req=$this->input->post();
-//             print_r($req);
-//             die();
+            // print_r($req);
+            // die();
              
                         $res = $this->placeorder->getprice($req);
                         
-//                        print_r($res);
-//             die();  
+            //            print_r($res);
+            // die();  
 		if($res)
 		{
-                              $response['success'] = TRUE;
+                              if (!empty($res[0]['price'])) {
+                              	$response['success'] = TRUE;
+                              $response['msg'] = "Room Available";
+                              $per=$res[0]['hotel_price']/100;
+                              $response['amt']=$res[0]['price']*$req['no_of_room']*$per;
+                              $response['data']=$res[0]['price']*$req['no_of_room']+$response['amt'];
+                              $response['avl']="Remaining amount to be paid at Hotel";
+                              }else{
+                              	$response['success'] = TRUE;
                               $response['msg'] = "Room Available";
                               $response['data']=$res[0]['price']*$req['no_of_room'];
+                              $response['amt']=$response['data'];
+
+
+                              }
+
 //				'error' => false,
 //				'message' =>"success.",
 //				'data'=>$res[0]['price']*$req['no_of_room'],
@@ -142,6 +155,7 @@ class Orders extends CI_Controller {
 			      $response['success'] = FALSE;
                               $response['msg'] = "Please select Other Room";
                               $response['data']='Please select Other Bed Type';
+                              $response['avl']='Please select Other Bed Type';
 		}
                 
 		json_output(json_encode($response));

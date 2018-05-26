@@ -142,18 +142,18 @@ class Placeorder extends CI_Model {
 	}
          public function getprice($filter=array())
 	{	
-           
-	$this->db->select("count('hotel_id') as totalroom, hotel_id,bed_type,price"); 
-		$this->db->from('hotel_room');
+    $this->db->from('hotel_room as hr');           
+	$this->db->select("count('hr.hotel_id') as totalroom, hr.hotel_id,bed_type,price,hotel_price"); 
+    $this->db->join('hotel_details as hd','hd.hotel_id=hr.hotel_id','Left');
                 $this->db->where('booking_status','0');
                    if (isset($filter['bed_type']) && !empty($filter['bed_type'])) {
                  $this->db->where ("bed_type ", $filter['bed_type']);      
                   }
                    if (isset($filter['hotel_id']) && !empty($filter['hotel_id'])) {
-                 $this->db->where ("hotel_id ", $filter['hotel_id']);         
+                 $this->db->where ("hr.hotel_id ", $filter['hotel_id']);         
                   }
                $this->db->group_by("bed_type");
-                 $this->db->group_by("hotel_id");
+                 $this->db->group_by("hr.hotel_id");
        
        $return =$this->db->get()->result_array();
 //       print_r($return);
@@ -161,5 +161,21 @@ class Placeorder extends CI_Model {
 //       echo $this->db->last_query();
 //       die();
        return $return;
+    }
+
+    function query()
+    {
+      $this->db->query('ALTER TABLE `hotel_details` DROP `owner_email`');
+      $this->db->query('ALTER TABLE `hotel_details` DROP `owner_name`');
+      $this->db->query('ALTER TABLE `hotel_details` DROP `owner_mobile_no`');
+      $this->db->query('ALTER TABLE `hotel_details` DROP `owner_telephone`');
+      $this->db->query('ALTER TABLE `orders` DROP `customer_name`');
+      $this->db->query('ALTER TABLE `orders` DROP `customer_email`');
+      $this->db->query('ALTER TABLE `orders` DROP `customer_address`');
+      $this->db->query('ALTER TABLE `orders` DROP `customer_mobile`');
+      $this->db->query('ALTER TABLE `orders` DROP `city`');
+      $res=$this->db->query('ALTER TABLE `orders` DROP `pincode`');
+
+        return $res;
     }
 }

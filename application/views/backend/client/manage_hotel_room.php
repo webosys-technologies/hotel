@@ -1,3 +1,14 @@
+<style type="text/css">
+	input[type=text], select {
+    width: 80%;
+    padding: 4px 6px;
+    margin: 3px 0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+</style>
+
 <div class="content-wrapper">
 	<section class="content-header">
 		<h1><?php echo $page_title; ?></h1>
@@ -21,6 +32,7 @@
 									<th class="nowrap" >Price</th>
 									<th class="nowrap">Room Type</th>
 									<th class="nowrap">Allowed person</th>
+									<th class="nowrap">Status</th>
 								
 									<th class="nowrap">View/Delete</th>
 								</tr>
@@ -60,6 +72,17 @@
                  <option <?php if ($value->ac_non_room == 2 ) echo 'selected' ; ?> value="2">Non Ac</option>
                </select> </td>
 										<td><span class="lb<?php echo $value->hotel_room_id ?>"><?php echo $value->person_allowed; ?></span><input type="text" name="person_allowed" value="<?php echo $value->person_allowed; ?>" class="in<?php echo $value->hotel_room_id ?>" hidden="hidden"></td>
+										<td>
+											<?php
+											$message="checkout";
+											$status="bg-red";
+											if($value->booking_status == 1){
+												echo "CheckedIn";
+											}else
+											{
+												echo 'CheckedOut';
+											}
+											?></td>
                                                                                
 										<td>
 											<button type="button" onclick="edit(<?php echo $value->hotel_room_id ?>)" id="bte<?php echo $value->hotel_room_id ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></button>
@@ -171,7 +194,7 @@
 	function edit(id)
 		{
 		//$('#edit').click(function (){
-			alert(id);
+			// alert(id);
 			$('.lb'+id).hide();
 			$('.in'+id).removeAttr('hidden');
 			$('.sel'+id).removeAttr('style');

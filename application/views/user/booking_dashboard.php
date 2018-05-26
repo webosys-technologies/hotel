@@ -61,7 +61,7 @@
                 </div>
        <div class="form-group ">
               
-                  <input type="text" class="form-control"  id="no_of_rom" name="no_of_room" required="required" placeholder="No. of Room">
+                  <input type="text" class="form-control"  id="no_of_rom" name="no_of_room" required="required" placeholder="No. of Room" onchange="getprice()">
                 
                 </div>
                 <div class="form-group">
@@ -76,6 +76,8 @@
                  <option value="2">Double Bed</option>
                  <option value="3">Triple Bed</option>
                </select>
+             <span id="bed_error" style="color:red"></span>
+
              </div>
               
 <!--                  <div class="form-group">
@@ -87,13 +89,20 @@
                <input type="text" class="form-control"  placeholder="City" name="city" value=""  required>
              </div>            
              <div class="form-group">
+              <label class="weight-light">Total Pay</label>
+              <input type="text" class="form-control totalpay" name="totalpay" id="totalpay" value=""  readonly >
+            </div>
+            <div class="form-group">
               <label class="weight-light">You Pay</label>
               <input type="text" class="form-control youpay" name="youpay" id="youpay" value=""  readonly >
             </div>
+          <span id="msg" style="color:red"></span>
+
             <div class="form-group">
               <div class="row">
                 <div class="col-md-3 col-sm-4 col-xs-6">
                   <p class="error_message"></p>
+
                   <input type="submit" class="btn booknow" value="CONFIRM BOOKING">
                 </div>
               </div>
@@ -179,8 +188,8 @@
   "key": "rzp_test_pXXiqqbrbsz765",
   "amount": "100",
      // 2000 paise = INR 20
-     "name": "MaihyaryYatra",
-     "description": "Payment Details",
+     "name": "MaihyaryYatraaa",
+     "description": "Payments Details",
      "image": "http://images.jagran.com/ayodhya-sl-27-11-2011.jpg",
      "handler": function (response) {
       console.log(response);
@@ -275,6 +284,10 @@ $('#order_details').validate({
 
 function getprice()
   {
+    //alert('hie');
+    $('#bed_error').html("");
+                       $('#msg').html("");
+                       
     var formdata=$("#order_details").serialize();
     $.ajax({
       url: '<?php echo base_url("orders/getprice"); ?>',
@@ -283,11 +296,20 @@ function getprice()
       dataType: 'json',
        success: function (response) {
 //                    preloader_off();
-                    if(response.data!=''){
-                           $(".youpay").val(response.data);
+// alert(response.data);
+// alert(response.amt);
+                       //    alert(response.avl);
+
+                    if(response.success){
+                           $(".youpay").val(response.amt);
+                           $(".totalpay").val(response.data);
+                           $('#msg').html(response.avl);
+
+
                     }else{
                         
                       $(".youpay").val(response.data);
+                           $('#bed_error').html(response.avl);
                     }
                    
                 }
