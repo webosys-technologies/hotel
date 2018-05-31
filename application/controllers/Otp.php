@@ -33,7 +33,7 @@ class Otp extends CI_Controller
                  $this->User_model->update_otp(array('phone'=>$email),$data);
      //Your authentication key
 
-$authKey = "215028AJLvfixOH5af6761a";    //suraj9195shinde for
+$authKey = "217899AjUpTycrXx6K5b0e2283";    //suraj9195shinde for
 
 //Multiple mobiles numbers separated by comma
 
