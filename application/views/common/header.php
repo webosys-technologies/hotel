@@ -63,7 +63,11 @@
         </div><!-- end right -->
     </div><!-- end container -->
 </div><!-- end topbar -->
-<header class="header fixedheader nobg" style="background-color: #21a5ba !important; padding: 0px;">
+<header class="header fixedheader nobg" style="background-color: #21a5ba !important;
+    padding: 0px;
+    background-image: linear-gradient(to bottom, #23a1d1, #1f90bb) !important;
+    background-repeat: repeat-x;
+    border-color: #1f90bb #1f90bb #145e7a;">
     <div class="menu-container">
         <div class="container">
             <div class="menu-wrapper">
