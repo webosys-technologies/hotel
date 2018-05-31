@@ -63,7 +63,7 @@
         </div><!-- end right -->
     </div><!-- end container -->
 </div><!-- end topbar -->
-<header class="header fixedheader nobg" style="background-color: #818080 !important;">
+<header class="header fixedheader nobg" style="background-color: #21a5ba !important; padding: 0px;">
     <div class="menu-container">
         <div class="container">
             <div class="menu-wrapper">
