@@ -98,6 +98,16 @@
                                     <input type="text" class="form-control" name="near_railway_st" id="near_railway_st" value="<?php if(isset($client_info[0]->near_railway_st)){ echo $client_info[0]->near_railway_st; } ?>"  required="required" >
                                 </div> 
                             </div>
+                            <div class="form-group">    
+                                <div class="col-md-6">
+                                    <label >Hotel Description</label>
+                                    <textarea row="5" cols="45" class="form-control" id="hotel_description" name="hotel_description"  required="required"><?php if(isset($client_info[0]->hotel_description)){ echo $client_info[0]->hotel_description; } ?></textarea> 
+                                </div>
+                                <div class="col-sm-6">
+                                    <label >Hotel Commission</label>
+                                    <input type="text" class="form-control" name="commission" id="commision" value="<?php if(isset($client_info[0]->commission)){ echo $client_info[0]->commission; } ?>" >
+                                </div> 
+                              </div> 
                                <div class="form-group">
                                    <div class="col-sm-6">
                                     <label >Star Category</label>
@@ -117,12 +127,7 @@
                                 <?php endif; ?>
                             </div>
                         </div>
-                              <div class="form-group">    
-                                <div class="cl-md-12 col-sm-12">
-                                    <label >Hotel Description</label>
-                                    <textarea row="5" cols="45" class="form-control" id="hotel_description" name="hotel_description"  required="required"><?php if(isset($client_info[0]->hotel_description)){ echo $client_info[0]->hotel_description; } ?></textarea> 
-                                </div>
-                              </div>          
+                                       
                             <!-- <h4>Contact Information</h4>
                         <hr>
                          <div class="form-group">    

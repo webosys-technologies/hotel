@@ -60,6 +60,9 @@ public function add_hotel() {
             'near_railway_st' => $_POST['near_railway_st'],
             'isverified'=>$_POST['isverified']
     );
+  if (isset($_POST['commission'])) {
+    $data['hotel_price']=$_POST['commission'];
+  }
 
  // debug($data);
   $img_result = $this->User_model->upload_data("hotel_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
