@@ -33,7 +33,7 @@ class Searchhotel extends CI_Model {
 		$this->db->from('hotel_room hr');
                 $this->db->join("hotel_details hd", "hr.hotel_id = hd.hotel_id", "LEFT");
                 $this->db->where('hd.isverified','1');
-                $this->db->where('hr.booking_status','0');
+                // $this->db->where('hr.booking_status','0');
                   if (isset($filter['bed_type']) && $filter['bed_type'] != '') {
                   $this->db->where("bed_type" ,$filter['bed_type']);
             }
@@ -72,5 +72,47 @@ class Searchhotel extends CI_Model {
 //    }
 // 
 
-	
+	public function search_room($filter=array())
+  {
+    //print_r($filter);
+    $this->db->from('orders');
+    $this->db->where('hotel_id',custom_decode($filter['hotel_id']));
+     $this->db->where('checkin >', $filter['searchcheckout']);
+    $this->db->where('checkout <', $filter['searchcheckin']);
+    $query=$this->db->get();
+    return $query->result();
+  }
+
+  public function avl_room($filter=array(),$ids)
+  {
+    $this->db->from('hotel_room');
+    $this->db->where('hotel_id ',custom_decode($filter['hotel_id']));
+
+      if (isset($ids) && !empty($ids)) {
+    $this->db->where_not_in('hotel_room_id ',$ids);        
+   }        
+    $query = $this->db->get();
+    return $query->row();
+  }
+
+  public function check_room_status($date)
+  {
+    $this->db->from('orders');
+    $this->db->where('checkin <=',$date );
+    $this->db->where('checkout >=',$date );
+    $query=$this->db->get();
+    return $query->result();
+  }
+
+  public function change_room_status($ids=array(),$data=array())
+  {
+    if (isset($ids) && !empty($ids)) {
+    $this->db->where_not_in('hotel_room_id',$ids);
+      
+    }
+    $this->db->update('hotel_room',$data);
+                    return $this->db->affected_rows();
+    
+
+  }
 }

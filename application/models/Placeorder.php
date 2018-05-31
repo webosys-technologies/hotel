@@ -17,14 +17,14 @@ class Placeorder extends CI_Model {
               
 		if($query){
                  
-		$data1['left_hotel']=$data['avl_room'];
-		$this->db->where('hotel_id',$data['hotel_id']);
+		// $data1['left_hotel']=$data['avl_room'];
+		// $this->db->where('hotel_id',$data['hotel_id']);
 		
-		$result = $this->db->update('hotel_details', $data1);
+		// $result = $this->db->update('hotel_details', $data1);
                 
-		if ($result) {
-			return true;
-		}
+		// if ($result) {
+		// 	return true;
+		// }
 			return true;
 		}else{
 			return false;
@@ -90,10 +90,10 @@ class Placeorder extends CI_Model {
                  if (isset($filters['bed_type']) && $filters['bed_type'] != '') {
                   $this->db->where("bed_type" ,$filters['bed_type']);
             }
-                 if (isset($filters['no_of_room']) && $filters['no_of_room'] != '') {
-                  $this->db->limit($filters['no_of_room']);
-            }
-          
+            //      if (isset($filters['no_of_room']) && $filters['no_of_room'] != '') {
+            //       $this->db->limit($filters['no_of_room']);
+            // }
+          $this->db->limit(1);
        
        $return =$this->db->get()->result_array();
  

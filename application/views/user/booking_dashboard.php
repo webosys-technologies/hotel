@@ -33,23 +33,23 @@
         <div class="row">
           <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="cart-page-tile address-tile">
-              <form  id="order_details" method="post" action="">
+              <form  id="order_details" method="post" action=""><br>
   <input type="hidden" class="form-control"  value="<?php echo $booking_info[0]->hotel_id; ?>"  name="hotel_id" >
   <input type="hidden" name="left_hotel" value="<?php echo $booking_info[0]->left_hotel; ?>"> 
   <input type="hidden" name="owner_id" value="<?php echo $booking_info[0]->owner_id; ?>"> 
   <input type="hidden" name="userid" value="<?php echo $userid; ?>"> 
-                <div class="form-group">
+                <!-- <div class="form-group">
                   <label class="weight-light">Your Name *</label>
                   <input type="text" class="form-control" name="name" id="name" placeholder="Customer Name" value="" required>
-                </div>
-                <div class="form-group">
+                </div> -->
+               <!--  <div class="form-group">
                   <label class="weight-light">Your Email *</label>
                   <input type="text" class="form-control" name="email" id="email" placeholder=" Customer Email" value="" required>
-                </div>
-                <div class="form-group">
+                </div> -->
+               <!--  <div class="form-group">
                   <label class="weight-light">Your Mobile *</label>
                   <input type="text" class="form-control" name="mobile_no" placeholder="Customer Mobile" value="" required>
-                </div>
+                </div> -->
 
                 <div class="form-group">
                   <label class="weight-light">Checkin *</label>
@@ -60,21 +60,18 @@
                   <input type="text" class="form-control" name="checkout" placeholder="Checkout Date" id="datepicker1" value="<?php if(isset($pickup['checkout'])) echo $pickup['checkout']; ?>" required>
                 </div>
        <div class="form-group ">
-              
-                  <input type="text" class="form-control"  id="no_of_rom" name="no_of_room" required="required" placeholder="No. of Room" onchange="getprice()">
+              <!-- 
+                  <input type="text" class="form-control"  id="no_of_rom" name="no_of_room" required="required" placeholder="No. of Room" onchange="getprice()"> -->
                 
                 </div>
                 <div class="form-group">
                   <label class="weight-light">Bed Type *</label>
-                  <select class="form-control" data-style="btn-white" name="bed_type" id="bed_type" required="required" onchange="getprice()">
-                   <?php if(!empty($pickup['bed_type'])): ?>
-                    <option value="<?php echo $pickup['bed_type']; ?>"  selected><?php echo $pickup['bed_type']; ?></option>
-                  <?php else:  ?>
-                 <option value="">Select Bed Type</option>
-                 <?php endif; ?>
+                  <select class="form-control" data-style="btn-white" name="bed_type" id="bed_type" required="required" >
+                 <!-- <option value="">Select Bed Type</option>
                  <option value="1">Single Bed</option>
                  <option value="2">Double Bed</option>
-                 <option value="3">Triple Bed</option>
+                 <option value="3">Triple Bed</option> -->
+
                </select>
              <span id="bed_error" style="color:red"></span>
 
@@ -84,17 +81,17 @@
                <label class="weight-light">City</label>
                <input type="text" class="form-control"  placeholder="City" name="city" value=""  required>
              </div> -->
-             <div class="form-group">
+             <!-- <div class="form-group">
                <label class="weight-light">City</label>
                <input type="text" class="form-control"  placeholder="City" name="city" value=""  required>
-             </div>            
+             </div>          -->   
              <div class="form-group">
               <label class="weight-light">Total Pay</label>
-              <input type="text" class="form-control totalpay" name="totalpay" id="totalpay" value=""  readonly >
+              <input type="text" class="form-control totalpay" name="totalpay" id="totalpay" value="" required="required" readonly >
             </div>
             <div class="form-group">
               <label class="weight-light">You Pay</label>
-              <input type="text" class="form-control youpay" name="youpay" id="youpay" value=""  readonly >
+              <input type="text" class="form-control youpay" name="youpay" id="youpay" value="" required="required" readonly >
             </div>
           <span id="msg" style="color:red"></span>
 
@@ -113,27 +110,29 @@
     </div>
   </div><!-- end col -->
 
-  <div class="col-md-5 col-sm-5 col-xs-12 section1">
+  <div class="col-md-5 col-sm-5 col-xs-12 ">
     <div class="row">
-      <div class="col-md-12 col-sm-12 col-xs-12">
+      <div class="col-md-6 col-sm-12 col-xs-12 col-md-offset-3">
         <div class="cart-page-tile amount-tile">
           <div class="row">
            <div class="">
                <input type="hidden" class="form-control"  value="<?php echo $booking_info[0]->hotel_id; ?>"  name="hotel_id" >
                 
-            <img src="<?php echo base_url().'upload/img/'.$booking_info[0]->hotel_pic; ?>" class="img-responsive hotel_img">
-          </div>
-<!--          <div class="col-md-6 col-sm-6 col-xs-6">
+            <img src="<?php echo base_url().'upload/img/'.$booking_info[0]->hotel_pic; ?>" class="img-responsive hotel_img"  height="100px">
+          </div><br>
+          <center><strong><?php echo $booking_info[0]->hotel_name; ?></strong></center>
+
+          <!-- <div class="col-md-6 col-sm-6 col-xs-6">
             <div class="pull-left">
               <p>Available Rooms</p>
             </div>
           </div>
           <div class="col-md-6 col-sm-6 col-xs-6">
             <div class="pull-right">
-              <p><?php //echo $booking_info[0]->left_hotel; ?></p>
+              <p><?php echo $booking_info[0]->hotel_name; ?></p>
             </div>
-          </div>-->
-        </div>
+          </div>
+        </div> -->
 <!--        <div class="row">
           <div class="col-md-6 col-sm-6 col-xs-6">
             <div class="pull-left">
@@ -270,6 +269,17 @@ $('#order_details').validate({
           });
  }
 });
+
+var bed='<?php echo $pickup['bed_type'] ?>';
+if (bed == 1) {
+  $('#bed_type').append('<option value="'+bed+'">Single Bed</option>');
+} 
+ if(bed == 2) {
+  $('#bed_type').append('<option value="'+bed+'">Double Bed</option>');
+}
+if(bed == 3) {
+  $('#bed_type').append('<option value="'+bed+'">Triple Bed</option>');
+}
 </script>
 <script>
   function checkout(razorpay_payment_id)
@@ -290,7 +300,7 @@ $('#order_details').validate({
     })
     .done(function(res){
       console.log(res);
-      
+      // print_r(res.data);
       if(res.data){
         window.location.href="<?php  echo base_url('success');?>/"+res.data;
       }else{
@@ -303,9 +313,9 @@ $('#order_details').validate({
   }
 </script>
 <script>
-
-function getprice()
-  {
+$(document).ready(function(){
+// function getprice()
+//   {
     //alert('hie');
     $('#bed_error').html("");
                        $('#msg').html("");
@@ -336,6 +346,7 @@ function getprice()
                    
                 }
     });
-  }
+    });
+  
 </script>
 

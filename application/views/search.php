@@ -31,11 +31,11 @@
                   </select>
                 </div>
               </div>
-                   <div class="form-group col-md-2 col-sm-2 col-xs-12">
+                   <!-- <div class="form-group col-md-2 col-sm-2 col-xs-12">
               
                   <input type="text" class="form-control" name="no_of_room" required="required" placeholder="No. of Room">
                 
-                </div>
+                </div> -->
                                 <div class="form-group col-md-2 col-sm-2 col-xs-12">
                                     <button type="submit" class="btn btn-primary btn-block"><i class="icon-search"></i>SEARCH</button>
                                 </div>
@@ -92,14 +92,16 @@
                                         </span><!-- end rating -->
                                         <p><?php echo $value->hotel_description; ?></p>
                                     </div><!-- end hotel-wrapper -->    
-                                    <form method="post" action="<?php echo base_url('user/book_hotel') . '/' . custom_encode($value->hotel_id); ?>">
+                                    <form method="post" action="" id="form<?php echo $value->hotel_id;  ?>"> 
                                        <input type="hidden" name="hotel_id" value="<?php echo custom_encode($value->hotel_id); ?>">
                                         <input type="hidden" name="checkin" value="<?php if (isset($pickup['checkin'])) echo $pickup['checkin']; ?>">
+
+                                        <input type="hidden" name="bed_type" value="<?php if (isset($pickup['bed_type'])) echo $pickup['bed_type']; ?>">
                                         <input type="hidden" name="checkout" value="<?php if (isset($pickup['checkout'])) {
                         echo $pickup['checkout'];
                     }; ?>">
                                         <input type="hidden" name="Adults" value="<?php if (isset($pickup['Adults'])) echo $pickup['Adults']; ?>">
-                                        <button class="btn btn-block booknow" >Book Now </button> 
+                                        <button type="button" class="btn btn-block booknow"  onclick='check_room("<?php echo $value->hotel_id; ?>")'>Book Now </button> 
                                     </form>
 
                                 </div><!-- end post-wrapper -->
@@ -163,21 +165,45 @@ else: ?>
 //}
 
 var interval = 1000;  // 1000 = 1 second, 3000 = 3 seconds
-function doAjax() {
-    $.ajax({
-            type: 'POST',
-            url: '<?php echo base_url('user/avl_room'); ?>',
-            data: {},
-            dataType: 'json',
-            success: function (data) {
-                console.log(data);
-                    $('#hidden').val(data);// first set the value     
-            },
-            complete: function (data) {
-                    // Schedule the next
-                    setTimeout(doAjax, interval);
-            }
-    });
+// function doAjax() {
+//     $.ajax({
+//             type: 'POST',
+//             url: '<?php echo base_url('user/avl_room'); ?>',
+//             data: {},
+//             dataType: 'json',
+//             success: function (data) {
+//                 console.log(data);
+//                     $('#hidden').val(data);// first set the value     
+//             },
+//             complete: function (data) {
+//                     // Schedule the next
+//                     setTimeout(doAjax, interval);
+//             }
+//     });
+// }
+// setTimeout(doAjax, interval);
+
+function check_room(id)
+{
+    
+        var Formdata= $('#form'+id).serialize();
+        // alert(Formdata);
+        $.ajax({
+                url: "<?php echo base_url('Search/room_available'); ?>",
+                type: "Post",
+                data: Formdata,
+                dataType: "JSON",
+                success: function (response) {
+
+                  //  alert(response.hotel_id);
+        window.location.href="<?php  echo base_url('User/book_hotel');?>/"+response.hotel_id;
+
+                    
+                },
+                error: function (XMLHttpRequest, textStatus, errorThrown) {
+                  //  alert('Error while updating');
+                }
+            });
 }
-setTimeout(doAjax, interval);
+
 </script>

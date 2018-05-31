@@ -6,7 +6,8 @@ class Orders extends CI_Controller {
 	public function __construct(){
 		parent::__construct();
 		$this->load->helper('string');
-		$this->load->model('Searchhotel');
+    $this->load->model('Searchhotel');
+		$this->load->model('Login_model');
                 $this->load->model('placeorder');
 		$this->load->model('mailer');
 	}
@@ -17,32 +18,28 @@ class Orders extends CI_Controller {
 //            echo '<pre>';
 //print_r($req);
 //die();
+            $no_of_room=1;
               $checkin=$req['checkin'];
             $checkinvalue=(explode("/",$checkin));
             $searchcheckin=implode("-",array($checkinvalue[2], $checkinvalue[0],$checkinvalue[1]));
             $checkout=$req['checkout'];
             $checkoutvalue=(explode("/",$checkout));
             $searchcheckout=implode("-",array($checkoutvalue[2], $checkoutvalue[0],$checkoutvalue[1]));
-           
+           $userid=$this->session->userdata('userid');
 		$input=array('orderid'=>random_string('alnum',5),
-			'customer_name'=>$_POST['name'],
-			'customer_email'=>$_POST['email'],
-			'customer_mobile'=>$_POST['mobile_no'],
-			'customer_address'=>'',
-			'city'=>$_POST['city'],
-			'pincode'=>'',
+	     'user_id' =>$userid,
 			'amount_pay'=>$_POST['youpay'],
 			'transaction_id'=>$_POST['razorpay_payment_id'],
                         'hotel_id'=>$_POST['hotel_id'],
 			'bed_type'=>$_POST['bed_type'],
                         'owner_id'=>$_POST['owner_id'],
                         'user_id'=>$_POST['userid'],
-                        'no_of_room'=>$_POST['no_of_room'],
+                       'no_of_room'=>$no_of_room,
 			'checkin'=>$searchcheckin,
 			'checkout'=>$searchcheckout,
                         'status'=>'1',
-                        'total_room'=>$_POST['left_hotel'],
-                        'avl_room'=>($_POST['left_hotel']-$_POST['no_of_room'])
+                       // 'total_room'=>$_POST['left_hotel'],
+                       // 'avl_room'=>($_POST['left_hotel']-$_POST['no_of_room'])
 			);
                  $countroom = $this->placeorder->bookCountroom($input); 
                  $totalroomno=sizeof($countroom);
@@ -51,11 +48,11 @@ class Orders extends CI_Controller {
                 $data=array(
                     'hotel_id'=>$_POST['hotel_id'],
                     'bed_type'=>$_POST['bed_type'],
-                    'no_of_room'=>$_POST['no_of_room'], 
-//                    'total_room'=>$countroom['total_room'],
+                   'no_of_room'=>$no_of_room, 
+                  // 'total_room'=>$countroom['total_room'],
                 );
                   $booking=array();
-                if($totalroomno >= $_POST['no_of_room']){
+                if($totalroomno >= $no_of_room){
                     $result['list']  = $this->placeorder->bookroom($data);
            
                     $ids = array_column($result['list'], 'hotel_room_id');
@@ -86,8 +83,11 @@ class Orders extends CI_Controller {
                  else{
                     echo 'please Select Some Room In Other Type';
                 }
-		
-		$data=array('from'=>SOURCEMAIL,'to'=>$_POST['email'],'subject'=>"Maiharyatra Booking Detail",'message'=>"Hi Your hotel with order no <h1>".$input['orderid']."</h1> is booked successfully. For more detail you can call us on 7289058852. Our team ll connect you shortly");
+		  
+      $id=$this->session->userdata('userid');
+      $user=$this->Login_model->user_data($id);
+
+		$data=array('from'=>SOURCEMAIL,'to'=>$user->email,'subject'=>"Maiharyatra Booking Detail",'message'=>"Hi Your hotel with order no <h1>".$input['orderid']."</h1> is booked successfully. For more detail you can call us on 7289058852. Our team ll connect you shortly");
 		$res= $this->mailer->send_mail($data);
 
 		if($res)
@@ -107,6 +107,7 @@ class Orders extends CI_Controller {
                 
 		json_output(json_encode($output));
 	}
+
         public function mang_order()
 	{
 		$result = $this->client_model->gethotelorder("",1000,0);
@@ -117,6 +118,7 @@ class Orders extends CI_Controller {
 		}
 		$this->load->view('client/mang_hotel_order',$this->data);
 	}
+
          public function getprice()
 	{
              $response=array();
@@ -134,13 +136,13 @@ class Orders extends CI_Controller {
                               	$response['success'] = TRUE;
                               $response['msg'] = "Room Available";
                               $per=$res[0]['hotel_price']/100;
-                              $response['amt']=$res[0]['price']*$req['no_of_room']*$per;
-                              $response['data']=$res[0]['price']*$req['no_of_room']+$response['amt'];
+                              $response['amt']=$res[0]['price']*$per;
+                              $response['data']=$res[0]['price']+$response['amt'];
                               $response['avl']="Remaining amount to be paid at Hotel";
                               }else{
                               	$response['success'] = TRUE;
                               $response['msg'] = "Room Available";
-                              $response['data']=$res[0]['price']*$req['no_of_room'];
+                              $response['data']=$res[0]['price'];
                               $response['amt']=$response['data'];
 
 

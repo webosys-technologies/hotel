@@ -58,10 +58,6 @@ public function add_hotel() {
             'star' => $_POST['star'],
             'near_airport' => $_POST['near_airport'],
             'near_railway_st' => $_POST['near_railway_st'],
-            'owner_name' => $_POST['owner_name'],
-            'owner_mobile_no' => $_POST['owner_mobile_no'],
-            'owner_telephone' => $_POST['owner_telephone'],
-            'owner_email' => $_POST['owner_email'],
             'isverified'=>$_POST['isverified']
     );
 
@@ -285,6 +281,10 @@ if($res){
 public function book_hotel($id) {
 //   print_r($id);
 //   die();
+  $res=$this->session->userdata('res');
+  // print_r($res);
+  // // echo $res;
+  // die();
     $data=array(
         'hotel_id'=>custom_decode($id),
     );
@@ -293,7 +293,7 @@ public function book_hotel($id) {
   $result = $this->client_model->gethotelList($id,1000,0);  
 //   $result = $this->client_model->getroomprice($data);  
   $data['booking_info']= $result;
-  $data['pickup']=$_POST;
+  $data['pickup']=$res;
   $data['userid']=$this->session->userdata('userid');
   // echo $data['userid'];
   $this->load->view('user/booking_dashboard',$data);

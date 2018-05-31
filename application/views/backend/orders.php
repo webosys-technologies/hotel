@@ -37,10 +37,10 @@
 									<tr>
 										<td><?php echo $key+1; ?></td>
 										<td><?php echo $value->orderid?></td>
-                                                                                <td><?php echo $value->customer_name; ?></td>
+                                                                                <td><?php echo $value->fname." ".$value->lname; ?></td>
                                                                                 <td><?php echo $value->hotel_name?></td>										
-										<td><?php echo $value->customer_email; ?></td>
-										<td><?php echo $value->customer_mobile; ?></td>
+										<td><?php echo $value->email; ?></td>
+										<td><?php echo $value->phone; ?></td>
 										<td><?php echo $value->no_of_room; ?></td>
 										<td>
 											<?php

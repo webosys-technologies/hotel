@@ -1,6 +1,6 @@
 <?php $this->load->view('common/header'); ?>
 
-<section class="section fullscreen background parallax" style="padding:172px 0 !important; background-image:url('<?php echo base_url()?>/assets/upload/parallax_04.jpg');" data-img-width="1920" data-img-height="1133" data-diff="100">
+<section class="section fullscreen background parallax" style="padding:172px 0 !important; background-image:url('<?php echo base_url()?>/assets/upload/parallax_slider_02.jpg');" data-img-width="1920" data-img-height="1133" data-diff="100">
     <div class="container">
     <div class="row">
       <div class="col-md-12 col-xs-12">
@@ -31,11 +31,11 @@
                   </select>
                 </div>
               </div>
-                   <div class="form-group col-md-2 col-sm-2 col-xs-12">
+                   <!-- <div class="form-group col-md-2 col-sm-2 col-xs-12">
               
                   <input type="text" class="form-control" name="no_of_room" required="required" placeholder="No. of Room">
                 
-                </div>
+                </div> -->
               <div class="form-group col-md-2 col-sm-2 col-xs-12">
                 <button type="submit" class="btn btn-primary btn-block"><i class="icon-search"></i>SEARCH</button>
               </div>

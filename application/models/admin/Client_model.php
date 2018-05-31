@@ -351,12 +351,12 @@ function orderstatus($value){
 //       die();
        
         }
-          $avl_room=array(
-              'avl_room'=>all_room,
-          );
-          $hotel_id=array(
-              'hotel_id'=>hotel_id,
-          );
+          // $avl_room=array(
+          //     'avl_room'=>all_room,
+          // );
+          // $hotel_id=array(
+          //     'hotel_id'=>hotel_id,
+          // );
           
 	if ($result) {
             
