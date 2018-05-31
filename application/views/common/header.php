@@ -63,7 +63,7 @@
         </div><!-- end right -->
     </div><!-- end container -->
 </div><!-- end topbar -->
-<header class="header fixedheader nobg" style="background-color: #21a5ba !important;
+<header class="header fixedheader nobg" style="background-color: #818080 !important;
     padding: 0px;
     background-image: linear-gradient(to bottom, #23a1d1, #1f90bb) !important;
     background-repeat: repeat-x;
