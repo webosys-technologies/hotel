@@ -4,6 +4,7 @@ class Login extends CI_Controller {
 	function __construct() {
 		parent::__construct();
 		$this->load->model('login_model');
+		$this->load->model('admin/client_model');
 	}
 
 	public function index() {
@@ -11,7 +12,24 @@ class Login extends CI_Controller {
 		if(!isset($_SESSION['userid'])){
 			$this->load->view('login');
 		}else{
+  $res=$this->session->userdata('res');
+
+			if (!empty($res)) {
+				$id=$res['hotel_id'];
+    $data=array(
+        'hotel_id'=>custom_decode($id),
+    );
+//       print_r($data);
+//   die();
+  $result = $this->client_model->gethotelList($id,1000,0);  
+//   $result = $this->client_model->getroomprice($data);  
+  $data['booking_info']= $result;
+				$data['pickup']=$res;
+  $data['userid']=$this->session->userdata('userid');
+	  $this->load->view('user/booking_dashboard',$data);
+		}else{
 			redirect(base_url());
+		}
 		}
 	}
 	public function login() {

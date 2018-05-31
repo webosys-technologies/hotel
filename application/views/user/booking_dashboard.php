@@ -262,6 +262,8 @@ $('#order_details').validate({
                           }else{
                               
                             // $(".youpay").val(response.data);
+                           window.location.href="<?php  echo base_url('Login/index');?>";
+
                                  $('#msg').html("Please Login Your Account For Booking");
                           }
                          
