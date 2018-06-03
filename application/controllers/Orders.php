@@ -123,8 +123,24 @@ class Orders extends CI_Controller {
 	{
              $response=array();
              $req=$this->input->post();
-            // print_r($req);
-            // die();
+           // print_r($req);
+
+
+              $checkin=$req['checkin'];
+            $checkinvalue=(explode("/",$checkin));
+            $searchcheckin=implode("-",array($checkinvalue[2], $checkinvalue[0],$checkinvalue[1]));
+            $checkout=$req['checkout'];
+            $checkoutvalue=(explode("/",$checkout));
+            $searchcheckout=implode("-",array($checkoutvalue[2], $checkoutvalue[0],$checkoutvalue[1]));
+
+               $date1=new DateTime($searchcheckin);
+               $date2= new DateTime($searchcheckout);
+                $diff=$date1->diff($date2);
+                 $day=$diff->format("%d");
+                if ($day == 0) {
+                  $day=1;
+                }
+            
              
                         $res = $this->placeorder->getprice($req);
                         
@@ -132,17 +148,19 @@ class Orders extends CI_Controller {
             // die();  
 		if($res)
 		{
+
+
                               if (!empty($res[0]['hotel_price'])) {
                               	$response['success'] = TRUE;
                               $response['msg'] = "Room Available";
                               $per=$res[0]['hotel_price']/100;
-                              $response['amt']=$res[0]['price']*$per;
-                              $response['data']=$res[0]['price']+$response['amt'];
+                              $response['amt']=$res[0]['price']*$day*$per;
+                              $response['data']=$res[0]['price']*$day+$response['amt'];
                               $response['avl']="Remaining amount to be paid at Hotel";
                               }else{
                               	$response['success'] = TRUE;
                               $response['msg'] = "Room Available";
-                              $response['data']=$res[0]['price'];
+                              $response['data']=$res[0]['price']*$day;
                               $response['amt']=$response['data'];
 
 
