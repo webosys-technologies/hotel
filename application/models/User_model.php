@@ -170,5 +170,18 @@ function check_mobile_exist($phone)
    return $res;
   }
 
+  function getall_cities($state)
+  {
+    $this->db->from('cities');
+    $this->db->where('city_state',$state);
+    $query=$this->db->get();
+    return $query->result();
+  }
+
+  function getall_state()
+    {
+       $res=$this->db->Query('SELECT DISTINCT city_state FROM cities');
+        return $res->result();
+    }
 
 }

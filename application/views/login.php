@@ -45,16 +45,16 @@
                     <span class="text-danger" id="no_err"></span>
                     <span class="text-success" id="email_success"></span>
                   </div>
-                  <div id="send_btn" class="form-group" style="display: none">
+                  <div id="send_btn" class="form-group" >
                    <center> <input type="button" class="btn btn-success border-radius" name="send_otp"  value="Send OTP" id="send_otp"></center>
                   </div>
-                  <div id="pass" >
+                  <div id="pass" style="display: none">
                   <label for="inputPassword3" class="col-sm-2 control-label">Password:</label>
                   <div class="col-sm-10" >
                     <input type="password" class="form-control" name="password" id="inputPassword3" placeholder="Password" required="required">
                   </div>
                   </div>
-                  <div id="otp" style="display: none">
+                  <div id="otp" >
                   <label for="inputPassword3" class="col-sm-2 control-label">OTP:</label>
                   <div class="col-sm-10" >
                     <input type="text" class="form-control" name="otp" id="inputotp" placeholder="OTP" required="required">
@@ -62,9 +62,9 @@
                   </div>
                   <div class="col-sm-offset-2 col-sm-10">
                     <hr>
-                    <input type="submit" class="btn btn-primary btn-normal border-radius pull-left" name="signin" value="Sign in">
-                    <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="otp_btn" value="OTP Login">
-                    <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="pass_btn" value="Password Login" style="display: none">
+                    <input type="submit" class="btn btn-primary btn-normal border-radius pull-left" name="signin" value="Sign IN">
+                    <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="otp_btn" value="OTP Login" style="display: none;">
+                    <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="pass_btn" value="Password Login" >
                     <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
                   </div>
                 </div>

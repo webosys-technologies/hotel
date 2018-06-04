@@ -237,7 +237,7 @@
 		border-radius: 0;
 		font-weight: normal;
 	}
-	.btn-primary,
+	.btn-primary,.btn-info,
 	.btn-lg {
 		font-size:15px;
 		line-height: 1;

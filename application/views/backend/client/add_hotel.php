@@ -73,8 +73,8 @@
                                     <input type="text" class="form-control" name="telephone_no" id="telephone_no" value="<?php if(isset($client_info[0]->telephone_no)){ echo $client_info[0]->telephone_no; } ?>"   >
                                 </div>  
                                 <div class="col-sm-6">
-                                    <label >Fax No.</label>
-                                    <input type="text" class="form-control" name="fax_no" id="fax_no" value="<?php if(isset($client_info[0]->fax_no)){ echo $client_info[0]->fax_no; } ?>"   >
+                                    <label >Nearest Railway Station</label>
+                                    <input type="text" class="form-control" name="near_railway_st" id="near_railway_st" value="<?php if(isset($client_info[0]->near_railway_st)){ echo $client_info[0]->near_railway_st; } ?>"  required="required" >
                                 </div> 
                             </div>
                          <div class="form-group">    
@@ -87,7 +87,7 @@
                                     <input type="text" class="form-control" name="checkout_time" id="checkout_time" value="<?php if(isset($client_info[0]->checkout_time)){ echo $client_info[0]->checkout_time; } ?>"   required="required">
                                 </div>  
                                  
-                            </div>
+                            </div><!-- 
                               <div class="form-group">    
                                 <div class="col-sm-6">
                                     <label >Nearest Airport</label>
@@ -97,7 +97,7 @@
                                     <label >Nearest Railway Station</label>
                                     <input type="text" class="form-control" name="near_railway_st" id="near_railway_st" value="<?php if(isset($client_info[0]->near_railway_st)){ echo $client_info[0]->near_railway_st; } ?>"  required="required" >
                                 </div> 
-                            </div>
+                            </div> -->
                             <div class="form-group">    
                                 <div class="col-md-6">
                                     <label >Hotel Description</label>
@@ -112,6 +112,7 @@
                                    <div class="col-sm-6">
                                     <label >Star Category</label>
                                     <select name="star" id="star" class="form-control">
+                                        <option value="o">None</option>
                                         <option value="1">1</option>
                                          <option value="2">2</option>
                                           <option value="3">3</option>
