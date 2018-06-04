@@ -15,9 +15,9 @@ class Dashboard extends MY_Controller {
         if (!htl_logged_in()) {
             redirect('htl');
         }
+        
         $result = $this->client_model->getuserList("");
         $hotels = $this->client_model->gethotelList("",1000,0);
-
         $orders=$this->Placeorder->getorders("");
         $this->data['page_title'] = "Dashboard";
         $this->data['usercount']= count($result);
@@ -25,6 +25,6 @@ class Dashboard extends MY_Controller {
         $this->data['ordercount']= count($orders);
         
 
-        load_htlbackend_page('backend/dashboard/index', $this->data);
+        load_htlbackend_page('htl/dashboard/index', $this->data);
     }  
 }

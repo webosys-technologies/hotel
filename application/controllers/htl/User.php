@@ -62,10 +62,10 @@ public function add_hotel() {
             'star' => $_POST['star'],
             'near_airport' => $_POST['near_airport'],
             'near_railway_st' => $_POST['near_railway_st'],
-            'owner_name' => $_POST['owner_name'],
-            'owner_mobile_no' => $_POST['owner_mobile_no'],
-            'owner_telephone' => $_POST['owner_telephone'],
-            'owner_email' => $_POST['owner_email'],
+            // 'owner_name' => $_POST['owner_name'],
+            // 'owner_mobile_no' => $_POST['owner_mobile_no'],
+            // 'owner_telephone' => $_POST['owner_telephone'],
+            // 'owner_email' => $_POST['owner_email'],
             'isverified'=>$_POST['isverified']
     );
 
@@ -110,7 +110,7 @@ public function add_hotel() {
            
            
        set_flashdata('message', "Hotel is update Successfully", 'success');
-       redirect('htl/hotel/profile/'.$_POST['hotel_id']);
+       redirect('htl/hotel/index');
      }else{
       set_flashdata('message', "Oops! Failed to update hotel.", 'danger');
       redirect('htl/hotel/profile/'.$_POST['hotel_id']);
@@ -142,7 +142,7 @@ public function add_hotel() {
        
      $res = $this->User_model->add_hotel_room($row_data);
        set_flashdata('message', "Hotel details is added Successfully", 'success');
-       redirect('htl/hotel/profile/na');
+       redirect('htl/hotel/index');
      }else{
       set_flashdata('message', "Oops! Failed to added hotel.", 'danger');
       redirect('htl/hotel/profile/na');
@@ -200,6 +200,8 @@ echo json_encode($output);
 }
 } 
 
+redirect('htl/Hotel');
+
 }
 
 public function add_hotelroom() {
@@ -241,7 +243,7 @@ public function add_hotelroom() {
   
            $res = $this->User_model->add_hotel_room($row_data);
 if($res){
-       set_flashdata('message', "Hotel is update Successfully", 'success');
+       set_flashdata('message', "Hotel is updated Successfully", 'success');
        redirect('htl/hotel/updatehotelroom/'.custom_encode($_POST['hotel_id']));
      }else{
       set_flashdata('message', "Oops! Failed to update hotel.", 'danger');

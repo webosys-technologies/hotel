@@ -12,8 +12,8 @@ class Search extends CI_Controller {
 	{ 
             
             $req=$this->input->post();
-//               print_r($req);
-//          die();
+         //      print_r($req);
+         // die();
              if((isset($req['checkin'])&& $req['checkin']!='')&& (isset($req['checkout'])&& $req['checkout']!='')){
             $checkin=$req['checkin'];
             $checkinvalue=(explode("/",$checkin));
@@ -59,6 +59,38 @@ class Search extends CI_Controller {
 		}
 		$this->data['pickup']=$_POST;
 		$this->load->view('search',$this->data);
+	}
+
+	function room_available()
+	{  
+
+	 $req=$this->input->post();
+              // print_r($req);
+
+         // die();
+             if((isset($req['checkin'])&& $req['checkin']!='')&& (isset($req['checkout'])&& $req['checkout']!='')){
+            $checkin=$req['checkin'];
+            $checkinvalue=(explode("/",$checkin));
+           $req['searchcheckin']=implode("-",array($checkinvalue[2], $checkinvalue[0],$checkinvalue[1]));
+            $checkout=$req['checkout'];
+            $checkoutvalue=(explode("/",$checkout));
+           $req['searchcheckout']=implode("-",array($checkoutvalue[2], $checkoutvalue[0],$checkoutvalue[1]));
+           
+        }
+
+		$result = $this->Searchhotel->search_room($req);
+		// print_r($result);
+		$ids=array();
+		foreach ($result as $key => $value) {
+			$ids[]=$value->room_nos;
+
+		}
+		//print_r($ids);
+		$data=$this->Searchhotel->avl_room($req,$ids);
+		$req['room_no']=$data->room_no;
+		$val['res']=$req;
+		$this->session->set_userdata($val);
+		echo json_encode($req);
 	}
 
 }

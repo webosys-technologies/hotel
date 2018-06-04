@@ -351,12 +351,12 @@ function orderstatus($value){
 //       die();
        
         }
-          $avl_room=array(
-              'avl_room'=>all_room,
-          );
-          $hotel_id=array(
-              'hotel_id'=>hotel_id,
-          );
+          // $avl_room=array(
+          //     'avl_room'=>all_room,
+          // );
+          // $hotel_id=array(
+          //     'hotel_id'=>hotel_id,
+          // );
           
 	if ($result) {
             
@@ -481,6 +481,22 @@ function gethotel_room($id,$limit,$start,$data=array())
 	function booked_room()
 	{
 		$this->db->select('*')->from('hotel_room hr')->order_by('hr.hotel_id','ASEC')->where('hr.booking_status','1')->join('hotel_details hd','hd.hotel_id=hr.hotel_id','LEFT');
+
+		$query=$this->db->get();
+
+		
+		if ($query) {
+			$result = $query->result();
+			return $result;
+		}
+		return false;	
+
+
+
+	}
+	function rooms_list($id,$limit,$start,$data=array())
+	{
+		$this->db->select('*')->from('hotel_room hr')->order_by('hr.hotel_id','ASEC')->join('hotel_details hd','hd.hotel_id=hr.hotel_id','LEFT');
 
 		$query=$this->db->get();
 

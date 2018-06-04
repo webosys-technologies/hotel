@@ -46,8 +46,8 @@
             <div id="navbar-collapse" class="navbar-right navbar-collapse collapse clearfix">
               <ul class="nav navbar-nav yamm">
                 <li class="dropdown">
-                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">HOME</a>
-                  <ul class="dropdown-menu">
+                  <a href="<?php echo base_url(); ?>" >HOME</a>
+           <!--        <ul class="dropdown-menu">
                     <li>
                       <div class="yamm-content">
                         <div class="row">
@@ -58,10 +58,10 @@
                               <li><a href="#">Home Version 1</a></li>
                           </ul>
                       </article>
-                  </div><!-- end row -->
-              </div><!-- end yamm-content -->
+                  </div>
+              </div>
           </li>
-      </ul><!-- end dropdown-menu -->
+      </ul> -->
   </li><!-- end yamm-fw -->
   <li><a href="<?php echo base_url('hotel'); ?>">HOTELS</a></li>
 

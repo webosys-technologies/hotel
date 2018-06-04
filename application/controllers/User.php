@@ -58,12 +58,11 @@ public function add_hotel() {
             'star' => $_POST['star'],
             'near_airport' => $_POST['near_airport'],
             'near_railway_st' => $_POST['near_railway_st'],
-            'owner_name' => $_POST['owner_name'],
-            'owner_mobile_no' => $_POST['owner_mobile_no'],
-            'owner_telephone' => $_POST['owner_telephone'],
-            'owner_email' => $_POST['owner_email'],
             'isverified'=>$_POST['isverified']
     );
+  if (isset($_POST['commission'])) {
+    $data['hotel_price']=$_POST['commission'];
+  }
 
  // debug($data);
   $img_result = $this->User_model->upload_data("hotel_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
@@ -106,7 +105,7 @@ public function add_hotel() {
            
            
        set_flashdata('message', "Hotel is update Successfully", 'success');
-       redirect('admin/hotel/profile/'.$_POST['hotel_id']);
+       redirect('admin/hotel/index');
      }else{
       set_flashdata('message', "Oops! Failed to update hotel.", 'danger');
       redirect('admin/hotel/profile/'.$_POST['hotel_id']);
@@ -138,7 +137,7 @@ public function add_hotel() {
        
      $res = $this->User_model->add_hotel_room($row_data);
        set_flashdata('message', "Hotel details is added Successfully", 'success');
-       redirect('admin/hotel/profile/na');
+       redirect('admin/Hotel/index');
      }else{
       set_flashdata('message', "Oops! Failed to added hotel.", 'danger');
       redirect('admin/hotel/profile/na');
@@ -285,6 +284,10 @@ if($res){
 public function book_hotel($id) {
 //   print_r($id);
 //   die();
+  $res=$this->session->userdata('res');
+  // print_r($res);
+  // // echo $res;
+  // die();
     $data=array(
         'hotel_id'=>custom_decode($id),
     );
@@ -293,8 +296,9 @@ public function book_hotel($id) {
   $result = $this->client_model->gethotelList($id,1000,0);  
 //   $result = $this->client_model->getroomprice($data);  
   $data['booking_info']= $result;
-  $data['pickup']=$_POST;
+  $data['pickup']=$res;
   $data['userid']=$this->session->userdata('userid');
+  // echo $data['userid'];
   $this->load->view('user/booking_dashboard',$data);
 }
 

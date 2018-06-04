@@ -123,7 +123,7 @@
                                     <textarea row="5" cols="45" class="form-control" id="hotel_description" name="hotel_description"  required="required"><?php if(isset($client_info[0]->hotel_description)){ echo $client_info[0]->hotel_description; } ?></textarea> 
                                 </div>
                               </div>          
-                            <h4>Contact Information</h4>
+                            <!-- <h4>Contact Information</h4>
                         <hr>
                          <div class="form-group">    
                                 <div class="col-sm-6">
@@ -146,7 +146,7 @@
                                 </div> 
                             </div>
                         
-                        
+                         -->
                         
                         
                          <h4>Room Information</h4>

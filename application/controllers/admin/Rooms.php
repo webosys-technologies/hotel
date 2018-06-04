@@ -19,7 +19,7 @@ class Rooms extends MY_Controller
     {
         $includes = array('datatable', 'iCheck');
         $this->data['inclusions'] = inclusions($includes);
-        $this->data['page_title'] = "List of Rooms";
+        $this->data['page_title'] = "List of Hotels";
 
        // $result = $this->client_model->gethotel_with_room("",1000,0);
     $result = $this->client_model->gethotelList("",1000,0);
@@ -126,7 +126,7 @@ function manage_room1()
     {
       $includes = array('datatable', 'iCheck');
         $this->data['inclusions'] = inclusions($includes);
-        $this->data['page_title'] = "List of Hotels Rooms";
+        $this->data['page_title'] = "List of Rooms";
 
         $result = $this->client_model->gethotel_with_room1($id,1000,0);
         // debug($result);

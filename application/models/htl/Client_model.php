@@ -182,7 +182,7 @@ function orderstatus($value){
 		// debug($id['userid']);
 //		$this->db->select('hd.*,ar.room_id,tp.price_id')->from('hotel_details hd')->join('available_room ar', 'hd.hotel_id=ar.hotel_id','left')->where('hd.left_hotel>0')->join('total_price tp', 'hd.hotel_id=tp.hotel_id','left')->where('left_hotel>0')->order_by('hd.hotel_id','DESC');	
 		$this->db->select('hd.*')->from('hotel_details hd')->order_by('hd.hotel_id','DESC');	
-			echo $id;
+			
 			
                 if(isset($id) && $id!="") {			
 			$this->db->where('hd.hotel_id',custom_decode($id));
@@ -365,7 +365,7 @@ function orderstatus($value){
 		//$this->db->select('hd.*,hr.*')->from('hotel_details hd')->join('hotel_room hr', 'hd.hotel_id=hr.hotel_id','left');	
 		$this->db->select('hd.hotel_name,hr.*')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left')->join('hotel_owner ho','ho.owner_id=hd.owner_id','left');	
 		
-			$this->db->where('hd.owner_id',$id)->order_by('hr.hotel_room_id','DESC');;
+			$this->db->where('hd.hotel_id',$id)->order_by('hr.hotel_room_id','DESC');;
 		
 		//$this->db->limit($limit, $start);
 		$query =$this->db->get();
@@ -374,6 +374,24 @@ function orderstatus($value){
 			return $result;
 		}
 		return false;	
+	}
+
+	function getroom_with_hotel($id) 
+	{
+		//$this->db->select('hd.*,hr.*')->from('hotel_details hd')->join('hotel_room hr', 'hd.hotel_id=hr.hotel_id','left');	
+		$this->db->select('hd.hotel_name,hr.*')->from('hotel_room hr')->join('hotel_details hd', 'hr.hotel_id=hd.hotel_id','left');	
+		
+                if(isset($id) && $id!="") {	
+                    $hotelid=custom_decode($id);
+			$this->db->where('hr.hotel_id',$hotelid)->order_by('hr.hotel_room_id','DESC');;
+		}
+		//$this->db->limit($limit, $start);
+		$query =$this->db->get();
+		if ($query) {
+			$result = $query->result();
+			return $result;
+		}
+		return false;		
 	}
 
 	function gethotel_with_room_id($id) 
@@ -424,6 +442,15 @@ function orderstatus($value){
  
     return $this->db->insert_id();
 }
+}
+
+ function updatehotelroom1($where,$data) 
+{
+	$this->db->update('hotel_room',$data,$where);
+
+	return $this->db->affected_rows();
+
+
 }
 function gethotel_room($id,$limit,$start,$data=array()) 
 	{

@@ -33,12 +33,12 @@ $items = array(
         'active_on' => 'Rooms',
         ),
 
-     array(
-        'name' => 'Manage Room1',
-        'link' => base_url('admin/Rooms/manage_room1'),
-        'icon-class' => 'fa-fa plush text-yellow',
-        'active_on' => 'RoomDetails',
-        ),
+     // array(
+     //    'name' => 'Manage Room1',
+     //    'link' => base_url('admin/Rooms/manage_room1'),
+     //    'icon-class' => 'fa-fa plush text-yellow',
+     //    'active_on' => 'RoomDetails',
+     //    ),
         array(
         'name' => 'Manage Room Status',
         'link' => base_url('admin/Room_status'),

@@ -20,9 +20,10 @@ class Room_status extends MY_Controller
         $this->data['inclusions'] = inclusions($includes);
         $this->data['page_title'] = "List of Rooms";
 
-        $result = $this->client_model->gethotel_with_room("",1000,0);
+        $result = $this->client_model->rooms_list("",1000,0);
 //         debug($result);
-//         die();
+        // print_r($result);
+        // die();
         if($result){
             $this->data['roomdata']=$result;
         }

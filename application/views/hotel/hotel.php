@@ -54,8 +54,8 @@
           </span><!-- end rating -->
           <p><?php echo $value->hotel_description; ?></p>
       </div><!-- end hotel-wrapper -->    
-    
-    <a class="btn btn-block booknow" href="<?php echo base_url('user/book_hotel').'/'.custom_encode($value->hotel_id); ?>">Book Now </a>
+    <!-- 
+    <a class="btn btn-block booknow" href="<?php echo base_url('user/book_hotel').'/'.custom_encode($value->hotel_id); ?>">Book Now </a> -->
 
   </div><!-- end post-wrapper -->
 </div><!-- end col -->

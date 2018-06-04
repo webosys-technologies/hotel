@@ -46,6 +46,7 @@
                 <label for="phone" class="col-sm-3 control-label">Phone No.:</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone No." required="required">
+                  <small id="mobile_err"></small>
                 </div>
               </div>
               <div class="col-sm-6">
@@ -81,22 +82,46 @@
               <div class="col-sm-6">
                 <label for="country" class="col-sm-3 control-label">Country:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="country" id="country" placeholder="Country" required="required">
+                  <select class="form-control" name="country" id="country"  required="required">
+                    <option value="India">India</option>
+                  </select> 
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="state" class="col-sm-3 control-label">State:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="state" id="state" placeholder="State" >
+                  <select  class="form-control" name="state" id="state"  >
+                    <option value="">--Select State--</option>
+                    <?php if (isset($state)) {
+                      foreach ($state as $key => $value) {
+                           echo '<option value="'.$value->city_state.'">'.$value->city_state.'</option>';                     
+                      }
+                    } ?>
+
+                  </select>
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="City" class="col-sm-3 control-label">City:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="city" id="city" placeholder="City" >
+                  <select class="form-control" name="city" id="city"  >
+                    <option value="">--Select City-- </option>
+                  </select>
                 </div>
               </div>
-              <div class="col-sm-offset-2 col-sm-5">
+
+              <div class="col-sm-6" id="otp_div" style="display: none">
+                <label for="otp" class="col-sm-3 control-label">OTP:</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="otp" id="otp" placeholder="OTP" required="required">
+                  <span id="mobile_success"></span>
+                </div>
+              </div>
+              <div class="col-sm-offset-2 col-sm-5" id="btn_otp">
+                <input type="button" class="btn btn-primary btn-normal border-radius pull-right" name="" onclick="send_otp()" value="Send OTP">
+                <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
+              </div>
+              <div class="col-sm-offset-2 col-sm-5" id="submit" style="display: none">
                 <input type="submit" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Register with us">
                 <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
               </div>
@@ -115,6 +140,44 @@
 
 <script type="text/javascript">
 
+$(document).ready( function () {
+
+  $("#state").change(function() {                          
+        
+   var el = $(this) ;
+              $("#city").html("");
+
+
+var state=el.val();
+
+        if(state)
+        {
+          $('#city').append("");
+            
+      $.ajax({
+       url : "<?php echo site_url('index.php/Regester/show_cities')?>/" + state,        
+       type: "GET",
+              
+       dataType: "JSON",
+       success: function(data)
+       {
+        
+          $.each(data,function(i,row)
+          {
+          
+              $("#city").append('<option value="'+ row.city_name +'">' + row.city_name+'</option>');
+          }
+          );
+       },
+       error: function (jqXHR, textStatus, errorThrown)
+       {
+        // alert('Error...!');
+       }
+     });
+     }
+    
+ });  
+ });
 
  $('#signupForm').validate({
   rules:{
@@ -177,11 +240,59 @@
     if(res.error==true){
       $("#errormessage").text(res.message).removeClass('hide').removeClass("alert-success").addClass("alert-danger");
     }else{
-      $("#errormessage").text(res.message).removeClass('hide alert-danger').addClass('alert-success');
+      window.location.href='<?php echo base_url('Login'); ?>';
+      // $("#errormessage").text(res.message).removeClass('hide alert-danger').addClass('alert-success');
     }
   })
   .fail(function(res){
     $("#errormessage").html("Something went wrong").removeClass('hide');
   });
 }
+
+  function send_otp()
+    {
+    var mobile= $('[name="phone"]').val();
+   // alert(mobile);
+    var x=mobile.toString().length;
+    //alert(x);
+        if(x == 10 || x == 11)
+        {
+           $.ajax({
+       url : "<?php echo site_url('index.php/Otp/regester_otp')?>" ,        
+       type: "post",
+        data:{member_email : mobile},
+       dataType: "JSON",
+       success: function(data)
+       {            
+          // alert(data.mobile_error);
+          
+          if (data.send) {
+          $('#mobile_success').html(data.send);
+          $('#mobile_err').html("");         
+          $('#otp_div').show();
+          $('#submit').show();
+          $('#btn_otp').hide();
+        }
+        else{
+          $('#mobile_success').html("");
+          $('#mobile_err').html(data.mobile_error);            
+        }
+
+       },
+       error: function (jqXHR, textStatus, errorThrown)
+       {
+         // alert('Error...!');
+         $("#ajax").html("Error While Registration");
+       }
+     });
+        }
+        else
+        {
+         $("#mobile_err").html("Not a valid Phone Number");
+         return false;
+        }
+        
+    }
 </script>
+
+

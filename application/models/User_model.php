@@ -143,5 +143,44 @@ function get_hotel_details($filters = array()) {
 
 }  
 
+function check_mobile_exist($phone)
+{
+  $this->db->from('user');
+  $this->db->where('phone',$phone);
+  $query=$this->db->get();
+        $result=$query->num_rows();
+        if($result > 0)
+        {
+            return FALSE;
+        }else{
+            return TRUE;
+        }
+}
+
+  function update_otp($where,$data)
+  {
+    $this->db->update('user',$data,$where);
+    return $this->db->affected_rows();
+  }
+
+  function query()
+  {
+   $res= $this->db->query('ALTER TABLE `user` ADD `otp` VARCHAR(10) NOT NULL AFTER `city`');
+   return $res;
+  }
+
+  function getall_cities($state)
+  {
+    $this->db->from('cities');
+    $this->db->where('city_state',$state);
+    $query=$this->db->get();
+    return $query->result();
+  }
+
+  function getall_state()
+    {
+       $res=$this->db->Query('SELECT DISTINCT city_state FROM cities');
+        return $res->result();
+    }
 
 }

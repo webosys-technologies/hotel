@@ -16,18 +16,20 @@ class Rooms extends MY_Controller
     }
     function index()
     {
+    $id=$this->session->userdata('owner_id');
+
         $includes = array('datatable', 'iCheck');
         $this->data['inclusions'] = inclusions($includes);
-        $this->data['page_title'] = "List of Rooms";
+        $this->data['page_title'] = "List of Hotels";
 
-       
-        $id=$this->session->userdata('owner_id');
-        $result = $this->client_model->gethotel_with_room($id);
+       // $result = $this->client_model->gethotel_with_room("",1000,0);
+    $result = $this->client_model->gethotelList_byowner($id);
+    // print_r($result);
         // debug($result);
         if($result){
-            $this->data['roomdata']=$result;
+            $this->data['hoteldata']=$result;
         }
-        load_htlbackend_page('htl/client/manage_room', $this->data);
+        load_htlbackend_page('htl/client/manage_hotel_list', $this->data);
     }
 
  function Roomprofile($hotel_room_id){
@@ -106,4 +108,44 @@ public function update_room() {
 } 
 
 }
+
+function roomlist($id)
+    {
+      $includes = array('datatable', 'iCheck');
+        $this->data['inclusions'] = inclusions($includes);
+        $this->data['page_title'] = "List of Rooms";
+        // echo $id;
+        // die();
+        $result = $this->client_model->getroom_with_hotel($id);
+        // debug($result);
+        // print_r($result);
+        if($result){
+            $this->data['roomdata']=$result;
+        }
+        load_htlbackend_page('htl/client/manage_room', $this->data);
+    }
+
+    function update_hotel_room()
+    {
+
+       $data=array(
+    'bed_type'=>$this->input->post('bed_type'),
+    'price'=>$this->input->post('price'),
+    'ac_non_room'=>$this->input->post('ac_non_room'),
+    'room_no'=>$this->input->post('room_no'),
+      'person_allowed'=>$this->input->post('person_allowed'),
+      
+ 
+    );
+       // print_r($data);
+       // die();
+       $id=$this->input->post('hotel_room_id');
+
+      $res = $this->client_model->updatehotelroom1(array('hotel_room_id' => $id),$data);
+
+      echo json_encode(array('status' => True));
+
+
+
+    }
 }

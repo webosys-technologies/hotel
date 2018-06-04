@@ -6,10 +6,12 @@ class Regester extends CI_Controller {
   function __construct() {
     parent::__construct();
     $this->load->model('signup_model');
+    $this->load->model('User_model');
   }
 
   public function index() {
-    $this->load->view('regester');
+    $data['state']=$this->User_model->getall_state();
+    $this->load->view('regester',$data);
 
   }
 
@@ -24,10 +26,11 @@ class Regester extends CI_Controller {
       'country'=>$_POST['country'],
       'state'=>$_POST['state'],
       'city'=>$_POST['city'], 
-      'isverified'=>0,
+      'isverified'=>1,
       
       );
     $falag=0;
+    $otp_falag=0;
     if(isset($_POST['updateProduct'])){
       $data['isverified']=1;
     }
@@ -40,8 +43,14 @@ class Regester extends CI_Controller {
     $result = $this->signup_model->user_update(array('id' => custom_decode($id)),$data);
 
     }else{
-    $result = $this->signup_model->signup($data);
-       }
+      $otp=$this->session->userdata('regester_otp');
+      if ($otp==$_POST['otp']) {
+
+         $result = $this->signup_model->signup($data);  
+         $otp_falag=1;      
+      }
+      
+      }
 
     // debug($data);
     // echo $this->db->last_query();
@@ -72,20 +81,33 @@ class Regester extends CI_Controller {
       }
     }
     else{
-      if($result){
-        $output = array(
-          'error' => false,
-          'message' =>"Your Account is created successfully, Continue to login"
-          );
-      }else {
-        $output = array(
+      if ($otp_falag) 
+      {
+        
+      
+              if($result){
+                $output = array(
+                  'error' => false,
+                  'message' =>"Your Account is created successfully, Continue to login"
+                  );
+                set_flashdata('message',"Your Account is created successfully, Continue to login",'success');
+                // redirect('Login');
+              }else {
+                $output = array(
+                  'error' => true,
+                  'message' => 'Email or Phone is already registered with us. Please use a
+                  different email or Phone.'
+                  );
+              }
+      }else{
+                 $output = array(
           'error' => true,
-          'message' => 'Email or Phone is already registered with us. Please use a
-          different email or Phone.'
+          'message' => 'OTP Does not Match,PLease enter valid OTP',
           );
-      }
+    }
       json_output(json_encode($output));
     }
+  
   }
 
   public function owner_signup() {
@@ -164,9 +186,13 @@ class Regester extends CI_Controller {
     }
   }
 
-
-
-
+function show_cities($state)
+        {           
+            $st=str_replace('%20', ' ', $state);
+            $cities=$this->User_model->getall_cities(ltrim($st));
+          
+            echo json_encode($cities);
+        }
   
 }
 
