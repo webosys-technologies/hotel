@@ -21,11 +21,11 @@ class Regester extends CI_Controller {
       'lname'=>$_POST['lname'],
       'phone'=>$_POST['phone'],
       'email'=>$_POST['email'],
-      'password'=>$_POST['password'],
-      'dob'=>$_POST['dob'],
-      'country'=>$_POST['country'],
-      'state'=>$_POST['state'],
-      'city'=>$_POST['city'], 
+      // 'password'=>$_POST['password'],
+      // 'dob'=>$_POST['dob'],
+      // 'country'=>$_POST['country'],
+      // 'state'=>$_POST['state'],
+      // 'city'=>$_POST['city'], 
       'isverified'=>1,
       
       );
@@ -192,6 +192,49 @@ function show_cities($state)
             $cities=$this->User_model->getall_cities(ltrim($st));
           
             echo json_encode($cities);
+        }
+
+        function regester()
+        {
+              $mobile=$this->session->userdata('mobile');
+              $data=array(
+          'fname'=>$_POST['fname'],
+          'lname'=>$_POST['lname'],
+          'email'=>$_POST['email'],
+          'phone'=>$mobile,
+          // 'password'=>$_POST['password'],
+          // 'dob'=>$_POST['dob'],
+          // 'country'=>$_POST['country'],
+          // 'state'=>$_POST['state'],
+          // 'city'=>$_POST['city'], 
+          'isverified'=>1,
+          
+          );
+              $result=$this->signup_model->signup($data);
+              if ($result) {
+                
+            $session_data = array(
+              'userid' => $result['id'],
+              'email'=>$data['email'],
+              'name'=>$data['fname']." ".$data['lname'],
+              'logged_in' => 1
+              ); 
+            set_sessions($session_data);
+            $output = array(
+                  'error' => false,
+                  'message' =>"Your Account is created successfully, Continue to login"
+                  );
+            
+              }
+              else{
+                $output = array(
+                  'error' => true,
+                  'message' =>"Your email is already regester",
+                  );
+              }
+      json_output(json_encode($output));
+
+
         }
   
 }

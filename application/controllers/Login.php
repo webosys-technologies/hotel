@@ -44,8 +44,8 @@ class Login extends CI_Controller {
 					redirect('home');
 				}
 			} else {
-				set_flashdata('message', "Oops! Your Mobile and OTP didn't match.", 'danger');
-				redirect('login');
+				// set_flashdata('message', "Oops! Your Mobile and OTP didn't match.", 'danger');
+				redirect('Regester');
 			}
 
 		}elseif (isset($_POST['email'])) {

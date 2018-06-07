@@ -24,7 +24,7 @@
         <div id="content" class="col-md-12 col-sm-12 col-xs-12">
           <div class="post-wrapper row clearfix">
             <div class="col-md-12">
-              <form class="form-horizontal" method="POST" action="<?php echo base_url('login/login'); ?>" id="signupForm">
+              <form class="form-horizontal" method="POST" action="<?php echo base_url('Login/index'); ?>" id="signupForm">
                <div class="form-group">
                 <div class="hide alert alert-danger" id="errormessage"><a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>Incorrect Email or Password.</div>
               </div>
@@ -43,18 +43,11 @@
                 </div>
               </div>
               <div class="col-sm-6">
-                <label for="phone" class="col-sm-3 control-label">Phone No.:</label>
-                <div class="col-sm-9">
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone No." required="required">
-                  <small id="mobile_err"></small>
-                </div>
-              </div>
-              <div class="col-sm-6">
                 <label for="email" class="col-sm-3 control-label">Email Address:</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" name="email" id="email" placeholder="Email Address" required="required">
                 </div>
-              </div>
+              </div><!-- 
               <div class="col-sm-6">
                 <label for="password" class="col-sm-3 control-label">Password:</label>
                 <div class="col-sm-9">
@@ -120,12 +113,13 @@
               <div class="col-sm-offset-2 col-sm-5" id="btn_otp">
                 <input type="button" class="btn btn-primary btn-normal border-radius pull-right" name="" onclick="send_otp()" value="Send OTP">
                 <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
-              </div>
-              <div class="col-sm-offset-2 col-sm-5" id="submit" style="display: none">
+              <!--</div> -->
+
+              <div class="col-sm-offset-2 col-sm-5" id="submit" >
                 <input type="submit" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Register with us">
                 <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
               </div>
-            </div>
+            <!-- </div> -->
           </form>
         </div><!-- end col -->
       </div><!-- end post-wrapper -->
@@ -224,7 +218,7 @@ var state=el.val();
 
  function SignuUp(contact_formdata) {
   $.ajax({
-    url: '<?php echo base_url('regester/signup'); ?>',
+    url: '<?php echo base_url('regester/regester'); ?>',
     type: 'POST',
     dataType: 'json',
     data:contact_formdata,
