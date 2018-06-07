@@ -141,23 +141,104 @@ function manage_room1()
     {
 
        $data=array(
-    'bed_type'=>$this->input->post('bed_type'),
-    'price'=>$this->input->post('price'),
-    'ac_non_room'=>$this->input->post('ac_non_room'),
-    'room_no'=>$this->input->post('room_no'),
-      'person_allowed'=>$this->input->post('person_allowed'),
-      
+
+          'hotel_room_id'=>$this->input->post('hotel_room_id'),
+          'bed_type'=>$this->input->post('bed_type'),
+          'price'=>$this->input->post('price'),
+          'ac_non_room'=>$this->input->post('ac_non_room'),
+          'room_no'=>$this->input->post('room_no'),
+          'person_allowed'=>$this->input->post('person_allowed'),
+            
  
     );
-       // print_r($data);
+
+  // $img_result = $this->User_model->upload_room("room_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
+  //  echo $file_old_name = $_FILES['room_pic']['name'];
+
+  $data['room_pic']=$img_result['data']['file_name'];
        // die();
        $id=$this->input->post('hotel_room_id');
 
       $res = $this->client_model->updatehotelroom1(array('hotel_room_id' => $id),$data);
 
+         $data['hotel_name']=$this->input->post('hotel_name');
+     //  print_r($data);
+
+       $this->pic_upload($data);
+
       echo json_encode(array('status' => True));
 
 
 
+    }
+
+    function pic_upload($data)
+    {  
+       $id=$data['hotel_room_id'];
+       
+                                   $new_file=$data['hotel_name'].mt_rand(100,9999);
+       
+         $config = array(
+                                  'upload_path' => './upload/img',
+                                  'allowed_types' => 'gif|jpg|png|jpeg',
+                                  'max_size' => '72000',
+                                  'max_width' => '1920',
+                                  'max_height' => '1200',
+                                  'overwrite' => false,
+                                  'remove_spaces' =>true,
+                                  'file_name' =>$new_file 
+                              );           
+                      
+                    // print_r($config);
+                                  
+                       $this->load->library('upload', $config);
+                       $this->upload->initialize($config);
+                       
+                       if (!$this->upload->do_upload('room_pic')) # form input field attribute
+                       {
+
+                           if(empty($this->input->post('room_pic')))
+                           {
+
+                                $msg="Image size should less than 7MB,Dimension 1920*1200";
+                           return $msg; 
+                            
+                           }
+                           else
+                           {
+                                   return true;                    
+                           }
+                         
+                       }
+                       else
+                       {
+                        
+                            $res=$this->Client_model->room_by_id($id);
+                            
+                            if(file_exists($res->room_pic))
+                            {
+                            unlink($res->room_pic);
+                            }
+                                               
+                           
+                            $ext= explode(".",$this->upload->data('file_name'));  
+                            $img_name =$new_file.".".end($ext); //video name as path in db
+                             echo $img_path=str_replace(' ','_',$img_name);
+                          $pic = array(
+                              'room_pic' => $img_path,
+                            );
+            
+                                  
+           $res = $this->client_model->updatehotelroom1(array('hotel_room_id' => $id),$pic);
+                                    
+                  // $insert =  $this->User_model->user_update(array('hotel_room_id' =>$id), $pic);
+                          
+                         return true; 
+                                               
+                       }
+
+        
+
+            
     }
 }

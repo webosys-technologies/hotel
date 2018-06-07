@@ -73,8 +73,8 @@
                                     <input type="text" class="form-control" name="telephone_no" id="telephone_no" value="<?php if(isset($client_info[0]->telephone_no)){ echo $client_info[0]->telephone_no; } ?>"  required="required" >
                                 </div>  
                                 <div class="col-sm-6">
-                                    <label >Fax No.</label>
-                                    <input type="text" class="form-control" name="fax_no" id="fax_no" value="<?php if(isset($client_info[0]->fax_no)){ echo $client_info[0]->fax_no; } ?>"   required="required">
+                                    <label >Nearest Railway Station</label>
+                                    <input type="text" class="form-control" name="near_railway_st" id="near_railway_st" value="<?php if(isset($client_info[0]->near_railway_st)){ echo $client_info[0]->near_railway_st; } ?>"  required="required" >
                                 </div> 
                             </div>
                          <div class="form-group">    
@@ -88,20 +88,11 @@
                                 </div>  
                                  
                             </div>
-                              <div class="form-group">    
-                                <div class="col-sm-6">
-                                    <label >Nearest Airport</label>
-                                    <input type="text" class="form-control" name="near_airport" id="near_airport" value="<?php if(isset($client_info[0]->near_airport)){ echo $client_info[0]->near_airport; } ?>"   required="required">
-                                </div>  
-                                <div class="col-sm-6">
-                                    <label >Nearest Railway Station</label>
-                                    <input type="text" class="form-control" name="near_railway_st" id="near_railway_st" value="<?php if(isset($client_info[0]->near_railway_st)){ echo $client_info[0]->near_railway_st; } ?>"  required="required" >
-                                </div> 
-                            </div>
                                <div class="form-group">
                                    <div class="col-sm-6">
                                     <label >Star Category</label>
                                     <select name="star" id="star" class="form-control">
+                                        <option value="0">0</option>
                                         <option value="1">1</option>
                                          <option value="2">2</option>
                                           <option value="3">3</option>
@@ -111,7 +102,7 @@
                                </div>
                             <div class="col-sm-6">  
                                 <label >Hotel Picture</label>
-                                <input type="file" class="form-control" name="hotel_pic" id="hotel_pic" value="<?php if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   required="required">
+                                <input type="file" class="form-control" name="hotel_pic" id="hotel_pic" value="<?php if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>" >
                                 <?php if(isset($client_info[0]->hotel_pic)): ?>
                                     <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
                                 <?php endif; ?>

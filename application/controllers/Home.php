@@ -51,7 +51,7 @@ class Home extends CI_Controller {
 		// $ids[]=array();
 		foreach ($data as $key => $value) {
 			$ids[]=$value->room_nos;
-			echo $value->checkout;
+			//echo $value->checkout;
 			$status[] = array(
                              "booking_status" => 1, 
                           'hotel_room_id'=>$value->room_nos,
@@ -75,5 +75,12 @@ class Home extends CI_Controller {
 		 }
 
 		
+	}
+	function payment()
+	{
+		$res=$this->Placeorder->query();
+		if ($res) {
+			echo "sucess";
+		}
 	}
 }

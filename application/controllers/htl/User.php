@@ -56,11 +56,9 @@ public function add_hotel() {
             'website' => $_POST['website'],
             'mobile_no' => $_POST['mobile_no'],
             'telephone_no' => $_POST['telephone_no'],
-            'fax_no' => $_POST['fax_no'],
             'checkin_time' => $_POST['checkin_time'],
             'checkout_time' => $_POST['checkout_time'],
             'star' => $_POST['star'],
-            'near_airport' => $_POST['near_airport'],
             'near_railway_st' => $_POST['near_railway_st'],
             // 'owner_name' => $_POST['owner_name'],
             // 'owner_mobile_no' => $_POST['owner_mobile_no'],
@@ -72,6 +70,7 @@ public function add_hotel() {
  // debug($data);
   $img_result = $this->User_model->upload_data("hotel_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
   // debug($img_result);
+  // die();
   $response=array();
   if (isset($img_result['succ']) && $img_result['succ']) {
     $data['hotel_pic'] = $img_result['data']['file_name'];

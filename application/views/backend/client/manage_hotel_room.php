@@ -25,6 +25,7 @@
 								<tr>
 									<th class="nowrap">S.No.</th>
                                                                         <th class="nowrap">Hotel Name</th>
+                                                                        <th class="nowrap">Room Pic</th>
 									<th class="nowrap">Room No.</th>
 									
 									<th class="nowrap">Bed Type</th>
@@ -43,10 +44,14 @@
 									foreach ($roomdata as $key => $value):
 										?>
 									<tr>
-										<form id="form<?php echo $value->hotel_room_id ?>">
+										<form id="form<?php echo $value->hotel_room_id ?>"  enctype="multipart/form-data">
 											<input type="hidden" name="hotel_room_id" value="<?php echo $value->hotel_room_id ?>">
+											<input type="hidden" name="hotel_name" value="<?php echo $value->hotel_name; ?>">
 										<td><span><?php echo $key+1; ?></span></td>
 										<td><span class="l<?php echo $value->hotel_room_id ?>"><?php echo $value->hotel_name; ?></span><input type="text" name="hotel_name" value="<?php echo $value->hotel_name; ?>" class="i<?php echo $value->hotel_room_id ?>"  hidden="hidden" readonly></td>
+										<td style="width: 10px">
+											<input type="file" name="room_pic" id="room_pic" class="pic<?php echo $value->hotel_room_id ?>" style="display: none;" >
+										</td>
 
 										<td><span class="lb<?php echo $value->hotel_room_id ?>"><?php echo $value->room_no; ?></span><input type="text" name="room_no" value="<?php echo $value->room_no; ?>" class="in<?php echo $value->hotel_room_id ?>" hidden="hidden"></td>
 
@@ -195,6 +200,7 @@
 		{
 		//$('#edit').click(function (){
 			// alert(id);
+			$('.pic'+id).show();
 			$('.lb'+id).hide();
 			$('.in'+id).removeAttr('hidden');
 			$('.sel'+id).removeAttr('style');
@@ -217,7 +223,7 @@
 				dataType: "JSON",
 				success: function (response) {
 
-						location.reload();
+						// location.reload();
 					
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {

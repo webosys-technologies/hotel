@@ -55,10 +55,10 @@
                   <?php if(isset($hotel_room[0]->bed_type)) {
                       ?> 
                      <option <?php if(($hotel_room[0]->bed_type)==1){ echo 'selected'; } ?> value="1">Single Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 2) {echo 'selected' ;} ?> value="3">Double Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 3){ echo 'selected' ;} ?> value="5">Triple Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 4){ echo 'selected' ;} ?> value="6">Four Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 5){ echo 'selected' ;} ?> value="7">Hall</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 2) {echo 'selected' ;} ?> value="2">Double Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 3){ echo 'selected' ;} ?> value="3">Triple Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 4){ echo 'selected' ;} ?> value="4">Four Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 5){ echo 'selected' ;} ?> value="5">Hall</option>
                  
                       <?php
                 }

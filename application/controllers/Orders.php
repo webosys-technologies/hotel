@@ -26,7 +26,9 @@ class Orders extends CI_Controller {
             $checkoutvalue=(explode("/",$checkout));
             $searchcheckout=implode("-",array($checkoutvalue[2], $checkoutvalue[0],$checkoutvalue[1]));
            $userid=$this->session->userdata('userid');
-		$input=array('orderid'=>random_string('alnum',5),
+		$input=array(
+
+      'orderid'=>random_string('alnum',5),
 	     'user_id' =>$userid,
 			'amount_pay'=>$_POST['youpay'],
 			'transaction_id'=>$_POST['razorpay_payment_id'],
@@ -37,14 +39,18 @@ class Orders extends CI_Controller {
                        'no_of_room'=>$no_of_room,
 			'checkin'=>$searchcheckin,
 			'checkout'=>$searchcheckout,
-                        'status'=>'1',
+                        'status'=>1,
+      'paid_percentage'=>$_POST['hotel_price'],
                        // 'total_room'=>$_POST['left_hotel'],
                        // 'avl_room'=>($_POST['left_hotel']-$_POST['no_of_room'])
 			);
+    // print_r($input);
+    
                  $countroom = $this->placeorder->bookCountroom($input); 
-                 $totalroomno=sizeof($countroom);
-//                 print_r($totalroomno);
-//                 die();
+                 // $totalroomno=sizeof($countroom);
+                 $totalroomno=1;
+                // print_r($countroom);
+                // die();
                 $data=array(
                     'hotel_id'=>$_POST['hotel_id'],
                     'bed_type'=>$_POST['bed_type'],
@@ -69,7 +75,8 @@ class Orders extends CI_Controller {
 //                die();
 		$result = $this->placeorder->placeorder($input);
                 if($result){
-                   $res = $this->placeorder->updateroomstatus($booking);
+                  $this->payment($input);
+                  // $res = $this->placeorder->updateroomstatus($booking);
                 }
 //                   die();
 		if($result)
@@ -157,11 +164,13 @@ class Orders extends CI_Controller {
                               $response['amt']=$res[0]['price']*$day*$per;
                               $response['data']=$res[0]['price']*$day+$response['amt'];
                               $response['avl']="Remaining amount to be paid at Hotel";
+                              $response['hotel_price']=$res[0]['hotel_price'];
                               }else{
                               	$response['success'] = TRUE;
                               $response['msg'] = "Room Available";
                               $response['data']=$res[0]['price']*$day;
                               $response['amt']=$response['data'];
+                              $response['hotel_price']=0;
 
 
                               }
@@ -174,10 +183,32 @@ class Orders extends CI_Controller {
            
 			      $response['success'] = FALSE;
                               $response['msg'] = "Please select Other Room";
-                              $response['data']='Please select Other Bed Type';
+                              $response['bederr']='Please select Other Bed Type';
                               $response['avl']='Please select Other Bed Type';
 		}
                 
 		json_output(json_encode($response));
 	}
+
+  function payment($input)
+  {
+   // echo $input['orderid'];
+    $data=array(
+          'orderid' =>$input['orderid'],
+          'transaction_id' =>$input['transaction_id'],
+          'amount_paid'  => $input['amount_pay'],
+          'paid_percentage' => $input['paid_percentage'],
+          'payment_status'  =>$input['status'],
+          'created_at' =>date('Y-m-d h:i:s'),
+
+    );
+
+    $result=$this->placeorder->payment_add($data);
+    if ($result) {
+    return True;
+    }
+
+
+
+  }
 }

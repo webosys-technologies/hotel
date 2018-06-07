@@ -40,10 +40,10 @@ $authKey = "217899AjUpTycrXx6K5b0e2283";    //suraj9195shinde for
 $mobileNumber = $email;
 //Sender ID,While using route4 sender id should be 6 characters long.
 
-$senderId = "pkgnau";
+$senderId = "mahytr";
 //Your message to send, Add URL encoding here.
 
-$message =$rand.' is your OTP for verifying mobile number on packagingnaukri.com.';
+$message =$rand.' is your OTP for verifying mobile number on maihyaryatra.com.';
 
 
 //Define route 
@@ -149,10 +149,10 @@ $authKey = "217899AjUpTycrXx6K5b0e2283";    //suraj9195shinde for
 $mobileNumber = $email;
 //Sender ID,While using route4 sender id should be 6 characters long.
 
-$senderId = "pkgnau";
+$senderId = "mahytr";
 //Your message to send, Add URL encoding here.
 
-$message =$rand.' is your OTP for verifying mobile number on packagingnaukri.com.';
+$message =$rand.' is your OTP for verifying mobile number on maihyaryatra.com.';
 
 
 //Define route 

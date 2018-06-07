@@ -163,19 +163,20 @@ class Placeorder extends CI_Model {
        return $return;
     }
 
+    function payment_add($data)
+    {
+      $this->db->insert('payments',$data);
+      return $this->db->insert_id();
+    }
+
     function query()
     {
-      $this->db->query('ALTER TABLE `hotel_details` DROP `owner_email`');
-      $this->db->query('ALTER TABLE `hotel_details` DROP `owner_name`');
-      $this->db->query('ALTER TABLE `hotel_details` DROP `owner_mobile_no`');
-      $this->db->query('ALTER TABLE `hotel_details` DROP `owner_telephone`');
-      $this->db->query('ALTER TABLE `orders` DROP `customer_name`');
-      $this->db->query('ALTER TABLE `orders` DROP `customer_email`');
-      $this->db->query('ALTER TABLE `orders` DROP `customer_address`');
-      $this->db->query('ALTER TABLE `orders` DROP `customer_mobile`');
-      $this->db->query('ALTER TABLE `orders` DROP `city`');
-      $res=$this->db->query('ALTER TABLE `orders` DROP `pincode`');
+      $this->db->query('ALTER TABLE `orders` ADD `paid_percentage` INT(10) NOT NULL AFTER `amount_pay');
+
+      $res=$this->db->query('CREATE TABLE `payments` ( `p_id` INT(20) NOT NULL AUTO_INCREMENT , `orderid` VARCHAR(20) NOT NULL , `transaction_id` VARCHAR(20) NOT NULL , `amount_paid` INT(20) NOT NULL , `paid_percentage` INT(20) NOT NULL , `payment_status` INT(10) NOT NULL , `created_at` DATETIME(6) NOT NULL , PRIMARY KEY (`p_id`)) ENGINE = InnoDB');
 
         return $res;
     }
+
+
 }

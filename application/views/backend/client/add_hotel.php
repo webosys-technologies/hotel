@@ -167,11 +167,15 @@
         <div class="col-md-2 col-sm-4 col-xs-6">
          <label >AC/Non AC</label> 
      </div> 
-        <div class="col-md-2 col-sm-4 col-xs-6">
+        <div class="col-md-1 col-sm-4 col-xs-6">
          <label >Room No</label> 
      </div> 
-         <div class="col-md-2 col-sm-4 col-xs-6">
+         <div class="col-md-1 col-sm-4 col-xs-6">
          <label >Person Allowed</label> 
+     </div> 
+
+         <div class="col-md-2 col-sm-4 col-xs-6">
+         <label >Room pic</label> 
      </div> 
    </div>
             <div class="row form-group  after-add-more">
@@ -181,10 +185,10 @@
                   <?php if(isset($hotel_room[0]->bed_type)) {
                       ?> 
                      <option <?php if(($hotel_room[0]->bed_type)==1){ echo 'selected'; } ?> value="1">Single Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 2) {echo 'selected' ;} ?> value="3">Double Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 3){ echo 'selected' ;} ?> value="5">Triple Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 4){ echo 'selected' ;} ?> value="6">Four Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 5){ echo 'selected' ;} ?> value="7">Hall</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 2) {echo 'selected' ;} ?> value="2">Double Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 3){ echo 'selected' ;} ?> value="3">Triple Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 4){ echo 'selected' ;} ?> value="4">Four Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 5){ echo 'selected' ;} ?> value="5">Hall</option>
                  
                       <?php
                 }
@@ -219,12 +223,19 @@
                 <?php } ?>
                </select>
              </div>
-              <div class="col-md-2 col-sm-4 col-xs-6">
+              <div class="col-md-1 col-sm-4 col-xs-6">
                 <input type="text" class="form-control" name="room_no[]" placeholder="Room Number" value="<?php if(isset($hotel_room[0]->room_no)){ echo $hotel_room[0]->room_no; }?>" required="required">
              </div>
-              <div class="col-md-2 col-sm-4 col-xs-6">
+              <div class="col-md-1 col-sm-4 col-xs-6">
                   
                    <input type="text" class="form-control" name="person_allowed[]" placeholder="Allowed Person" value="<?php if(isset($hotel_room[0]->person_allowed)){ echo $hotel_room[0]->person_allowed; }?>" required="required">
+             </div>
+
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                  <input type="file" class="form-control" name="room_pic" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
+                                <!-- <?php if(isset($client_info[0]->hotel_pic)): ?>
+                                    <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
+                                <?php endif; ?> -->
              </div>
 <!--               <select name="room_avalivality[]" class="form-control">
                    <?php //if(isset($hotel_room[0]->room_avalivality)) {
@@ -261,10 +272,10 @@
              <div class="col-md-2 col-sm-4 col-xs-6">
                <select name="bed_type[]" class="form-control">
                    <option <?php if(($hotel_room[0]->bed_type)==1){ echo 'selected'; } ?> value="1">Single Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 2) {echo 'selected' ;} ?> value="3">Double Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 3){ echo 'selected' ;} ?> value="5">Triple Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 4){ echo 'selected' ;} ?> value="6">Four Bed</option>
-                 <option <?php if (($hotel_room[0]->bed_type)== 5){ echo 'selected' ;} ?> value="7">Hall</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 2) {echo 'selected' ;} ?> value="2">Double Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 3){ echo 'selected' ;} ?> value="3">Triple Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 4){ echo 'selected' ;} ?> value="4">Four Bed</option>
+                 <option <?php if (($hotel_room[0]->bed_type)== 5){ echo 'selected' ;} ?> value="5">Hall</option>
                  
                </select>  
              </div>
@@ -277,12 +288,20 @@
                  <option <?php if ($value->ac_non_room == 2 ) echo 'selected' ; ?> value="2">Non Ac</option>
                </select>
              </div>
-              <div class="col-md-2 col-sm-4 col-xs-6">
+              <div class="col-md-1 col-sm-4 col-xs-6">
                 <input type="text" class="form-control" name="room_no[]" value="<?php echo $value->room_no; ?>" placeholder="Room Number" >
              </div>
-             <div class="col-md-2 col-sm-4 col-xs-6">
+             <div class="col-md-1 col-sm-4 col-xs-6">
                   <input type="text" class="form-control" name="person_allowed[]" placeholder="Allowed Person" value="<?php echo $value->person_allowed; ?>">
              </div>
+
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                  <input type="file" class="form-control" name="room_pic[]" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
+                                <!-- <?php if(isset($client_info[0]->hotel_pic)): ?>
+                                    <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
+                                <?php endif; ?> -->
+             </div>
+
 <!--               <select name="room_avalivality[]" class="form-control">
                  <option <?php// if ($value->room_avalivality == 1 ) echo 'selected' ; ?> value="1">Yes</option>
                  <option <?php //if ($value->room_avalivality == 2 ) echo 'selected' ; ?> value="2">No</option>
@@ -303,13 +322,11 @@
   
              <div class="col-md-2 col-sm-4 col-xs-6">
                <select name="bed_type[]" class="form-control">
-                <option value="1">Single Bed + 1 person</option>
-                   <option value="2">Single Bed + 2 person</option>
-                 <option value="3">Double Bed + 1 person</option>
-                 <option value="4">Double Bed + 4 person</option>
-                 <option value="5">Triple Bed + max 8 persson</option>
-                 <option value="6">Four Bed + max 12 person</option>
-                 <option value="7">Hall +max 50 person</option>
+                <option value="1">Single Bed</option>
+                 <option value="2">Double Bed</option>
+                 <option value="3">Triple Bed</option>
+                 <option value="4">Four Bed</option>
+                 <option value="5">Hall</option>
                </select>  
              </div>
              <div class="col-md-2 col-sm-4 col-xs-6">
@@ -321,11 +338,18 @@
                  <option  value="2">Non Ac</option>
                </select>
              </div>
-              <div class="col-md-2 col-sm-4 col-xs-6">
+              <div class="col-md-1 col-sm-4 col-xs-6">
                 <input type="text" class="form-control" name="room_no[]" placeholder="Room Number" >
              </div>
-            <div class="col-md-2 col-sm-4 col-xs-6">
+            <div class="col-md-1 col-sm-4 col-xs-6">
                  <input type="text" class="form-control" name="person_allowed[]" placeholder="Allowed Person" >
+             </div>
+
+              <div class="col-md-2 col-sm-4 col-xs-6">
+                  <input type="file" class="form-control" name="room_pic[]" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
+                                <!-- <?php if(isset($client_info[0]->hotel_pic)): ?>
+                                    <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
+                                <?php endif; ?> -->
              </div>
 <!--               <select name="room_avalivality[]" class="form-control">
                  <option  value="1">Yes</option>

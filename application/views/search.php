@@ -6,9 +6,9 @@
                 <div class="home-form">
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="tab_01">
-                            <h6>WHERE WOULD YOU LIKE TO GO?</h6>
+                           <center> <h5>WHERE WOULD YOU LIKE TO GO?</h5></center>
                             <form class="bookform form-inline row" method="POST" accept="" action="<?php echo base_url('search'); ?>">
-                                <div class="form-group col-md-2 col-sm-2 col-xs-12">
+                                <div class="form-group col-md-2 col-sm-2 col-xs-12 col-md-offset-2">
                                     <div class="input-group">
                                         <input type="text" class="form-control" name="checkin" required="required" placeholder="Check in" id="datepicker">
                                         <div class="input-group-addon"><i class="fa fa-calendar"></i></div>

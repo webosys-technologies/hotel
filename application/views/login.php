@@ -24,7 +24,7 @@
                 <h5>NEW COSTUMER</h5>
                 <p>By creating an account you will be able to shop faster, be up to date on an order’s status, and keep track of the orders you have previously made.</p>
                 <hr>
-                <a href="<?php echo base_url('regester'); ?>" class="btn btn-primary btn-normal border-radius">Register Now</a>
+                <!-- <a href="<?php echo base_url('regester'); ?>" class="btn btn-primary btn-normal border-radius">Register Now</a> -->
                 
               </div><!-- end col -->
 
@@ -39,9 +39,9 @@
                    </div>
                  </div>
                  <div class="form-group">
-                  <label for="inputEmail3" class="col-sm-2 control-label">Username:</label>
+                  <label for="inputEmail3" class="col-sm-2 control-label">Mobile :</label>
                   <div class="col-sm-10">
-                    <input type="test" class="form-control" id="inputEmail3" name="email" placeholder="Email  or  Mobile" required="required">
+                    <input type="test" class="form-control" id="inputEmail3" name="email" placeholder="Enter Mobile no" required="required">
                     <span class="text-danger" id="no_err"></span>
                     <span class="text-success" id="email_success"></span>
                   </div>
@@ -63,8 +63,9 @@
                   <div class="col-sm-offset-2 col-sm-10">
                     <hr>
                     <input type="submit" class="btn btn-primary btn-normal border-radius pull-left" name="signin" value="Sign IN">
-                    <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="otp_btn" value="OTP Login" style="display: none;">
-                    <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="pass_btn" value="Password Login" >
+                    <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="otp_btn" value="OTP Login" style="display: none;">                    
+                    <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="resend_btn" value="RESEND OTP" style="display: none;">
+                    <!-- <input type="button" class="btn btn-info btn-normal border-radius pull-right" id="pass_btn" value="Password Login" > -->
                     <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
                   </div>
                 </div>
@@ -146,7 +147,9 @@
               if (data.send) {
               $('#email_success').html(data.send);
               $('#no_err').html("");
-            }
+              $('#send_btn').hide();
+              $('#resend_btn').show();
+           }
             else{
               $('#email_success').html("");
               $('#no_err').html(data.mobile_error);            

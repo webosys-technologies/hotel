@@ -37,7 +37,7 @@ class User extends CI_Controller {
 public function add_hotel() {
   $req=$this->input->post();  
 //  echo '<pre>';
-//  print_r($req);
+ // print_r($req);
 //  die();
   $data=array(
     'hotel_name' => $_POST['hotel_name'],
@@ -52,11 +52,9 @@ public function add_hotel() {
             'website' => $_POST['website'],
             'mobile_no' => $_POST['mobile_no'],
             'telephone_no' => $_POST['telephone_no'],
-            'fax_no' => $_POST['fax_no'],
             'checkin_time' => $_POST['checkin_time'],
             'checkout_time' => $_POST['checkout_time'],
             'star' => $_POST['star'],
-            'near_airport' => $_POST['near_airport'],
             'near_railway_st' => $_POST['near_railway_st'],
             'isverified'=>$_POST['isverified']
     );
@@ -88,17 +86,24 @@ public function add_hotel() {
                         $ac_non_room = $req['ac_non_room'][$row];
                         $room_no = $req['room_no'][$row];
                         $person_allowed= $req['person_allowed'][$row];
-                        
+         //      echo  $file_old_name = $_FILES['room_pic']['name'][$row];
+         //         $room='room_pic'[$row];
+         // $room_img = $this->User_model->upload_room_pic($file_old_name, IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0,$room);
+         //                print_r($room_img);
                         $row_data[] = array(
                             'hotel_id' => $hotel_id,
                             'bed_type' => $bed_type,
                             'price' => $price,
                             'ac_non_room' => $ac_non_room,
                             'room_no' => $room_no,
-                            'person_allowed' => $person_allowed
+                            'person_allowed' => $person_allowed,
+                            //'room_pic' => $room_img['data']['file_name'],
+
                         );
+
   } 
   
+  // die();
     array_pop($row_data);
            $res = $this->User_model->add_hotel_room($row_data);
 
@@ -124,6 +129,8 @@ public function add_hotel() {
     $room_no=$req['room_no'][$row];      
   $person_allowed=$req['person_allowed'][$row];   
 
+  // $img_result = $this->User_model->upload_room_pic("room_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
+
       $row_data[]=array(
     'hotel_id'=>$hotel_id,
     'bed_type'=>$bed_type,
@@ -132,6 +139,8 @@ public function add_hotel() {
     'room_no'=>$room_no,
     'person_allowed'=>$person_allowed
         );           
+
+
     } 
     array_pop($row_data); 
        

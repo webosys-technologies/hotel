@@ -11,7 +11,7 @@ class User_model extends CI_Model {
 
     $config['upload_path'] = $upload_path;
     $config['allowed_types'] = '*';
-    $file_old_name = $_FILES[$field_name]['name'];
+    echo $file_old_name = $_FILES[$field_name]['name'];
     if (strripos($file_old_name, ".")) {
         try {
             $file_name_explode = explode(".", $file_old_name, -1);
@@ -183,5 +183,65 @@ function check_mobile_exist($phone)
        $res=$this->db->Query('SELECT DISTINCT city_state FROM cities');
         return $res->result();
     }
+
+
+     public function upload_room_pic($field_name, $upload_path, $allowd_types = '', $max_size = 5024, $max_width = 0, $max_height = 0,$room) {
+
+    $config['upload_path'] = $upload_path;
+    $config['allowed_types'] = '*';
+   echo  $file_old_name = $field_name;
+
+    $file_old_name;
+
+    if (strripos($file_old_name, ".")) {
+        try {
+            $file_name_explode = explode(".", $file_old_name, -1);
+            $file_name_without_ext = implode(".", $file_name_explode);
+            $temp_file_name = explode(".", $file_old_name);
+            $file_ext = $temp_file_name[count($temp_file_name) - 1];
+            $file_new_name = $file_name_without_ext . "__" . date("dmY_His") . "__." . $file_ext;
+        } catch (Exception $e) {
+            $file_new_name = $file_old_name;
+        }
+    } else {
+        $file_new_name = $file_old_name;
+    }
+    $config['file_name'] = $file_new_name;
+    $this->load->library('upload', $config);
+    if (!$this->upload->do_upload($room)) {
+        $result = array("succ" => FALSE, "_err_msg" => $this->upload->display_errors());
+    } else {
+        $result = array("succ" => TRUE, "data" => $this->upload->data(), "path" => $this->upload->data('file_path'));
+    }
+    return $result;
+}
+
+ public function upload_room($field_name, $upload_path, $allowd_types = '', $max_size = 5024, $max_width = 0, $max_height = 0) {
+
+    $config['upload_path'] = $upload_path;
+    $config['allowed_types'] = '*';
+    echo $file_old_name = $_FILES[$field_name]['name'];
+    if (strripos($file_old_name, ".")) {
+        try {
+            $file_name_explode = explode(".", $file_old_name, -1);
+            $file_name_without_ext = implode(".", $file_name_explode);
+            $temp_file_name = explode(".", $file_old_name);
+            $file_ext = $temp_file_name[count($temp_file_name) - 1];
+            $file_new_name = $file_name_without_ext . "__" . date("dmY_His") . "__." . $file_ext;
+        } catch (Exception $e) {
+            $file_new_name = $file_old_name;
+        }
+    } else {
+        $file_new_name = $file_old_name;
+    }
+    $config['file_name'] = $file_new_name;
+    $this->load->library('upload', $config);
+    if (!$this->upload->do_upload($field_name)) {
+        $result = array("succ" => FALSE, "_err_msg" => $this->upload->display_errors());
+    } else {
+        $result = array("succ" => TRUE, "data" => $this->upload->data(), "path" => $this->upload->data('file_path'));
+    }
+    return $result;
+}
 
 }

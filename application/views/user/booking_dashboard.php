@@ -5,6 +5,7 @@
     height: 100%;
   }
 </style>
+
 <section id="page-header" class="section background">
  <div class="container">
   <div class="row">
@@ -35,7 +36,7 @@
             <div class="cart-page-tile address-tile">
               <form  id="order_details" method="post" action=""><br>
   <input type="hidden" class="form-control"  value="<?php echo $booking_info[0]->hotel_id; ?>"  name="hotel_id" >
-  <input type="hidden" name="left_hotel" value="<?php echo $booking_info[0]->left_hotel; ?>"> 
+  <input type="text" name="hotel_price" value=" "> 
   <input type="hidden" name="owner_id" value="<?php echo $booking_info[0]->owner_id; ?>"> 
   <input type="hidden" name="userid" value="<?php echo $userid; ?>"> 
                 <!-- <div class="form-group">
@@ -183,6 +184,7 @@
 <!-- <button " style="background: #95bf18; padding: 6px 16px; border: 1px solid #729605; color: #fff; border-radius: 4px;">Pay Online</button> -->
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script type="text/javascript">
+
  var options = {
   "key": "rzp_test_pXXiqqbrbsz765",
   "amount": "100",
@@ -272,7 +274,8 @@ $('#order_details').validate({
  }
 });
 
-var bed='<?php echo $pickup['bed_type'] ?>';
+var bed='<?php echo $pickup['bed_type']; ?>'; 
+// alert(bed); 
 if (bed == 1) {
   $('#bed_type').append('<option value="'+bed+'">Single Bed</option>');
 } 
@@ -282,6 +285,7 @@ if (bed == 1) {
 if(bed == 3) {
   $('#bed_type').append('<option value="'+bed+'">Triple Bed</option>');
 }
+
 </script>
 <script>
   function checkout(razorpay_payment_id)
@@ -318,7 +322,7 @@ if(bed == 3) {
 $(document).ready(function(){
 // function getprice()
 //   {
-    //alert('hie');
+    // alert(bed);
     $('#bed_error').html("");
                        $('#msg').html("");
                        
@@ -338,16 +342,19 @@ $(document).ready(function(){
                            $(".youpay").val(response.amt);
                            $(".totalpay").val(response.data);
                            $('#msg').html(response.avl);
+                           $('[name="hotel_price"]').val(response.hotel_price);
 
 
                     }else{
                         
-                      $(".youpay").val(response.data);
+                     // $(".youpay").val(response.data);
                            $('#bed_error').html(response.avl);
                     }
                    
                 }
     });
+
+
     });
   
 </script>

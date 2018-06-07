@@ -510,4 +510,12 @@ function gethotel_room($id,$limit,$start,$data=array())
 
 
 	}
+
+	function room_by_id($id)
+	{
+		$this->db->from('hotel_room');
+		$this->db->where('hotel_room_id',$id);
+		$query=$this->db->get();
+		return $query->row();
+	}
 }  

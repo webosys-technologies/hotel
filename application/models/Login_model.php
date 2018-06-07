@@ -69,8 +69,8 @@ class Login_model extends CI_Model {
 	function user_data($id)
 	{
 		$this->db->from('user');
-		$this->db->where('user_id',$id);
+		$this->db->where('id',$id);
 		$query=$this->db->get();
-		return $query->rows();
+		return $query->row();
 	}
 }
