@@ -8,8 +8,8 @@ class Login extends CI_Controller {
 	}
 
 	public function index() {
-
-		if(!isset($_SESSION['userid'])){
+		$userid=$this->session->userdata('userid');
+		if(!isset($userid)){
 			$this->load->view('login');
 		}else{
   $res=$this->session->userdata('res');
@@ -33,20 +33,25 @@ class Login extends CI_Controller {
 		}
 	}
 	public function login() {
-		if (!empty($_POST['otp'])) {
+		if (isset($_POST['otp'])) {
 
 			$result = $this->login_model->login_otp();
-			if ($result){
-				if($result['isverified']!=1){
-					set_flashdata('message', "Oops! Your account is not verified Please contact Admin.", 'danger');
-					redirect('login');
-				}else{
-					redirect('home');
-				}
+			
+			// die();
+			if ($result == true){
+
+				redirect('Regester');
+				// if($result['isverified']!=1){
+				// 	set_flashdata('message', "Oops! Your account is not verified Please contact Admin.", 'danger');
+				// 	redirect('login');
+				// }else{
+				// 	redirect('home');
+				// }
 			} else {
 				// set_flashdata('message', "Oops! Your Mobile and OTP didn't match.", 'danger');
-				redirect('Regester');
+				redirect('Login');
 			}
+			die();
 
 		}elseif (isset($_POST['email'])) {
 			$result = $this->login_model->login();

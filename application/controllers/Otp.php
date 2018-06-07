@@ -21,17 +21,17 @@ class Otp extends CI_Controller
             {
                 //$res=$this->User_model->check_mobile_exist($email);
 
-                if(false)
-                {
-                	//echo "Mobile is not registered";
-                     echo json_encode(array('mobile_error'=>'This Mobile is not registered'));
-                }else{	
+                // if(false)
+                // {
+                // 	//echo "Mobile is not registered";
+                //      echo json_encode(array('mobile_error'=>'This Mobile is not registered'));
+                // }else{	
                      $rand=mt_rand(100000,999999);
                 $login_otp=array('otp'=>$rand,
                                   'mobile' => $email);
                $this->session->set_userdata($login_otp);
                
-                // $this->User_model->update_otp(array('phone'=>$email),$data);
+              //   $this->User_model->update_otp(array('phone'=>$email),$data);
      //Your authentication key
 
 $authKey = "217899AjUpTycrXx6K5b0e2283";    //suraj9195shinde for
@@ -103,7 +103,7 @@ if(curl_errno($ch))
 curl_close($ch);
 
 echo json_encode(array('send'=>'OTP is sent Successfully'));       
-            }
+            // }
 
 
 }else{

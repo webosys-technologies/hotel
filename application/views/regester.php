@@ -234,8 +234,8 @@ var state=el.val();
     if(res.error==true){
       $("#errormessage").text(res.message).removeClass('hide').removeClass("alert-success").addClass("alert-danger");
     }else{
-      window.location.href='<?php echo base_url('Login'); ?>';
-      // $("#errormessage").text(res.message).removeClass('hide alert-danger').addClass('alert-success');
+      window.location.href='<?php echo base_url('Login/index'); ?>';
+      $("#errormessage").text(res.message).removeClass('hide alert-danger').addClass('alert-success');
     }
   })
   .fail(function(res){

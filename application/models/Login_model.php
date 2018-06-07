@@ -36,59 +36,11 @@ class Login_model extends CI_Model {
 		return false;
 	}
 
-	function login_otp() {
+	// function login_otp() {
 		
-		$username = $this->input->post('email');
-		$otp = $this->input->post('otp');
-		$where = array(
-			'phone' => $username,
-			'otp' => $otp,
-			);
-		$this->db->where($where);
-		$query = $this->db->get('user');
-		if ($query->num_rows() == 1) {
-			$result = $query->row_array();
-			// debug($result);
-			if($result['isverified']=='1'){
-				set_flashdata('message', "Oops! Your account is not verified Please contact Admin.", 'danger');
-				return $result;	
-			}else{
-				$session_data = array(
-					'userid' => $result['id'],
-					'email'=>$result['email'],
-					'name'=>$result['fname']." ".$result['lname'],
-					'logged_in' => 1
-					); 
-				set_sessions($session_data);
-				return true;
-			}
-		}
-		else{
-			$send_otp=$this->session->userdata('otp');
-			$send_mobile=$this->session->userdata('mobile');
-			if($send_mobile==$username)
-			{
-				if ($send_otp==$otp) {
-					
-				$session_data = array(
-					'logged_in' => 1
-					); 
-				set_sessions($session_data);
-				set_flashdata('message','login successfully');
-				return false;
-				}
-				else{
-					set_flashdata('message','Otp Does not match');
-					return false;
-				}
 
-			}else{
-				set_flashdata('message','Mobile no not matched');
-				return false;
-			}
-		}
-		return false;
-	}
+	// 	return false;
+	// }
 
 	function user_data($id)
 	{
@@ -96,5 +48,62 @@ class Login_model extends CI_Model {
 		$this->db->where('id',$id);
 		$query=$this->db->get();
 		return $query->row();
+	}
+
+	function login_otp()
+	{
+
+		 $username = $this->input->post('email');
+		$otp = $this->input->post('otp');
+		 $send_otp=$this->session->userdata('otp');
+			$send_mobile=$this->session->userdata('mobile');
+			if($send_mobile==$username)
+			{
+				if ($send_otp==$otp)
+				{
+					$this->db->where('phone',$username);
+					$query = $this->db->get('user');
+					
+
+					if ($query->num_rows() == 1) 
+					{
+						
+						$result = $query->row_array();
+						// debug($result);
+						// if($result['isverified']!='1')
+						// {
+						// 	set_flashdata('message', "Oops! Your account is not verified Please contact Admin.", 'danger');
+						// 	return True;	
+						// }else
+						// {
+							$session_data = array(
+								'userid' => $result['id'],
+								'email'=>$result['email'],
+								'name'=>$result['fname']." ".$result['lname'],
+								'logged_in' => 1
+								); 
+							set_sessions($session_data);
+							return false;
+						// }
+					}
+					else{
+						
+							set_flashdata('message','login successfully');
+							
+							return true;
+						
+					}
+					
+				}
+				else{
+					set_flashdata('message','Otp Does not match','danger');
+					return false;
+				}
+
+			}else{
+				set_flashdata('message','Mobile no not matched','danger');
+				return false;
+			}
+
 	}
 }

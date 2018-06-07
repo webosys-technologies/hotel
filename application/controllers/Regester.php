@@ -214,7 +214,7 @@ function show_cities($state)
               if ($result) {
                 
             $session_data = array(
-              'userid' => $result['id'],
+              'userid' => $result,
               'email'=>$data['email'],
               'name'=>$data['fname']." ".$data['lname'],
               'logged_in' => 1
