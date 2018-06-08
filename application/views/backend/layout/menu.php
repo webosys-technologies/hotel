@@ -57,6 +57,13 @@ $items = array(
         'icon-class' => 'fa-first-order text-green',
         'active_on' => 'orders',
         ),
+
+    array(
+        'name' => 'Payments',
+        'link' => base_url('admin/Payment'),
+        'icon-class' => 'fa fa-money text-red',
+        'active_on' => 'Payment',
+        ),
     // array(
     //     'name' => 'Notification',
     //     'link' => base_url('admin/dashboard'),

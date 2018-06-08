@@ -21,8 +21,8 @@
                                                                         <th class="nowrap">Status</th>
 									<th class="nowrap">City</th>
 									<th class="nowrap" >Pincode</th>
-									<th class="nowrap">Transaction id</th>
 									<th class="nowrap">Amount Paid</th>
+									<th class="nowrap">Transaction id</th>
 									<th class="nowrap">Created at</th>
 								</tr>
 							</thead>
@@ -72,7 +72,7 @@
 </div>
 <script type="text/javascript">
 	$(document).ready(function ($) {
-
+	
 		var datatable = $('#clients_table').DataTable({
 			"ordering": true,
 			"searching": true,
