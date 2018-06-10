@@ -171,7 +171,7 @@ class Placeorder extends CI_Model {
 
     function query()
     {
-      $this->db->query('ALTER TABLE `orders` ADD `paid_percentage` INT(10) NOT NULL AFTER `amount_pay');
+      $this->db->query('ALTER TABLE `orders` ADD `paid_percentage` INT(10) NOT NULL AFTER `amount_pay`');
 
       $res=$this->db->query('CREATE TABLE `payments` ( `p_id` INT(20) NOT NULL AUTO_INCREMENT , `orderid` VARCHAR(20) NOT NULL , `transaction_id` VARCHAR(20) NOT NULL , `amount_paid` INT(20) NOT NULL , `paid_percentage` INT(20) NOT NULL , `payment_status` INT(10) NOT NULL , `created_at` DATETIME(6) NOT NULL , PRIMARY KEY (`p_id`)) ENGINE = InnoDB');
 
