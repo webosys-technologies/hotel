@@ -10,8 +10,8 @@ class Regester extends CI_Controller {
   }
 
   public function index() {
-    $data['state']=$this->User_model->getall_state();
-    $this->load->view('regester',$data);
+    // $data['state']=$this->User_model->getall_state();
+    $this->load->view('regester');
 
   }
 
