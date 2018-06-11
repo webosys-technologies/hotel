@@ -10,7 +10,11 @@ class Client_model extends CI_Model {
                 if($id)
                 {
 		$this->db->from('orders as ord');
+                $this->db->group_by('user_id');
+                $this->db->select();
+
                 $this->db->join('user as usr','usr.id=ord.user_id','LEFT');
+
                 $this->db->where('ord.owner_id',$id);
                 return $this->db->get()->result();
                

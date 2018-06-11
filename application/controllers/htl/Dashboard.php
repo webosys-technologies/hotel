@@ -15,10 +15,10 @@ class Dashboard extends MY_Controller {
         if (!htl_logged_in()) {
             redirect('htl');
         }
-        
-        $result = $this->client_model->getuserList("");
-        $hotels = $this->client_model->gethotelList("",1000,0);
-        $orders=$this->Placeorder->getorders("");
+        $id=$this->session->userdata('owner_id');
+        $result = $this->client_model->getuserList($id);
+        $hotels = $this->client_model->gethotelList_byowner($id);
+        $orders=$this->Placeorder->getorders_byowner($id);
         $this->data['page_title'] = "Dashboard";
         $this->data['usercount']= count($result);
         $this->data['hotelcount']= count($hotels);

@@ -57,23 +57,24 @@
                                  <input type="text" class="form-control" name="country" id="country" value="india"  readonly>
                                 </div> 
                             </div> 
-                         <div class="form-group">    
-                                <div class="col-sm-6">
-                                    <label >Website</label>
-                                    <input type="text" class="form-control" name="website" id="website" value="<?php if(isset($client_info[0]->website)){ echo $client_info[0]->website; } ?>"   >
-                                </div>  
-                                <div class="col-sm-6">
-                                    <label >Mobile No.</label>
-                                    <input type="text" class="form-control" name="mobile_no" id="mobile_no" value="<?php if(isset($client_info[0]->mobile_no)){ echo $client_info[0]->mobile_no; } ?>"   required="required">
-                                </div> 
-                            </div>
-                              <div class="form-group">    
+                         <div class="form-group">  
                                 <div class="col-sm-6">
                                     <label >Telephone No.</label>
                                     <input type="text" class="form-control" name="telephone_no" id="telephone_no" value="<?php if(isset($client_info[0]->telephone_no)){ echo $client_info[0]->telephone_no; } ?>"   >
                                 </div>  
                                 <div class="col-sm-6">
-                                    <label >Nearest Railway Station</label>
+                                    <label >Mobile No.</label>
+                                    <input type="text" class="form-control" name="mobile_no" id="mobile_no" value="<?php if(isset($client_info[0]->mobile_no)){ echo $client_info[0]->mobile_no; } ?>"   required="required">
+                                </div> 
+                            </div>   
+                              <div class="form-group">    
+
+                                <div class="col-sm-6">
+                                    <label >Distance From Deviji</label>
+                                    <input type="text" class="form-control" name="temple_distance" id="website" value="<?php if(isset($client_info[0]->website)){ echo $client_info[0]->website; } ?>"   >
+                                </div> 
+                                <div class="col-sm-6">
+                                    <label >Distance From Station</label>
                                     <input type="text" class="form-control" name="near_railway_st" id="near_railway_st" value="<?php if(isset($client_info[0]->near_railway_st)){ echo $client_info[0]->near_railway_st; } ?>"  required="required" >
                                 </div> 
                             </div>
@@ -296,7 +297,7 @@
              </div>
 
               <div class="col-md-2 col-sm-4 col-xs-6">
-                  <input type="file" class="form-control" name="room_pic[]" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
+                  <input type="file" class="form-control" name="room_pic" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
                                 <!-- <?php if(isset($client_info[0]->hotel_pic)): ?>
                                     <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
                                 <?php endif; ?> -->
@@ -346,7 +347,7 @@
              </div>
 
               <div class="col-md-2 col-sm-4 col-xs-6">
-                  <input type="file" class="form-control" name="room_pic[]" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
+                  <input type="file" class="form-control" name="room_pic" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
                                 <!-- <?php if(isset($client_info[0]->hotel_pic)): ?>
                                     <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
                                 <?php endif; ?> -->

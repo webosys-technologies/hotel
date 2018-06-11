@@ -20,7 +20,6 @@
 									<th class="nowrap">Paid Percentage</th>
 									<th class="nowrap">Status</th>
 									<th class="nowrap">Date</th>
-									<th class="nowrap">View/Delete</th>
 								</tr>
 							</thead>
 							<tbody>

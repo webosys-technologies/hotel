@@ -53,7 +53,7 @@ public function add_hotel() {
             'pincode' => $_POST['pincode'],
             'state' => $_POST['state'],
             'country' => $_POST['country'],
-            'website' => $_POST['website'],
+            'temple_distance' => $_POST['temple_distance'],
             'mobile_no' => $_POST['mobile_no'],
             'telephone_no' => $_POST['telephone_no'],
             'checkin_time' => $_POST['checkin_time'],

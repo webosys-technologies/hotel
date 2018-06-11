@@ -16,7 +16,7 @@ class Orders extends MY_Controller
 
 			$id=$this->session->userdata('owner_id');
                         
-			$res=$this->Placeorder->getorders($id);
+			$res=$this->Placeorder->getorders_byowner($id);
 			$includes = array('validate','datatable');
 			$this->data['inclusions'] = inclusions($includes);
 			$this->data['page_title'] = "List of Orders";

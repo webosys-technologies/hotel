@@ -23,7 +23,7 @@
 <!--									<th class="nowrap">Total Available Rooms</th>-->
 <!--									<th class="nowrap">Total Hotel Price</th>
 									<th class="nowrap">Creatation Time</th>-->
-                                                                        <th class="nowrap">Status</th>
+                                                                        <!-- <th class="nowrap">Status</th> -->
 									<th class="nowrap">View/Delete</th>
 								</tr>
 							</thead>
@@ -42,7 +42,7 @@
 <!--										<td> <?php //echo $value->availabel_room; ?></td>-->
 <!--										<td>&#x20b9 <?php //echo $value->hotel_price; ?></td>
 										<td><?php //echo $value->add_time; ?></td>-->
-                                                                                <td>
+                                                                                <!-- <td>
 											<?php
 											$message="not verified";
 											$status="bg-red";
@@ -51,7 +51,7 @@
 												$status="bg-green";
 											}
 											?>
-											<a href="<?php echo base_url('admin/hotel/status')."?status=".urlencode($message)."&hotel_id=".custom_encode($value->hotel_id); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td>
+											<a href="<?php echo base_url('admin/hotel/status')."?status=".urlencode($message)."&hotel_id=".custom_encode($value->hotel_id); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td> -->
 											
 										<td>
 											<a href="<?php echo base_url('htl/hotel/profile')."/".custom_encode($value->hotel_id); ?>" class="btn btn-info btn-xs" title="Edit"><i class="fa fa-edit"></i></a>
@@ -78,7 +78,6 @@
 				// "bLengthChange": true,
 				"order": [[0, "asc"]],
 				"aoColumns": [
-				{"bSortable": true},
 				{"bSortable": true},
 				{"bSortable": true},
 				{"bSortable": true},

@@ -7,6 +7,9 @@ class User extends CI_Controller {
 		parent::__construct();
 		$this->load->model('User_model');
 		$this->load->model('admin/client_model');
+    $this->load->helper(array('form', 'url','file'));
+                         $this->load->library('image_lib');
+
   }
   public function index($id) {
 
@@ -49,7 +52,7 @@ public function add_hotel() {
             'pincode' => $_POST['pincode'],
             'state' => $_POST['state'],
             'country' => $_POST['country'],
-            'website' => $_POST['website'],
+            'temple_distance' => $_POST['temple_distance'],
             'mobile_no' => $_POST['mobile_no'],
             'telephone_no' => $_POST['telephone_no'],
             'checkin_time' => $_POST['checkin_time'],
@@ -63,6 +66,7 @@ public function add_hotel() {
   }
 
  // debug($data);
+
   $img_result = $this->User_model->upload_data("hotel_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
   // debug($img_result);
   $response=array();
@@ -86,10 +90,13 @@ public function add_hotel() {
                         $ac_non_room = $req['ac_non_room'][$row];
                         $room_no = $req['room_no'][$row];
                         $person_allowed= $req['person_allowed'][$row];
-         //      echo  $file_old_name = $_FILES['room_pic']['name'][$row];
+
+              echo  $file_old_name = $_FILES['room_pic']['name']."hie";
+              // die();
          //         $room='room_pic'[$row];
-         // $room_img = $this->User_model->upload_room_pic($file_old_name, IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0,$room);
-         //                print_r($room_img);
+         $room_img = $this->User_model->upload_room_pic("room_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
+                        debug($room_img);
+
                         $row_data[] = array(
                             'hotel_id' => $hotel_id,
                             'bed_type' => $bed_type,

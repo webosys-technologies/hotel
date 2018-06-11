@@ -21,9 +21,6 @@
 									<th class="nowrap">Country</th>
 									<th class="nowrap">State</th>
 									<th class="nowrap">City</th>
-									<th class="nowrap" >Password</th>
-									<th class="nowrap">Status</th>
-									<th class="nowrap">View/Delete</th>
 								</tr>
 							</thead>
 							<tbody>
@@ -44,21 +41,7 @@
 										<td><?php echo $value->country; ?></td>
 										<td><?php echo $value->state; ?></td>
 										<td><?php echo $value->city; ?></td>
-										<td><a href="" class=" badge bg-yellow"><?php echo $value->password; ?></a></td>
-										<td>
-											<?php
-											$message="not verified";
-											$status="bg-red";
-											if($value->isverified){
-												$message="verified";
-												$status="bg-green";
-											}
-											?>
-											<a href="<?php echo base_url('htl/clients/status')."?status=".urlencode($message)."&id=".custom_encode($value->id); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td>
-											<td>
-												<a href="<?php echo base_url('htl/clients/profile')."/".custom_encode($value->id); ?>" class="btn btn-info btn-xs" title="Edit" disabled><i class="fa fa-edit"></i></a>
-												<a href="<?php echo base_url('htl/clients/delete_user')."?id=".custom_encode($value->id);?>" onClick="return confirm('Are you sure you want to delete this item?');" class="btn btn-danger btn-xs" title="Delete" disabled><i class="fa fa-trash"></i></a>
-											</td>
+										
 										</tr>
 									<?php endforeach; endif; ?>
 								</tbody>
@@ -86,9 +69,6 @@
 				{"bSortable": true},
 				{"bSortable": true},
 				{"bSortable": true},
-				{"bSortable": true},
-				{"bSortable": true},
-				{"bSortable": false},
 				]
 			});
 		// changing active status

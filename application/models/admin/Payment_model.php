@@ -17,6 +17,14 @@
  		$query= $this->db->get();
  		return $query->result();
  	}
+
+ 	function getpaymentamt()
+ 	{
+ 		$this->db->from('payments');
+ 		$this->db->select('amount_paid');
+ 		$query=$this->db->get();
+ 		return $query->result();
+ 	}
  } 
 
 

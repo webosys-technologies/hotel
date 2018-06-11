@@ -52,6 +52,7 @@ Name: <input type="text" name="fname">
                 <div class="col-sm-9">
                   <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone No." required="required">
                 </div>
+                <span id="mobile_err" style="color: red"></span>
               </div>
               <div class="col-sm-6">
                 <label for="email" class="col-sm-3 control-label">Email Address:</label>
@@ -76,35 +77,46 @@ Name: <input type="text" name="fname">
               <div class="col-sm-6">
                 <label for="dob" class="col-sm-3 control-label">D.o.b:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="dob" id="dob" placeholder="Date of Birth" required="required">
+                  <input type="text" class="form-control" name="dob" id="dob" placeholder="Date of Birth" >
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="dob" class="col-sm-3 control-label">Select Address:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Address" required="required">
+                  <input type="text" class="form-control" name="address" id="address" placeholder="Address" >
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="country" class="col-sm-3 control-label">Country:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="country" id="country" placeholder="Country" required="required">
+                  <input type="text" class="form-control" name="country" id="country" placeholder="Country" required="required" value="India">
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="state" class="col-sm-3 control-label">State:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="state" id="state" placeholder="State" >
+                  <input type="text" class="form-control" name="state" id="state" placeholder="State" value="Madhya Pradesh" >
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="City" class="col-sm-3 control-label">City:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="city" id="city" placeholder="City" >
+                  <input type="text" class="form-control" name="city" id="city" placeholder="City" value="Maihar" >
                 </div>
               </div>
-              <div class="col-sm-offset-2 col-sm-5">
-                <input type="submit" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Register with us">
+              <div class="col-sm-6" id="otp_div" style="display: none">
+                <label for="City" class="col-sm-3 control-label">OTP:</label>
+                <div class="col-sm-9">
+                  <input type="text" class="form-control" name="otp" id="otp" placeholder="OTP" >
+                </div>
+                <span id="mobile_success" style="color: green"></span>
+              </div>
+              <div class="col-sm-offset-2 col-sm-5" id="btn_otp">
+                <input type="button" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Send OTP" onclick="send_otp()">
+                <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
+              </div>
+              <div class="col-sm-offset-2 col-sm-5" id="submit">
+                <input type="submit" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Register with us" style="display: none">
                 <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
               </div>
               
@@ -140,9 +152,54 @@ function validateForm() {
 
 <script type="text/javascript">
 
+ function send_otp()
+    {
+    var mobile= $('[name="phone"]').val();
+   // alert(mobile);
+    var x=mobile.toString().length;
+    //alert(x);
+        if(x == 10 || x == 11)
+        {
+           $.ajax({
+       url : "<?php echo site_url('index.php/Otp/send_otp')?>" ,        
+       type: "post",
+        data:{member_email : mobile},
+       dataType: "JSON",
+       success: function(data)
+       {            
+          // alert(data.mobile_error);
+          
+          if (data.send) {
+          $('#mobile_success').html(data.send);
+          $('#mobile_err').html("");         
+          $('#otp_div').show();
+          $('#submit').show();
+          $('#btn_otp').hide();
+        }
+        else{
+          $('#mobile_success').html("");
+          $('#mobile_err').html(data.mobile_error);            
+        }
+
+       },
+       error: function (jqXHR, textStatus, errorThrown)
+       {
+         // alert('Error...!');
+         $("#ajax").html("Error While Registration");
+       }
+     });
+        }
+        else
+        {
+         $("#mobile_err").html("Not a valid Phone Number");
+         return false;
+        }
+        
+    }
+
 
 //
- $('#signupForm').validate({
+ // $('#signupForm').validate({
 ////     alert();
 //  rules:{
 //    fname:{
@@ -165,7 +222,7 @@ function validateForm() {
 //    confpassword:{
 //      required:true,
 //      equalTo:"#password"
-    },
+    // },
 //    dob:{
 //      required:true,
 //    },
@@ -184,7 +241,7 @@ function validateForm() {
 //    var contact_formdata=$("#signupForm").serialize();
 //    SignuUp(contact_formdata);
 //  }
-});
+// });
 //
 // function SignuUp(contact_formdata) {
 //     

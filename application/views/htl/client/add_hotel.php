@@ -58,9 +58,9 @@
                                 </div> 
                             </div> 
                          <div class="form-group">    
-                                <div class="col-sm-6">
-                                    <label >Website</label>
-                                    <input type="text" class="form-control" name="website" id="website" value="<?php if(isset($client_info[0]->website)){ echo $client_info[0]->website; } ?>"   required="required">
+                            <div class="col-sm-6">
+                                    <label >Telephone No.</label>
+                                    <input type="text" class="form-control" name="telephone_no" id="telephone_no" value="<?php if(isset($client_info[0]->telephone_no)){ echo $client_info[0]->telephone_no; } ?>"  required="required" >
                                 </div>  
                                 <div class="col-sm-6">
                                     <label >Mobile No.</label>
@@ -68,12 +68,13 @@
                                 </div> 
                             </div>
                               <div class="form-group">    
+                                  
                                 <div class="col-sm-6">
-                                    <label >Telephone No.</label>
-                                    <input type="text" class="form-control" name="telephone_no" id="telephone_no" value="<?php if(isset($client_info[0]->telephone_no)){ echo $client_info[0]->telephone_no; } ?>"  required="required" >
-                                </div>  
+                                    <label >Distance From Deviji</label>
+                                    <input type="text" class="form-control" name="temple_distance" id="website" value="<?php if(isset($client_info[0]->website)){ echo $client_info[0]->website; } ?>"   required="required">
+                                </div>
                                 <div class="col-sm-6">
-                                    <label >Nearest Railway Station</label>
+                                    <label >Distance From Station</label>
                                     <input type="text" class="form-control" name="near_railway_st" id="near_railway_st" value="<?php if(isset($client_info[0]->near_railway_st)){ echo $client_info[0]->near_railway_st; } ?>"  required="required" >
                                 </div> 
                             </div>

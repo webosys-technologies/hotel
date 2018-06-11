@@ -171,11 +171,28 @@ class Placeorder extends CI_Model {
 
     function query()
     {
-      $this->db->query('ALTER TABLE `orders` ADD `paid_percentage` INT(10) NOT NULL AFTER `amount_pay`');
+      $this->db->query("ALTER TABLE `hotel_owner` ADD UNIQUE(`phone`)");
+      $res=$this->db->query("ALTER TABLE `hotel_owner` ADD UNIQUE(`email`)");
 
-      $res=$this->db->query('CREATE TABLE `payments` ( `p_id` INT(20) NOT NULL AUTO_INCREMENT , `orderid` VARCHAR(20) NOT NULL , `transaction_id` VARCHAR(20) NOT NULL , `amount_paid` INT(20) NOT NULL , `paid_percentage` INT(20) NOT NULL , `payment_status` INT(10) NOT NULL , `created_at` DATETIME(6) NOT NULL , PRIMARY KEY (`p_id`)) ENGINE = InnoDB');
+      // $res=$this->db->query('CREATE TABLE `payments` ( `p_id` INT(20) NOT NULL AUTO_INCREMENT , `orderid` VARCHAR(20) NOT NULL , `transaction_id` VARCHAR(20) NOT NULL , `amount_paid` INT(20) NOT NULL , `paid_percentage` INT(20) NOT NULL , `payment_status` INT(10) NOT NULL , `created_at` DATETIME(6) NOT NULL , PRIMARY KEY (`p_id`)) ENGINE = InnoDB');
 
         return $res;
+    }
+
+    public function getorders_byowner($id)
+    {
+         $this->db->from('orders as ord');
+        $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT'); 
+         $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT'); 
+         $this->db->where('ord.owner_id',$id);
+         $query1 = $this->db->get();
+        $result1=$query1->result();
+                 // debug($result1);
+                 // die;
+               if($result1)
+                        {
+      return $result1;
+    }
     }
 
 
