@@ -38,9 +38,9 @@
                         <h4>You Paid</h4>
                       </div>
                       <ul>
-                        <li><strong class="pull-left">Your Name</strong> -<span class="pull-right"><?php echo $orderdata[0]->customer_name; ?></span></li>
-                        <li><strong  class="pull-left">Your Mbile</strong>- <span class="pull-right"> <?php echo $orderdata[0]->customer_mobile; ?></span></li>
-                        <li><strong  class="pull-left">Your Mbile</strong>-  <span class="pull-right"> <?php echo $orderdata[0]->customer_mobile; ?></span></li>
+                        <li><strong class="pull-left">Your Name</strong> -<span class="pull-right"><?php echo $orderdata[0]->fname." ".$orderdata[0]->lname; ?></span></li>
+                        <li><strong  class="pull-left">Your Mobile</strong>- <span class="pull-right"> <?php echo $orderdata[0]->phone; ?></span></li>
+                        <li><strong  class="pull-left">Your Email</strong>-  <span class="pull-right"> <?php echo $orderdata[0]->email; ?></span></li>
                         <li><strong  class="pull-left">Check in</strong>-  <span class="pull-right"> <?php echo $orderdata[0]->checkin; ?></span></li>
                         <li><strong  class="pull-left">Check out</strong>-   <span class="pull-right"><?php echo $orderdata[0]->checkout; ?></span></li>
                       </ul>

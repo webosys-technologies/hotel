@@ -28,7 +28,7 @@
                <div class="form-group">
                 <div class="hide alert alert-danger" id="errormessage"><a href="#" class="close" data-dismiss="alert" aria-label="close">×</a>Incorrect Email or Password.</div>
               </div>
-
+              <p style="color: red">Please Enter Name according to Govt. Id</p>
               <div class="form-group">
                 <div class="col-sm-6">
                   <label for="fname" class="col-sm-3 control-label">First Name:</label>

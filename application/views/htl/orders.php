@@ -13,16 +13,14 @@
 								<tr>
 									<th class="nowrap">S.No.</th>
 									<th char="nowrap">OrderID</th>
-									<th class="nowrap">Customer Name</th>
-                                                                        <th class="nowrap">Hotel Name</th>
-									<th class="nowrap">Customer Email</th>
-									<th class="nowrap">Customer Mobile</th>
-									<th class="nowrap">Total Booked rooms</th>
-                                                                        <th class="nowrap">Status</th>
-									<th class="nowrap">City</th>
-									<th class="nowrap" >Pincode</th>
-									<th class="nowrap">Amount Paid</th>
 									<th class="nowrap">Transaction id</th>
+                                    <th class="nowrap">Hotel Name</th>													
+									<th class="nowrap">Customer Name</th>
+									<th class="nowrap">Customer Mobile</th>
+									<th class="nowrap">Total Booked rooms</th>									
+									<th class="nowrap">Amount Paid</th>
+									<th class="nowrap">Paid Percentage</th>
+                                    <th class="nowrap">Status</th>									
 									<th class="nowrap">Created at</th>
 								</tr>
 							</thead>
@@ -37,11 +35,13 @@
 									<tr>
 										<td><?php echo $key+1; ?></td>
 										<td><?php echo $value->orderid?></td>
+										<td><?php echo $value->transaction_id; ?></a></td>
+										<td><?php echo $value->hotel_name; ?></td>
 										<td><?php echo $value->fname." ".$value->lname ; ?></td>
-                                                                                <td><?php echo $value->hotel_name; ?></td>
-										<td><?php echo $value->email; ?></td>
 										<td><?php echo $value->phone; ?></td>
-										<td><?php echo $value->no_of_room; ?></td>
+										<td><?php echo $value->no_of_room; ?></td>				
+										<td><i class="fa fa-inr"></i><?php echo $value->amount_pay; ?></td>
+										<td><?php echo $value->paid_percentage ; ?></td>
 										<td>
 											<?php
 											$message="checkout";
@@ -52,14 +52,7 @@
 											}
 											?>
 											<a href="<?php echo base_url('admin/orders/status')."?status=".urlencode($message)."&id=".custom_encode($value->id)."&no_of_room=".($value->no_of_room)."&room_nos=".($value->room_nos)."&hotel_id=".($value->hotel_id)."&avl_room=".($value->avl_room); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td>
-											
-                                                                                <td><?php echo $value->city; ?></td>
-										<td><?php echo $value->pincode; ?></td>
-										<td><i class="fa fa-inr"></i><?php echo $value->amount_pay; ?></td>
-										<td><?php echo $value->transaction_id; ?></a></td>
-										<td>
-											<?php echo $value->created_At; ?>
-										</td>
+										<td><?php echo $value->created_At; ?></td>
 									</tr>
 								<?php endforeach; endif; ?>
 							</tbody>
@@ -79,7 +72,6 @@
 				// "bLengthChange": true,
 				"order": [[0, "asc"]],
 				"aoColumns": [
-				{"bSortable": true},
 				{"bSortable": true},
 				{"bSortable": true},
 				{"bSortable": true},
