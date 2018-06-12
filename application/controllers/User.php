@@ -25,8 +25,8 @@ class User extends CI_Controller {
     if(isset($_SESSION['userid'])){
 
       $array=array('userid'=>$_SESSION['userid']);
-      $result = $this->client_model->gethotelList($array,1000,0);
-      if($result)
+      //$result = $this->client_model->gethotelList1($array,1000,0);
+      if(false)
       {
         $this->data['hoteldata']=$result;
       }else{

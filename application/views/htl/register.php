@@ -38,38 +38,38 @@ Name: <input type="text" name="fname">
                 <div class="col-sm-6">
                   <label for="fname" class="col-sm-3 control-label">First Name:</label>
                   <div class="col-sm-9">
-                   <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required="required" autofocus="autofocus">
+                   <input type="text" class="form-control" id="fname" name="fname" placeholder="First Name" required="required" autofocus="autofocus" value="<?php if(isset($regester['fname'])){ echo $regester['fname']; } ?>">
                  </div>
                </div>
                <div class="col-sm-6">
                 <label for="lname" class="col-sm-3 control-label">Last Name:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required="required">
+                  <input type="text" class="form-control" name="lname" id="lname" placeholder="Last Name" required="required" value="<?php if(isset($regester['lname'])){ echo $regester['lname'] ; } ?>">
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="phone" class="col-sm-3 control-label">Phone No.:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone No." required="required">
+                  <input type="text" class="form-control" name="phone" id="phone" placeholder="Phone No." required="required" value="<?php if(isset($regester['phone'])){ echo $regester['phone'] ; } ?>">
                 </div>
                 <span id="mobile_err" style="color: red"></span>
               </div>
               <div class="col-sm-6">
                 <label for="email" class="col-sm-3 control-label">Email Address:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="email" id="email" placeholder="Email Address" required="required">
+                  <input type="text" class="form-control" name="email" id="email" placeholder="Email Address" required="required" value="<?php if(isset($regester['email'])){ echo $regester['email'] ; } ?>">
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="password" class="col-sm-3 control-label">Password:</label>
                 <div class="col-sm-9">
-                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="required">
+                  <input type="password" class="form-control" name="password" id="password" placeholder="Password" required="required" value="<?php if(isset($regester['password'])){ echo $regester['password'] ; } ?>">
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="confpassword" class="col-sm-3 control-label">Conf. Password:</label>
                 <div class="col-sm-9">
-                  <input type="password" class="form-control" name="confpassword" id="confpassword" placeholder="Confirm Password" required="required">
+                  <input type="password" class="form-control" name="confpassword" id="confpassword" placeholder="Confirm Password" required="required" value="<?php if(isset($regester['confpassword'])){ echo $regester['confpassword'] ; } ?>">
                  <span id="pass_error" style="color:red"></span> 
                 </div>
                
@@ -77,13 +77,13 @@ Name: <input type="text" name="fname">
               <div class="col-sm-6">
                 <label for="dob" class="col-sm-3 control-label">D.o.b:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="dob" id="dob" placeholder="Date of Birth" >
+                  <input type="text" class="form-control" name="dob" id="dob" placeholder="Date of Birth" value="<?php if(isset($regester['dob'])){ echo $regester['dob'] ; } ?>" >
                 </div>
               </div>
               <div class="col-sm-6">
                 <label for="dob" class="col-sm-3 control-label">Select Address:</label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="address" id="address" placeholder="Address" >
+                  <input type="text" class="form-control" name="address" id="address" placeholder="Address" value="<?php if(isset($regester['address'])){ echo $regester['address'] ; } ?>" >
                 </div>
               </div>
               <div class="col-sm-6">
@@ -104,7 +104,7 @@ Name: <input type="text" name="fname">
                   <input type="text" class="form-control" name="city" id="city" placeholder="City" value="Maihar" >
                 </div>
               </div>
-              <div class="col-sm-6" id="otp_div" style="display: none">
+              <div class="col-sm-6" id="otp_div" style="display: none;" >
                 <label for="City" class="col-sm-3 control-label">OTP:</label>
                 <div class="col-sm-9">
                   <input type="text" class="form-control" name="otp" id="otp" placeholder="OTP" >
@@ -115,8 +115,8 @@ Name: <input type="text" name="fname">
                 <input type="button" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Send OTP" onclick="send_otp()">
                 <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
               </div>
-              <div class="col-sm-offset-2 col-sm-5" id="submit">
-                <input type="submit" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Register with us" style="display: none">
+              <div class="col-sm-offset-2 col-sm-5" style="display: none;"  id="submit">
+                <input type="submit" class="btn btn-primary btn-normal border-radius pull-right" name="signup" value="Register with us" >
                 <!-- <button type="submit" class="btn btn-primary btn-normal border-radius pull-right">Sign in</button> -->
               </div>
               
@@ -195,6 +195,11 @@ function validateForm() {
          return false;
         }
         
+    }
+
+    function form_submit()
+    {
+      alert();
     }
 
 

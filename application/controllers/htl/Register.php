@@ -15,6 +15,16 @@ class Register extends CI_Controller {
 
   public function signup() {
      
+     $data['regester']=$_POST;
+     // debug($data);
+     $mobile=$this->session->userdata('mobile');
+     $otp=$this->session->userdata('otp');
+
+     if ($mobile==$_POST['phone']) {
+
+       if ($otp==$_POST['otp']) {
+       
+      
       
     $data=array(
       'fname'=>$_POST['fname'],
@@ -52,7 +62,9 @@ class Register extends CI_Controller {
     }else{
          set_flashdata('message', "Email or Phone is already registered with us. Please use a
             different email or Phone.", 'danger');
-         redirect('htl/Register ');
+    $this->load->view('htl/register',$data);
+         
+         // redirect('htl/Register ');
     }
     
     redirect('htl/login');
@@ -97,6 +109,18 @@ class Register extends CI_Controller {
 //      }
 //      json_output(json_encode($output));
 //    }
+      }else{
+         set_flashdata('message', "OTP Does not match.", 'danger');
+         $this->load->view('htl/register',$data);
+         
+         // redirect('htl/Register '); 
+       }
+    }else{
+         set_flashdata('message', "Phone and Otp Does not match.", 'danger');
+    $this->load->view('htl/register',$data);
+
+         // redirect('htl/Register ');
+          }
   }
 
 
