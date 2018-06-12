@@ -9,7 +9,7 @@ class Success extends CI_Controller {
 		
 	}
 
-	public function index($id ="")
+	public function index($id)
 	{
 		// echo $id;
 		if(isset($id) && $id !="")
