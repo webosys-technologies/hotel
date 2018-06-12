@@ -108,7 +108,7 @@ class Placeorder extends CI_Model {
         
 	public function getorders($id)
 	{	
-           
+           // echo $id;
             if(empty($id))
             {
                   $this->db->from('orders as ord');
@@ -128,7 +128,7 @@ class Placeorder extends CI_Model {
 		  $this->db->from('orders as ord');
                   $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT');
                    $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT'); 
-                  $this->db->where('ord.owner_id',$id);
+                  $this->db->where('ord.orderid',$id);
                   $query = $this->db->get();
                   $result=$query->result();
                 
