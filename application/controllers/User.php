@@ -24,9 +24,12 @@ class User extends CI_Controller {
   public function dashboard(){
     if(isset($_SESSION['userid'])){
 
-      $array=array('userid'=>$_SESSION['userid']);
-      //$result = $this->client_model->gethotelList1($array,1000,0);
-      if(false)
+      // $array=array('userid'=>$_SESSION['userid']);
+      $id=$_SESSION['userid'];
+      echo $id;
+      $result = $this->User_model->user_orders($id);
+      
+      if($result)
       {
         $this->data['hoteldata']=$result;
       }else{

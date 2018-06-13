@@ -1,7 +1,4 @@
 
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <?php $this->load->view('common/header1'); ?>
 <section id="page-header" class="section background">
@@ -24,8 +21,8 @@
             <div class="panel-heading">
               <div class="panel-title">
                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false">
-                  <h3>Your order no #<?php echo $orderdata[0]->orderid; ?> is booked successfully. </h3>
-                </a><i class="indicator pull-right icon-plus"></i>
+                  <h3>Hotel Room successfully booked with Order NO.#<?php echo $orderdata[0]->orderid; ?> </h3>
+                <i class="indicator pull-right icon-plus" style="color: white"></i></a>
               </div>
             </div>
             <div id="collapseTwo" class="panel-collapse collapse" aria-expanded="false" style="height: 0px;">
@@ -70,8 +67,8 @@
           <img src="<?php echo base_url('assets/images/successful.png'); ?>" alt="">
         </div>
         <h6>Dear customer,</h6>
-        <p>Thank you very much for ordering our product. You will be receiving an e-mail within next 72 hours, with the attachment or instructions to download.<br>
-          For any problems please <a href="mailto:mail@yoursite.com">mail@yoursite.com</a> </p>
+        <p>Thank you so much for booking our hotel. You will be receive an e-mail with booking details.<br>
+          For any problems please <a href="mailto:info@maiharyatra.com">info@maiharyatra.com</a> </p>
           <a href="<?php echo base_url(); ?>" class="btn btn-primary btn-normal btn-lg">CONTINUE BOOKING</a>
         </div><!-- end post-wrapper -->
       </div><!-- end col -->

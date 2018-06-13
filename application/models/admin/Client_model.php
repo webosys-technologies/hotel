@@ -518,4 +518,6 @@ function gethotel_room($id,$limit,$start,$data=array())
 		$query=$this->db->get();
 		return $query->row();
 	}
+
+	
 }  
