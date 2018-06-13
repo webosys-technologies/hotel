@@ -24,7 +24,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-9 text-left">
-        <p>COPYRIGHT@ MAIHARYATRA.COM Developed by <a href="http://www.webosys.com/" target="_BLANK">Webosys Technologies</a> 2018. ALL RIGHT RESERVED</p>
+        <p>COPYRIGHT@ MAIHARYATRA.COM Developed by 2018. ALL RIGHT RESERVED</p> <a href="http://www.webosys.com/" target="_BLANK">Webosys Technologies</a>
       </div><!-- end col -->
 
       <div class="col-md-3 text-right">
