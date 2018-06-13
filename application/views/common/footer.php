@@ -23,16 +23,15 @@
 <div class="copyrights clearfix">
   <div class="container">
     <div class="row">
-      <div class="col-md-6 text-left">
-        <p>COPYRIGHT <a href="https://www.codeaspire.in/" target="_BLANK">CODEASPIRE</a> 2017. ALL RIGHT RESERVED</p>
+      <div class="col-md-9 text-left">
+        <p>COPYRIGHT@ MAIHARYATRA.COM Developed by <a href="http://www.webosys.com/" target="_BLANK">Webosys Technologies</a> 2018. ALL RIGHT RESERVED</p>
       </div><!-- end col -->
 
-      <div class="col-md-6 text-right">
+      <div class="col-md-3 text-right">
         <div class="social-footer">
           <a href="#" title="Facebook"><i class="icon-facebook"></i></a>
           <a href="#" title="Twitter"><i class="icon-twitter"></i></a>
           <a href="#" title="Pinterest"><i class="icon-pinterest"></i></a>
-          <a href="#" title="SU.PR"><i class="icon-stumbleupon"></i></a>
           <a href="#" title="Instagram"><i class="icon-instagrem"></i></a>
           <a href="#" title="Dribbble"><i class="icon-dribbble"></i></a>
           <a href="#" title="Vimeo"><i class="icon-vimeo"></i></a>
