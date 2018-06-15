@@ -23,7 +23,7 @@
             <div class="panel-heading">
               <div class="panel-title">
                 <a class="accordion-toggle collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo<?php echo $orderdata->id ?>" aria-expanded="false">
-                  <h3>Your order no #<?php echo $orderdata->orderid; ?> . </h3>
+                  <h3>Your Booked Hotel order no #<?php echo $orderdata->orderid; ?> . </h3>
                 <i class="indicator pull-right icon-plus" style="color: white" ></i></a>
               </div>
             </div>

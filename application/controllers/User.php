@@ -97,8 +97,8 @@ public function add_hotel() {
               echo  $file_old_name = $_FILES['room_pic']['name']."hie";
               // die();
          //         $room='room_pic'[$row];
-         $room_img = $this->User_model->upload_room_pic("room_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
-                        debug($room_img);
+         // $room_img = $this->User_model->upload_room_pic("room_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
+         //                debug($room_img);
 
                         $row_data[] = array(
                             'hotel_id' => $hotel_id,

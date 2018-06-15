@@ -151,11 +151,11 @@ function manage_room1()
             
  
     );
-
-  // $img_result = $this->User_model->upload_room("room_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
-  //  echo $file_old_name = $_FILES['room_pic']['name'];
-
-  $data['room_pic']=$img_result['data']['file_name'];
+    
+//  $img_result = $this->User_model->upload_room("room_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
+//    echo $file_old_name = $_FILES['room_pic']['name'];
+//
+//  $data['room_pic']=$img_result['data']['file_name'];
        // die();
        $id=$this->input->post('hotel_room_id');
 
@@ -164,7 +164,7 @@ function manage_room1()
          $data['hotel_name']=$this->input->post('hotel_name');
      //  print_r($data);
 
-       $this->pic_upload($data);
+       // $this->pic_upload($data);
 
       echo json_encode(array('status' => True));
 

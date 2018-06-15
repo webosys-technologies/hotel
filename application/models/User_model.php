@@ -4,6 +4,9 @@ class User_model extends CI_Model {
 
     public function __construct() {
         parent::__construct();
+        
+    $this->load->helper(array('form', 'url','file'));
+                         $this->load->library('image_lib');
     }
 
 
@@ -11,7 +14,7 @@ class User_model extends CI_Model {
 
     $config['upload_path'] = $upload_path;
     $config['allowed_types'] = '*';
-    echo $file_old_name = $_FILES[$field_name]['name'];
+     $file_old_name = $_FILES[$field_name]['name'];
     if (strripos($file_old_name, ".")) {
         try {
             $file_name_explode = explode(".", $file_old_name, -1);
@@ -184,42 +187,12 @@ function check_mobile_exist($phone)
     }
 
 
-     public function upload_room_pic($field_name, $upload_path, $allowd_types = '', $max_size = 5024, $max_width = 0, $max_height = 0,$room) {
-
-    $config['upload_path'] = $upload_path;
-    $config['allowed_types'] = '*';
-   echo  $file_old_name = $field_name;
-
-    $file_old_name;
-
-    if (strripos($file_old_name, ".")) {
-        try {
-            $file_name_explode = explode(".", $file_old_name, -1);
-            $file_name_without_ext = implode(".", $file_name_explode);
-            $temp_file_name = explode(".", $file_old_name);
-            $file_ext = $temp_file_name[count($temp_file_name) - 1];
-            $file_new_name = $file_name_without_ext . "__" . date("dmY_His") . "__." . $file_ext;
-        } catch (Exception $e) {
-            $file_new_name = $file_old_name;
-        }
-    } else {
-        $file_new_name = $file_old_name;
-    }
-    $config['file_name'] = $file_new_name;
-    $this->load->library('upload', $config);
-    if (!$this->upload->do_upload($room)) {
-        $result = array("succ" => FALSE, "_err_msg" => $this->upload->display_errors());
-    } else {
-        $result = array("succ" => TRUE, "data" => $this->upload->data(), "path" => $this->upload->data('file_path'));
-    }
-    return $result;
-}
-
- public function upload_room($field_name, $upload_path, $allowd_types = '', $max_size = 5024, $max_width = 0, $max_height = 0) {
+     public function upload_room_pic($field_name, $upload_path, $allowd_types = '', $max_size = 5024, $max_width = 0, $max_height = 0) {
 
     $config['upload_path'] = $upload_path;
     $config['allowed_types'] = '*';
     echo $file_old_name = $_FILES[$field_name]['name'];
+
     if (strripos($file_old_name, ".")) {
         try {
             $file_name_explode = explode(".", $file_old_name, -1);
@@ -235,6 +208,8 @@ function check_mobile_exist($phone)
     }
     $config['file_name'] = $file_new_name;
     $this->load->library('upload', $config);
+     $this->upload->initialize($config);
+
     if (!$this->upload->do_upload($field_name)) {
         $result = array("succ" => FALSE, "_err_msg" => $this->upload->display_errors());
     } else {
@@ -242,5 +217,16 @@ function check_mobile_exist($phone)
     }
     return $result;
 }
+
+function user_orders($id)
+  {
+    $this->db->from('orders as ord');
+    $this->db->join('hotel_details as hd','hd.hotel_id=ord.hotel_id','LEFT');
+    $this->db->where('ord.user_id',$id);
+    $query=$this->db->get();
+    return $query->result();
+  }
+
+ 
 
 }

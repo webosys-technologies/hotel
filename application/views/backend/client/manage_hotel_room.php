@@ -44,12 +44,14 @@
 									foreach ($roomdata as $key => $value):
 										?>
 									<tr>
-										<form id="form<?php echo $value->hotel_room_id ?>"  enctype="multipart/form-data">
+										<form id="form<?php echo $value->hotel_room_id ?>" >
 											<input type="hidden" name="hotel_room_id" value="<?php echo $value->hotel_room_id ?>">
 											<input type="hidden" name="hotel_name" value="<?php echo $value->hotel_name; ?>">
 										<td><span><?php echo $key+1; ?></span></td>
+
 										<td><span class="l<?php echo $value->hotel_room_id ?>"><?php echo $value->hotel_name; ?></span><input type="text" name="hotel_name" value="<?php echo $value->hotel_name; ?>" class="i<?php echo $value->hotel_room_id ?>"  hidden="hidden" readonly></td>
-										<td style="width: 10px">
+
+										<td>
 											<input type="file" name="room_pic" id="room_pic" class="pic<?php echo $value->hotel_room_id ?>" style="display: none;" >
 										</td>
 
