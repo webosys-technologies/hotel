@@ -225,7 +225,7 @@
 				dataType: "JSON",
 				success: function (response) {
 
-						// location.reload();
+						location.reload();
 					
 				},
 				error: function (XMLHttpRequest, textStatus, errorThrown) {
