@@ -161,7 +161,7 @@ function validateForm() {
         if(x == 10 || x == 11)
         {
            $.ajax({
-       url : "<?php echo site_url('index.php/Otp/send_otp')?>" ,        
+       url : "<?php echo site_url('index.php/Otp/owner_otp')?>" ,        
        type: "post",
         data:{member_email : mobile},
        dataType: "JSON",

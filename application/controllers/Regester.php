@@ -231,6 +231,8 @@ function show_cities($state)
                   'error' => true,
                   'message' =>"Your email is already regester",
                   );
+                print_r($output);
+                die();
               }
       json_output(json_encode($output));
 

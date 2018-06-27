@@ -159,6 +159,19 @@ function check_mobile_exist($phone)
             return TRUE;
         }
 }
+function check_ownermobile_exist($phone)
+{
+  $this->db->from('hotel_owner');
+  $this->db->where('phone',$phone);
+  $query=$this->db->get();
+        $result=$query->num_rows();
+        if($result > 0)
+        {
+            return FALSE;
+        }else{
+            return TRUE;
+        }
+}
 
   function update_otp($where,$data)
   {
@@ -222,6 +235,7 @@ function user_orders($id)
   {
     $this->db->from('orders as ord');
     $this->db->join('hotel_details as hd','hd.hotel_id=ord.hotel_id','LEFT');
+    $this->db->join('hotel_room as hr','hr.hotel_room_id=ord.room_nos','LEFT');
     $this->db->where('ord.user_id',$id);
     $query=$this->db->get();
     return $query->result();

@@ -22,7 +22,7 @@ $items = array(
      array(
         'name' => 'Manage Room',
         'link' => base_url('htl/Rooms'),
-        'icon-class' => 'fa-fa plush text-yellow',
+        'icon-class' => 'fa-hand-pointer-o text-yellow',
         'active_on' => 'RoomDetails',
         ),
         array(

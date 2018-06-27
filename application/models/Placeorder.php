@@ -114,6 +114,7 @@ class Placeorder extends CI_Model {
                   $this->db->from('orders as ord');
                   $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT'); 
                    $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT'); 
+                   $this->db->join('hotel_room as hr', 'hr.hotel_room_id=ord.room_nos', 'LEFT'); 
                    $query1 = $this->db->get();
                   $result1=$query1->result();
 //                  print_r($result1);
@@ -183,7 +184,8 @@ class Placeorder extends CI_Model {
     {
          $this->db->from('orders as ord');
         $this->db->join('user as usr', 'usr.id=ord.user_id', 'LEFT'); 
-         $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT'); 
+         $this->db->join('hotel_details as dtl', 'dtl.hotel_id=ord.hotel_id', 'LEFT');
+         $this->db->join('hotel_room as hr', 'hr.hotel_room_id=ord.room_nos', 'LEFT');
          $this->db->where('ord.owner_id',$id);
          $query1 = $this->db->get();
         $result1=$query1->result();

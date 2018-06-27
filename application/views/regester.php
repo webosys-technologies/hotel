@@ -239,7 +239,7 @@ var state=el.val();
     }
   })
   .fail(function(res){
-    $("#errormessage").html("Something went wrong").removeClass('hide');
+    $("#errormessage").html("Email already exist").removeClass('hide');
   });
 }
 

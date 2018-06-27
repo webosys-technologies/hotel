@@ -15,10 +15,10 @@ class Register extends CI_Controller {
 
   public function signup() {
      
-     $data['regester']=$_POST;
+     $post['regester']=$_POST;
      // debug($data);
-     $mobile=$this->session->userdata('mobile');
-     $otp=$this->session->userdata('otp');
+     $mobile=$this->session->userdata('owner_mobile');
+     $otp=$this->session->userdata('owner_otp');
 
      if ($mobile==$_POST['phone']) {
 
@@ -59,15 +59,16 @@ class Register extends CI_Controller {
     if($result)
     {
         set_flashdata('message', "Account is created successfully!", 'success');
+    redirect('htl/login');
+
     }else{
-         set_flashdata('message', "Email or Phone is already registered with us. Please use a
+         set_flashdata('message', "Email is already registered with us. Please use a
             different email or Phone.", 'danger');
-    $this->load->view('htl/register',$data);
+    $this->load->view('htl/register',$post);
          
          // redirect('htl/Register ');
     }
     
-    redirect('htl/login');
     
 //    if(isset($_POST['updateProduct'])){
 //      if($falag){
@@ -111,13 +112,13 @@ class Register extends CI_Controller {
 //    }
       }else{
          set_flashdata('message', "OTP Does not match.", 'danger');
-         $this->load->view('htl/register',$data);
+         $this->load->view('htl/register',$post);
          
          // redirect('htl/Register '); 
        }
     }else{
          set_flashdata('message', "Phone and Otp Does not match.", 'danger');
-    $this->load->view('htl/register',$data);
+    $this->load->view('htl/register',$post);
 
          // redirect('htl/Register ');
           }

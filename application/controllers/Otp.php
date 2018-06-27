@@ -102,7 +102,8 @@ if(curl_errno($ch))
 }
 curl_close($ch);
 
-echo json_encode(array('send'=>'OTP is sent Successfully'));       
+echo json_encode(array('send'=>'OTP is sent Successfully',
+'msg'=> $message));       
             // }
 
 
@@ -129,7 +130,7 @@ echo json_encode(array('send'=>'OTP is sent Successfully'));
             
             if($val)
             {
-                $res=$this->User_model->check_mobile_exist($email);
+                $res=$this->User_model->check_ownermobile_exist($email);
 
                 if($res == false)
                 {
@@ -137,7 +138,8 @@ echo json_encode(array('send'=>'OTP is sent Successfully'));
                      echo json_encode(array('mobile_error'=>'This Mobile is already registered'));
                 }else{  
                      $rand=mt_rand(100000,999999);
-                $data=array('regester_otp'=>$rand);
+                $data=array('owner_otp'=>$rand,
+                            'owner_mobile' =>$email);
                $this->session->set_userdata($data);
                 
                  // $this->User_model->update_otp(array('phone'=>$email),$data);
@@ -207,9 +209,10 @@ $output = curl_exec($ch);
 //Print error if any
 if(curl_errno($ch))
 {
-   // echo json_encode(array('error'=> curl_error($ch)));
+   echo json_encode(array('error'=> curl_error($ch)));
 }
 curl_close($ch);
+  // echo $message;
 
 echo json_encode(array('send'=>'OTP is sent Successfully'));       
             }

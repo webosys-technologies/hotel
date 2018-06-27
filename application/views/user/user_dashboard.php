@@ -44,9 +44,10 @@
                       <ul>
                         <li><strong class="pull-left">Hotel Name</strong> -<span class="pull-right"><?php echo $orderdata->hotel_name; ?></span></li>
                         <li><strong  class="pull-left">Hotel_Mobile</strong>- <span class="pull-right"> <?php echo $orderdata->mobile_no; ?></span></li>
-                        <li><strong  class="pull-left">Your Email</strong>-  <span class="pull-right"> <?php //echo $orderdata->l; ?></span></li>
+                        <li><strong  class="pull-left">Hotel Email</strong>-  <span class="pull-right"> <?php //echo $orderdata->l; ?></span></li>
                         <li><strong  class="pull-left">Check in</strong>-  <span class="pull-right"> <?php echo $orderdata->checkin; ?></span></li>
                         <li><strong  class="pull-left">Check out</strong>-   <span class="pull-right"><?php echo $orderdata->checkout; ?></span></li>
+                        <li><strong  class="pull-left">Remaining Amount</strong>-   <span class="pull-right"><?php if ($orderdata->paid_percentage != 0) { echo $orderdata->price; }else{ echo 0;} ?></span></li>
                       </ul>
                     </div><!-- end body -->
                   </div><!-- end pricing-table -->
