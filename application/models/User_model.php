@@ -241,6 +241,21 @@ function user_orders($id)
     return $query->result();
   }
 
+function getuser_info($id)
+{
+  $this->db->from('user');
+  $this->db->where('id',$id);
+  $query=$this->db->get();
+  return $query->row();
+}
+
+function getowner_info($id)
+{
+  $this->db->from('hotel_owner');
+  $this->db->where('owner_id',$id);
+  $query=$this->db->get();
+  return $query->row();
+}
  
 
 }

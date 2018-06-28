@@ -7,7 +7,8 @@ class Orders extends CI_Controller {
 		parent::__construct();
 		$this->load->helper('string');
     $this->load->model('Searchhotel');
-		$this->load->model('Login_model');
+    $this->load->model('Login_model');
+		$this->load->model('User_model');
                 $this->load->model('placeorder');
 		$this->load->model('mailer');
 	}
@@ -32,14 +33,14 @@ class Orders extends CI_Controller {
 	     'user_id' =>$userid,
 			'amount_pay'=>$_POST['youpay'],
 			'transaction_id'=>$_POST['razorpay_payment_id'],
-                        'hotel_id'=>$_POST['hotel_id'],
+      'hotel_id'=>$_POST['hotel_id'],
 			'bed_type'=>$_POST['bed_type'],
-                        'owner_id'=>$_POST['owner_id'],
-                        'user_id'=>$_POST['userid'],
-                       'no_of_room'=>$no_of_room,
+      'owner_id'=>$_POST['owner_id'],
+      'user_id'=>$_POST['userid'],
+      'no_of_room'=>$no_of_room,
 			'checkin'=>$searchcheckin,
 			'checkout'=>$searchcheckout,
-                        'status'=>1,
+      'status'=>1,
       'paid_percentage'=>$_POST['hotel_price'],
                        // 'total_room'=>$_POST['left_hotel'],
                        // 'avl_room'=>($_POST['left_hotel']-$_POST['no_of_room'])
@@ -77,6 +78,8 @@ class Orders extends CI_Controller {
                 if($result){
                   $this->payment($input);
                   // $res = $this->placeorder->updateroomstatus($booking);
+                  $this->cust_msg_notify($input);
+                  $this->owner_msg_notify($input);
                 }
 //                   die();
 		if($result)
@@ -95,9 +98,9 @@ class Orders extends CI_Controller {
       $user=$this->Login_model->user_data($id);
 
 		$data=array('from'=>SOURCEMAIL,'to'=>$user->email,'subject'=>"Maiharyatra Booking Detail",'message'=>"Hi Your hotel with order no <h1>".$input['orderid']."</h1> is booked successfully. For more detail you can call us on 7289058852. Our team ll connect you shortly");
-		$res= $this->mailer->send_mail($data);
+	//	$res= $this->mailer->send_mail($data);
 
-		if($res)
+		if(true)
 		{
 			$output = array(
 				'error' => false,
@@ -209,6 +212,165 @@ class Orders extends CI_Controller {
     }
 
 
+
+  }
+  function owner_msg_notify($data)
+  {
+    $hotel=$this->Searchhotel->gethotel_info($data['hotel_id']);
+    $owner=$this->User_model->getowner_info($hotel->owner_id);
+    $cust=$this->User_model->getuser_info($data['user_id']);
+
+
+    $authKey = "217899AjUpTycrXx6K5b0e2283";    //suraj9195shinde for
+
+//Multiple mobiles numbers separated by comma
+
+$mobileNumber = $owner->phone;
+//Sender ID,While using route4 sender id should be 6 characters long.
+
+$senderId = "MAHYTR";
+//Your message to send, Add URL encoding here.
+
+$message =$data['orderid'].' Order No. has booked Hotel '.$hotel->hotel_name.' with room no '.$data['room_nos'].' by '.$cust->fname.' '.$cust->lname;
+
+
+//Define route 
+
+$route = "4";
+//Prepare you post parameters
+
+$postData = array(
+
+    'authkey' => $authKey,
+
+    'mobiles' => $mobileNumber,
+
+    'message' => $message,
+
+    'sender' => $senderId,
+
+    'route' => $route
+
+);
+
+
+//API URL
+
+$url="http://api.msg91.com/api/sendhttp.php";
+
+
+// init the resource
+
+$ch = curl_init();
+curl_setopt_array($ch, array(
+
+    CURLOPT_URL => $url,
+
+    CURLOPT_RETURNTRANSFER => true,
+
+    CURLOPT_POST => true,
+
+    CURLOPT_POSTFIELDS => $postData
+
+    //,CURLOPT_FOLLOWLOCATION => true
+
+));
+//Ignore SSL certificate verification
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+//get response
+
+$output = curl_exec($ch);
+//Print error if any
+if(curl_errno($ch))
+{
+   // echo json_encode(array('error'=> curl_error($ch)));
+}
+curl_close($ch);
+
+// echo json_encode(array('send'=>'OTP is sent Successfully',
+// 'msg'=> $message));       
+            // }
+
+  }
+
+  function cust_msg_notify($data)
+  {
+    $hotel=$this->Searchhotel->gethotel_info($data['hotel_id']);
+    $cust=$this->User_model->getuser_info($data['user_id']);
+
+    $authKey = "217899AjUpTycrXx6K5b0e2283";    //suraj9195shinde for
+
+//Multiple mobiles numbers separated by comma
+
+$mobileNumber = $cust->phone;
+//Sender ID,While using route4 sender id should be 6 characters long.
+
+$senderId = "MAHYTR";
+//Your message to send, Add URL encoding here.
+
+$message ='Your Order No. '.$data['orderid'].' is booked successfully with Hotel '.$hotel->hotel_name.' and room no '.$data['room_nos'].' on Maiharyatra';
+
+
+//Define route 
+
+$route = "4";
+//Prepare you post parameters
+
+$postData = array(
+
+    'authkey' => $authKey,
+
+    'mobiles' => $mobileNumber,
+
+    'message' => $message,
+
+    'sender' => $senderId,
+
+    'route' => $route
+
+);
+
+
+//API URL
+
+$url="http://api.msg91.com/api/sendhttp.php";
+
+
+// init the resource
+
+$ch = curl_init();
+curl_setopt_array($ch, array(
+
+    CURLOPT_URL => $url,
+
+    CURLOPT_RETURNTRANSFER => true,
+
+    CURLOPT_POST => true,
+
+    CURLOPT_POSTFIELDS => $postData
+
+    //,CURLOPT_FOLLOWLOCATION => true
+
+));
+//Ignore SSL certificate verification
+curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+
+//get response
+
+$output = curl_exec($ch);
+//Print error if any
+if(curl_errno($ch))
+{
+   // echo json_encode(array('error'=> curl_error($ch)));
+}
+curl_close($ch);
+
+// echo json_encode(array('send'=>'OTP is sent Successfully',
+// 'msg'=> $message));       
+            // }
 
   }
 }

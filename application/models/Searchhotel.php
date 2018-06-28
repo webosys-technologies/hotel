@@ -115,4 +115,12 @@ class Searchhotel extends CI_Model {
     
 
   }
+
+  function gethotel_info($id)
+  {
+    $this->db->from('hotel_details as hd');
+    $this->db->where('hotel_id',$id);
+    $query=$this->db->get();
+    return $query->row();
+  } 
 }

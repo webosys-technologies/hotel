@@ -17,11 +17,11 @@
                                     <th class="nowrap">Hotel Name</th>
 									<th class="nowrap">Customer Name</th>
 									<th class="nowrap">Customer Mobile</th>
-									<th class="nowrap">Booked room</th>
+									<th class="nowrap">Booked Room no.</th>
 									<th class="nowrap">Amount Paid</th>
 									<th class="nowrap">Remaining Amount</th>
 									<th class="nowrap">Paid Percentage</th>
-                                    <!-- <th class="nowrap">Status</th> -->
+                                    <th class="nowrap">Status</th>
 									<th class="nowrap">Created at</th>
 								</tr>
 							</thead>
@@ -45,16 +45,12 @@
                                         <td><i class="fa fa-inr"></i><?php if($value->paid_percentage != 0){ echo $value->price; }else{ echo 0;}  ?></a></td>
 
                                         <td><?php echo $value->paid_percentage ; ?></td>
-										<!-- <td>
+										<td>
 											<?php
-											$message="checkout";
-											$status="bg-red";
-											if($value->status){
-												$message="checkin";
-												$status="bg-green";
-											}
-											?>
-											<a href="<?php echo base_url('admin/orders/status')."?status=".urlencode($message)."&id=".custom_encode($value->id)."&no_of_room=".($value->no_of_room)."&room_nos=".($value->room_nos)."&hotel_id=".($value->hotel_id)."&avl_room=".($value->avl_room); ?>" onClick="return confirm('Are you sure you want to change status ?');"><span class="pull-right badge <?php echo $status; ?>"><?php echo $message; ?></span></a></td> -->
+											if($value->status == 1){
+												echo "Success";
+											}else{ echo "Failure"; }
+											?></td>
 																				
 										<td><?php echo $value->created_At; ?></td>
 									</tr>
@@ -76,6 +72,7 @@
 				// "bLengthChange": true,
 				"order": [[0, "asc"]],
 				"aoColumns": [
+				{"bSortable": true},
 				{"bSortable": true},
 				{"bSortable": true},
 				{"bSortable": true},
