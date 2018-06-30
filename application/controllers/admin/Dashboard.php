@@ -16,6 +16,7 @@ class Dashboard extends MY_Controller {
         if (!admin_logged_in()) {
             redirect('admin');
         }
+        $paymentamt[]=0;
         $result = $this->client_model->getuserList("");
         $hotels = $this->client_model->gethotelList("",1000,0);
         $orders=$this->Placeorder->getorders("");

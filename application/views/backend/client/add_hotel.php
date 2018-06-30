@@ -13,21 +13,31 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="box box-primary">
-                    <form class="form-horizontal" method="POST" action="<?php echo base_url('user/add_hotel');?>"  id="addhotel" enctype="multipart/form-data">
+                    <form class="form-horizontal" method="POST" action=""  id="addhotel" enctype="multipart/form-data">
                         <div class="box-body">
+                            <div class="form-group">
+                                <div class="col-sm-6">
+                                    <label for="h_name">Hotel Owner </label>
+                                    <select name="owner" class="form-control"> 
+                                    <?php foreach ($owner as $key => $value) : ?>
+                                    <option value="<?php echo $value->owner_id; ?>"> <?php echo $value->fname." ".$value->lname  ?></option> </select>
+                                   <?php endforeach; ?>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="col-sm-6">
                                     <label for="h_name">Name of the Hotel </label>
                                     <input type="text" class="form-control" id="hotel_name"  name="hotel_name"  value="<?php if(isset($client_info[0]->hotel_name)){ echo $client_info[0]->hotel_name; } ?>" autofocus=""  placeholder="Enter Hotel Name">
                                 </div>
+                                
                                 <?php if(isset($client_info[0]->hotel_id)): ?>
                                 
                                     <input type="hidden" name="hotel_id" value="<?php echo custom_encode($client_info[0]->hotel_id); ?>" />
 <!--                                    <input type="hidden" name="room_id" value="<?php //echo custom_encode($client_info[0]->hotel_room_id); ?>">   -->
 <!--                                    <input type="hidden" name="price_id" value="<?php// echo custom_encode($client_info[0]->price_id); ?>">-->
-                                   <?php if(isset($hotel_room[0]->hotel_id)): ?>
+                                   <!-- <?php if(isset($hotel_room[0]->hotel_id)): ?>
                                     <input type="hidden" name="hotel_room_id" value="<?php echo custom_encode($hotel_room[0]->hotel_room_id); ?>">
-                                  <?php  endif; ?> 
+                                  <?php  endif; ?>  -->
                                         <?php  endif; ?> 
                                 <input type="hidden" name="create_user" value="<?php if(isset($client_info[0]->create_user)){echo $client_info[0]->create_user; }else{ echo "admin";}?>">
                                 <input type="hidden" name="isverified" value="<?php if(isset($client_info[0]->isverified)){echo $client_info[0]->isverified; }else{ echo "0";}?>" />
@@ -106,7 +116,7 @@
                                 </div>
                                 <div class="col-sm-6">
                                     <label >Hotel Commission</label>
-                                    <input type="text" class="form-control" name="commission" id="commision" value="<?php if(isset($client_info[0]->commission)){ echo $client_info[0]->commission; } ?>" >
+                                    <input type="text" class="form-control" name="commission" id="commision" value="<?php if(isset($client_info[0]->hotel_price)){ echo $client_info[0]->hotel_price; } ?>" >
                                 </div> 
                               </div> 
                                <div class="form-group">
@@ -182,6 +192,7 @@
             <div class="row form-group  after-add-more">
             <div class="col-md-12 ">
              <div class="col-md-2 col-sm-4 col-xs-6">
+                <input type="hidden" name="hotel_room_id[]" value="<?php if(isset($hotel_room[0]->hotel_room_id)){ echo $hotel_room[0]->hotel_room_id; }  ?>">
                <select name="bed_type[]" class="form-control">
                   <?php if(isset($hotel_room[0]->bed_type)) {
                       ?> 
@@ -232,12 +243,12 @@
                    <input type="text" class="form-control" name="person_allowed[]" placeholder="Allowed Person" value="<?php if(isset($hotel_room[0]->person_allowed)){ echo $hotel_room[0]->person_allowed; }?>" required="required">
              </div>
 
-              <div class="col-md-2 col-sm-4 col-xs-6">
+              <!-- <div class="col-md-2 col-sm-4 col-xs-6">
                   <input type="file" class="form-control" name="room_pic" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
-                                <!-- <?php if(isset($client_info[0]->hotel_pic)): ?>
+                                <?php if(isset($client_info[0]->hotel_pic)): ?>
                                     <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
-                                <?php endif; ?> -->
-             </div>
+                                <?php endif; ?>
+             </div> -->
 <!--               <select name="room_avalivality[]" class="form-control">
                    <?php //if(isset($hotel_room[0]->room_avalivality)) {
                       ?> 
@@ -269,7 +280,8 @@
 	foreach ($room_info as $key => $value):?>
 <div class="row ">
   <div class="col-md-12 control-group2 hotel_room_margin" >
-  
+                
+                <input type="hidden" name="hotel_room_id[]" value="<?php  echo $value->hotel_room_id;  ?>">
              <div class="col-md-2 col-sm-4 col-xs-6">
                <select name="bed_type[]" class="form-control">
                    <option <?php if(($hotel_room[0]->bed_type)==1){ echo 'selected'; } ?> value="1">Single Bed</option>
@@ -296,20 +308,20 @@
                   <input type="text" class="form-control" name="person_allowed[]" placeholder="Allowed Person" value="<?php echo $value->person_allowed; ?>">
              </div>
 
-              <div class="col-md-2 col-sm-4 col-xs-6">
+              <!-- <div class="col-md-2 col-sm-4 col-xs-6">
                   <input type="file" class="form-control" name="room_pic" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
-                                <!-- <?php if(isset($client_info[0]->hotel_pic)): ?>
+                                <?php if(isset($client_info[0]->hotel_pic)): ?>
                                     <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
-                                <?php endif; ?> -->
-             </div>
-
-<!--               <select name="room_avalivality[]" class="form-control">
+                                <?php endif; ?>
+             </div>  -->
+<!-- 
+               <select name="room_avalivality[]" class="form-control">
                  <option <?php// if ($value->room_avalivality == 1 ) echo 'selected' ; ?> value="1">Yes</option>
                  <option <?php //if ($value->room_avalivality == 2 ) echo 'selected' ; ?> value="2">No</option>
                </select>
-             </div>-->
+             </div> -->
               <div class="input-group-btn"> 
-                  <button class="btn btn-danger remove" type="button"><i class="glyphicon glyphicon-remove"></i> Remove Fields</button>
+                  <button class="btn btn-danger remove"  type="button"><i class="glyphicon glyphicon-remove"></i> Remove Fields</button>
             </div>
              </div>
 
@@ -322,6 +334,7 @@
   <div class="col-md-12 control-group hotel_room_margin" >
   
              <div class="col-md-2 col-sm-4 col-xs-6">
+                <input type="hidden" name="hotel_room_id[]">
                <select name="bed_type[]" class="form-control">
                 <option value="1">Single Bed</option>
                  <option value="2">Double Bed</option>
@@ -346,12 +359,12 @@
                  <input type="text" class="form-control" name="person_allowed[]" placeholder="Allowed Person" >
              </div>
 
-              <div class="col-md-2 col-sm-4 col-xs-6">
+              <!-- <div class="col-md-2 col-sm-4 col-xs-6">
                   <input type="file" class="form-control" name="room_pic" id="room_pic" value="<?php // if(isset($client_info[0]->hotel_pic)){ echo $client_info[0]->hotel_pic; } ?>"   >
-                                <!-- <?php if(isset($client_info[0]->hotel_pic)): ?>
+                                 <?php if(isset($client_info[0]->hotel_pic)): ?>
                                     <img src="<?php echo FILE .$client_info[0]->hotel_pic; ?>" width="100" height="100">    
-                                <?php endif; ?> -->
-             </div>
+                                <?php endif; ?>
+             </div> -->
 <!--               <select name="room_avalivality[]" class="form-control">
                  <option  value="1">Yes</option>
                  <option  value="2">No</option>
@@ -367,7 +380,7 @@
 <!-- <----copy cde> -->
                     </div>
                     <div class="box-footer">
-                        <input type="submit" class="btn btn-primary btn-normal border-radius pull-right"  value="Submit">
+                        <input type="button" onclick="save()" class="btn btn-primary btn-normal border-radius pull-right"  value="Submit">
                     </div>
                 </form>
             </div>
@@ -437,4 +450,27 @@
 
 
     });
+    function save()
+    {
+        var data = new FormData(document.getElementById("addhotel"));
+        // ajax adding data to database
+          $.ajax({
+            url : "<?php echo site_url('index.php/admin/Hotel/add')?>",
+            type: "POST",
+            async: false,
+            processData: false,
+            contentType: false,            
+            data: data,
+            dataType: "JSON",
+            success: function(json)
+            {       
+               window.location="<?php echo site_url('index.php/admin/Hotel')?>"
+            
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error adding / update data in student');
+            }
+        });
+    }
 </script>

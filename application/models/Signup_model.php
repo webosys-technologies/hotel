@@ -20,8 +20,22 @@ class Signup_model extends CI_Model {
 
 	function owner_signup($data) {
       
+		
+               $this->db->from('hotel_owner');
+               $this->db->where('email',$data['email']);
+               $this->db->or_where('phone',$data['phone']);
+               $res=$this->db->get();
+               $num=$res->num_rows();
+               if($num>0)
+               {
+                 
+                   return false;
+               }else{
+                    
 		$this->db->insert('hotel_owner', $data);
 		return $this->db->insert_id();
+               }
+               
 	}
 
 	function owner_update($where,$data) {

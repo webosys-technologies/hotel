@@ -151,12 +151,15 @@ class Regester extends CI_Controller {
       }else{
         if($result){
           set_flashdata('message', "Account is created successfully!", 'success');
+        redirect('admin/Owners');
+
         }else{
           set_flashdata('message', "Email or Phone is already registered with us. Please use a
             different email or Phone.", 'danger');
+        redirect('admin/Owners/profile/na');
+
 
         }
-        redirect('admin/Owners/profile/na');
       }
     }
     else if(isset($_POST['Update'])){

@@ -18,7 +18,7 @@
                         <div class="box-body">
                             <div class="col-sm-6">
                                 <div class="form-group">
-                                    <label for="prodId">Fir Name</label>
+                                    <label for="prodId">First Name</label>
                                     <input type="text" class="form-control" id="fname"  name="fname"  value="<?php if(isset($client_info[0]->fname)){ echo $client_info[0]->fname; } ?>" autofocus=""  placeholder="Enter First Name">
                                 </div>
                             </div>

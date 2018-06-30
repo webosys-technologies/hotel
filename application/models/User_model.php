@@ -109,11 +109,10 @@ function add_price($filters = array()) {
     return $this->db->insert_id();
 }
 }
-function add_hotel_room($filters = array()) {
+function add_hotel_room($filters=array()) {
  
  if (isset($filters[0]['hotel_id']) && $filters[0]['hotel_id'] != '') {
-    
-        
+
                 $where = array('hotel_id' =>$filters[0]['hotel_id']);
                 
 		$result = $this->db->delete('hotel_room', $where);
@@ -256,6 +255,18 @@ function getowner_info($id)
   $query=$this->db->get();
   return $query->row();
 }
+
+function hotel_room_add($data)
+{
+  $this->db->insert('hotel_room',$data);
+  return $this->db->insert_id();
+}
+
+function hotel_room_update($where,$data)
+{
+  $this->db->update('hotel_room',$data,$where);
+  return $this->db->affected_rows();
+} 
  
 
 }

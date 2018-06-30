@@ -69,8 +69,48 @@
                     </div>
                     <a href="<?php echo base_url('admin/Payment'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
                 </div>
+            </div>
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-orange color-palette">
+                    <div class="inner">
+                              <h3><?php echo $paymentcount; ?></h3>
+                        <p>Payment</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/Payment'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
             </div>            
 
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-orange color-palette">
+                    <div class="inner">
+                              <h3><?php echo $paymentcount; ?></h3>
+                        <p>Payment</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/Payment'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div> 
+            
+            <div class="col-lg-3 col-xs-6">
+                <!-- small box -->
+                <div class="small-box bg-orange color-palette">
+                    <div class="inner">
+                              <h3><?php echo $paymentcount; ?></h3>
+                        <p>Payment</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-credit-card"></i>
+                    </div>
+                    <a href="<?php echo base_url('admin/Payment'); ?>" class="small-box-footer">More info <i class="fa fa-arrow-circle-right"></i></a>
+                </div>
+            </div> 
         </div>
     </section>
     <!-- /.content -->

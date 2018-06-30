@@ -42,9 +42,9 @@ class User extends CI_Controller {
 }
 public function add_hotel() {
   $req=$this->input->post();  
-//  echo '<pre>';
+ // echo '<pre>';
  // print_r($req);
-//  die();
+ // die();
   $data=array(
     'hotel_name' => $_POST['hotel_name'],
             'create_user' => $_POST['create_user'],
@@ -84,7 +84,7 @@ public function add_hotel() {
       $data['hotel_id']=$_POST['hotel_id'];
       $res = $this->User_model->add_hotel($data);
       if($res || $res==0){
-        
+        // print_r($req);
            $row_data = array();
                     foreach ($req['bed_type'] as $row => $bed_type) {
                         $hotel_id = custom_decode($_POST['hotel_id']);
@@ -93,8 +93,9 @@ public function add_hotel() {
                         $ac_non_room = $req['ac_non_room'][$row];
                         $room_no = $req['room_no'][$row];
                         $person_allowed= $req['person_allowed'][$row];
+                        $hotel_room_id=$req['hotel_room_id'][$row];
 
-              echo  $file_old_name = $_FILES['room_pic']['name']."hie";
+              // echo  $file_old_name = $_FILES['room_pic']['name'];
               // die();
          //         $room='room_pic'[$row];
          // $room_img = $this->User_model->upload_room_pic("room_pic", IMAGEUPLOAD, "png|jpg|gif|jpeg", 5000000, 0, 0);
@@ -111,12 +112,18 @@ public function add_hotel() {
 
                         );
 
+
+
   } 
-  
-  // die();
+ // echo '<pre>';  
+ //  print_r($row_data);
+ //  die();
     array_pop($row_data);
            $res = $this->User_model->add_hotel_room($row_data);
 
+
+    
+                    
            
            
        set_flashdata('message', "Hotel is update Successfully", 'success');
@@ -154,7 +161,7 @@ public function add_hotel() {
     } 
     array_pop($row_data); 
        
-     $res = $this->User_model->add_hotel_room($row_data);
+     $res = $this->User_model->add_hotel_room($row_data,$id=" ");
        set_flashdata('message', "Hotel details is added Successfully", 'success');
        redirect('admin/Hotel/index');
      }else{

@@ -162,7 +162,8 @@
    </div>
             <div class="row form-group  after-add-more">
             <div class="col-md-12 ">
-             <div class="col-md-2 col-sm-4 col-xs-6">
+             <div class="col-md-2 col-sm-4 col-xs-6">                
+                <input type="hidden" name="hotel_room_id[]" value="<?php if(isset($hotel_room[0]->hotel_room_id)){ echo $hotel_room[0]->hotel_room_id; }  ?>">
                <select name="bed_type[]" class="form-control">
                   <?php if(isset($hotel_room[0]->bed_type)) {
                       ?> 
@@ -245,6 +246,8 @@
   <div class="col-md-12 control-group2 hotel_room_margin" >
   
              <div class="col-md-2 col-sm-4 col-xs-6">
+
+                <input type="hidden" name="hotel_room_id[]" value="<?php echo $value->hotel_room_id;   ?>">
                <select name="bed_type[]" class="form-control">
                    <option <?php if(($hotel_room[0]->bed_type)==1){ echo 'selected'; } ?> value="1">Single Bed</option>
                  <option <?php if (($hotel_room[0]->bed_type)== 2) {echo 'selected' ;} ?> value="3">Double Bed</option>
@@ -286,7 +289,8 @@
 
 <div class="row copy hidden ">
   <div class="col-md-12 control-group hotel_room_margin" >
-  
+            
+                <input type="hidden" name="hotel_room_id[]" value="">
              <div class="col-md-2 col-sm-4 col-xs-6">
                <select name="bed_type[]" class="form-control">
                 <option value="1">Single Bed + 1 person</option>
@@ -398,4 +402,27 @@
 
 
     });
+    function save()
+    {
+        var data = new FormData(document.getElementById("addhotel"));
+        // ajax adding data to database
+          $.ajax({
+            url : "<?php echo site_url('index.php/htl/Hotel/add')?>",
+            type: "POST",
+            async: false,
+            processData: false,
+            contentType: false,            
+            data: data,
+            dataType: "JSON",
+            success: function(json)
+            {       
+               window.location="<?php echo site_url('index.php/htl/Hotel')?>"
+            
+            },
+            error: function (jqXHR, textStatus, errorThrown)
+            {
+                alert('Error adding / update data in student');
+            }
+        });
+    }
 </script>
